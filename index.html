@@ -26,42 +26,53 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .uavatar img{width:100%;height:100%;object-fit:cover;}
 .btnout{font-size:13px;color:var(--tm);background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-family:'DM Sans',sans-serif;}
 .btnout:hover{color:var(--tp);background:var(--creamdk);}
-.main{max-width:1000px;margin:0 auto;padding:28px 20px;}
+.main{max-width:1100px;margin:0 auto;padding:28px 20px;}
 .mhdr{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
 .mnbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);background:white;cursor:pointer;font-size:15px;color:var(--ts);display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
 .mnbtn:hover{background:var(--g50);color:var(--g600);}
 .mtitle{font-family:'Fraunces',serif;font-size:24px;font-weight:400;flex:1;}
 .mtitle em{font-style:italic;color:var(--g600);}
 
-.page-card{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:28px;}
-.page-hdr{padding:18px 24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.page-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:white;flex-shrink:0;}
-.page-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--tp);flex:1;}
-.page-stats{display:flex;gap:12px;align-items:center;margin-right:8px;}
-.pstat{font-size:11px;color:var(--tm);}
-.pstat strong{color:var(--g600);font-weight:500;}
-.page-btns{display:flex;gap:7px;}
+/* PERSON BLOCK */
+.person-block{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
+.person-hdr{padding:16px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.person-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:white;flex-shrink:0;}
+.person-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--tp);flex:1;}
+.person-stats{display:flex;gap:10px;align-items:center;}
+.pst{font-size:11px;color:var(--tm);}
+.pst strong{color:var(--g600);font-weight:500;}
+.person-btns{display:flex;gap:7px;}
 .bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
 .bsm:hover{background:var(--creamdk);}
 .bsmg{background:var(--g600);color:white;border-color:var(--g600);}
 .bsmg:hover{background:var(--g800);color:white;}
+
+/* GARDEN */
 .garden-wrap{position:relative;}
 .garden-wrap canvas{width:100%;height:90px;display:block;}
 .gpill{position:absolute;bottom:6px;right:10px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:500;color:var(--g800);}
-.pprog{padding:8px 24px 10px;border-bottom:1px solid var(--bd);}
+.pprog{padding:8px 22px 10px;border-bottom:1px solid var(--bd);}
 .ptrack{height:4px;background:var(--creamdk);border-radius:2px;overflow:hidden;}
 .pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
 .plabel{font-size:10px;color:var(--tm);margin-top:4px;}
+
+/* CATEGORY */
+.cat-section{padding:0;}
+.cat-hdr{padding:10px 22px 6px;display:flex;align-items:center;justify-content:space-between;background:var(--cream);border-bottom:1px solid var(--bd);}
+.cat-name{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:6px;}
+.cat-dot{width:8px;height:8px;border-radius:50%;}
+
+/* HABITS TABLE */
 .hscroll{overflow-x:auto;}
 table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
-.ht thead th:first-child{text-align:left;padding-left:20px;width:160px;}
-.ht tbody tr:hover{background:var(--cream);}
+.ht thead th:first-child{text-align:left;padding-left:22px;width:180px;}
+.ht tbody tr:hover{background:var(--g50);}
 .ht tbody td{padding:7px 3px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle;}
-.ht tbody td:first-child{text-align:left;padding-left:20px;}
+.ht tbody td:first-child{text-align:left;padding-left:22px;}
 .hrow{display:flex;align-items:center;gap:7px;}
 .hdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.htext{font-size:12px;color:var(--tp);}
+.htext{font-size:13px;color:var(--tp);}
 .hbdg{font-size:10px;color:var(--tm);background:var(--creamdk);padding:2px 6px;border-radius:7px;white-space:nowrap;}
 .chk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--bd);background:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all 0.12s;}
 .chk:not(.done):not(.fut):hover{border-color:#5fa843;background:var(--g50);}
@@ -72,9 +83,11 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .chk.fut{opacity:0.2;pointer-events:none;}
 .todm{font-size:9px;font-weight:500;color:#4a9bb5;}
 .nohab{padding:20px;text-align:center;font-size:13px;color:var(--tm);}
+
+/* MODALS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
+.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
 .overlay.open .modal{transform:translateY(0);}
 .mtit{font-family:'Fraunces',serif;font-size:20px;font-weight:400;margin-bottom:20px;}
 .fg{margin-bottom:14px;}
@@ -93,13 +106,14 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .mrow:last-child{border-bottom:none;}
 .mdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .mname{flex:1;font-size:13px;color:var(--tp);}
+.msub{font-size:11px;color:var(--tm);}
 .mpts{font-size:11px;color:var(--tm);background:var(--creamdk);padding:2px 7px;border-radius:9px;white-space:nowrap;}
 .bdel{padding:5px 11px;border-radius:7px;border:1px solid #fecaca;background:#fff5f5;color:#dc2626;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;}
 .bdel:hover{background:#fee2e2;}
 .emptyml{padding:18px;text-align:center;font-size:13px;color:var(--tm);}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.topbar{padding:0 14px;}.page-hdr{gap:8px;}.page-btns{flex-direction:column;}}
+@media(max-width:700px){.topbar{padding:0 14px;}.person-hdr{gap:8px;}.person-btns{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -134,14 +148,18 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <h1 class="mtitle" id="mtitle"></h1>
       <button class="mnbtn" onclick="changeMonth(1)">&#8594;</button>
     </div>
-    <div id="cards-container"></div>
+    <div id="people-container"></div>
   </div>
 </div>
 
+<!-- MODAL: NOVO HÁBITO -->
 <div class="overlay" id="ov-habit" onclick="ovClose(event,'ov-habit',closeHabitMod)">
   <div class="modal">
     <h2 class="mtit">Novo hábito</h2>
     <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
+    <div class="fg"><label class="fl">Categoria</label>
+      <select class="fi" id="h-cat"></select>
+    </div>
     <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
     <div class="fg"><label class="fl">Cor</label><div class="swrow" id="hb-swatches"></div></div>
     <div class="macts">
@@ -151,10 +169,20 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
   </div>
 </div>
 
+<!-- MODAL: GERENCIAR -->
 <div class="overlay" id="ov-manage" onclick="ovClose(event,'ov-manage',closeManageMod)">
   <div class="modal">
-    <h2 class="mtit" id="manage-title">Gerenciar hábitos</h2>
+    <h2 class="mtit" id="manage-title">Gerenciar</h2>
     <div id="manage-list"></div>
+    <div style="margin-top:20px;border-top:1px solid var(--bd);padding-top:16px;">
+      <div style="font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Categorias</div>
+      <div id="cat-list"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <input class="fi" id="new-cat-name" placeholder="Nova categoria..." style="flex:1;"/>
+        <div class="swrow" id="new-cat-swatches" style="align-items:center;"></div>
+        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Adicionar</button>
+      </div>
+    </div>
     <div class="macts"><button class="bprim" onclick="closeManageMod()">Fechar</button></div>
   </div>
 </div>
@@ -170,12 +198,6 @@ const db=createClient(SB_URL,SB_KEY);
 const MES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const HCORS=['#5fa843','#4a9bb5','#e8a020','#c9607a','#2e9475','#7b6db5','#c86040','#8b6f4e'];
 const ACORS=['#3a7a28','#1a5fa8','#a03060','#b87010','#1a6b50','#5a4a9a'];
-const DHABITS=[
-  {name:'Acordar cedo',pts:5,color:'#e8a020'},
-  {name:'Treino / academia',pts:10,color:'#4a9bb5'},
-  {name:'Alimentação saudável',pts:7,color:'#5fa843'},
-  {name:'Ler / estudar',pts:8,color:'#7b6db5'}
-];
 const LEVELS=[
   {name:'Semente',min:0},{name:'Broto',min:50},{name:'Muda',min:150},
   {name:'Arbusto',min:300},{name:'Jardim florido',min:500},
@@ -183,10 +205,7 @@ const LEVELS=[
 ];
 
 let user=null,yr=new Date().getFullYear(),mo=new Date().getMonth();
-let people=[],selHC=HCORS[0],actPid=null;
-
-// FLAG: rastreia pessoas que já tiveram hábitos padrão criados nesta sessão
-const initializedPeople=new Set();
+let people=[],selHC=HCORS[0],selCatColor=HCORS[0],actPid=null;
 
 async function signIn(p){await db.auth.signInWithOAuth({provider:p,options:{redirectTo:window.location.href}});}
 async function logout(){await db.auth.signOut();location.reload();}
@@ -197,7 +216,6 @@ async function init(){
   else showAuth();
   db.auth.onAuthStateChange(async(_,s)=>{if(s){user=s.user;await startApp();}else showAuth();});
 }
-
 function showAuth(){document.getElementById('auth').style.display='flex';document.getElementById('app').style.display='none';}
 
 async function startApp(){
@@ -207,16 +225,13 @@ async function startApp(){
   const el=document.getElementById('uavatar');
   if(meta.avatar_url)el.innerHTML=`<img src="${meta.avatar_url}" alt=""/>`;
   else el.textContent=(meta.full_name||user.email||'?')[0].toUpperCase();
-  await loadAll();
-  render();
+  await loadAll();render();
 }
 
 async function loadAll(){
-  // Busca pessoas
+  // Pessoas
   const {data:pd}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
   let raw=pd||[];
-
-  // Cria pessoa padrão só se não existir nenhuma
   if(!raw.length){
     await db.from('people').insert({user_id:user.id,name:'Eu',color:ACORS[0]});
     const {data:p2}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
@@ -228,27 +243,20 @@ async function loadAll(){
   people=[];
 
   for(const p of raw){
-    // Busca hábitos desta pessoa
+    // Categorias desta pessoa
+    const {data:catd}=await db.from('categories').select('*').eq('person_id',p.id).order('created_at');
+    const cats=catd||[];
+
+    // Hábitos desta pessoa
     const {data:hd}=await db.from('habits').select('*').eq('person_id',p.id).order('created_at');
-    let habs=hd||[];
+    const habs=hd||[];
 
-    // Cria hábitos padrão APENAS se:
-    // 1. Não há nenhum hábito
-    // 2. Esta pessoa ainda não foi inicializada nesta sessão
-    if(!habs.length && !initializedPeople.has(p.id)){
-      initializedPeople.add(p.id);
-      for(const h of DHABITS){
-        await db.from('habits').insert({user_id:user.id,person_id:p.id,...h});
-      }
-      const {data:h2}=await db.from('habits').select('*').eq('person_id',p.id).order('created_at');
-      habs=h2||[];
-    }
-
-    // Busca marcações do mês
+    // Marcações do mês
     const {data:cd}=await db.from('habit_checks').select('*').eq('person_id',p.id).gte('check_date',fd).lte('check_date',ld);
     const chks={};
     (cd||[]).forEach(c=>{chks[`${c.habit_id}_${c.check_date}`]=c.id;});
-    people.push({...p,habs,chks});
+
+    people.push({...p,cats,habs,chks});
   }
 }
 
@@ -272,41 +280,38 @@ async function toggle(pid,hid,day){
 }
 
 async function changeMonth(d){
-  mo+=d;
-  if(mo>11){mo=0;yr++;}
-  if(mo<0){mo=11;yr--;}
-  await loadAll();
-  render();
+  mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}
+  await loadAll();render();
 }
 
 function render(){
   document.getElementById('mtitle').innerHTML=`${MES[mo]} <em>${yr}</em>`;
-  const container=document.getElementById('cards-container');
+  const container=document.getElementById('people-container');
   container.innerHTML='';
-  people.forEach(p=>container.appendChild(buildCard(p)));
+  people.forEach(p=>container.appendChild(buildPersonBlock(p)));
 }
 
-function buildCard(person){
+function buildPersonBlock(person){
   const days=diasMes(),hj=hoje(),pts=pPts(person);
   const li=getLvl(pts),lv=LEVELS[li],nx=LEVELS[li+1];
   const pi=pts-lv.min,pn=nx?nx.min-lv.min:1;
   const pct=Math.min(100,Math.round(pi/pn*100));
   const tc=Object.keys(person.chks).length;
 
-  const card=document.createElement('div');
-  card.className='page-card';
-  card.innerHTML=`
-    <div class="page-hdr">
-      <div class="page-avatar" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
-      <span class="page-name">${person.name}</span>
-      <div class="page-stats">
-        <span class="pstat"><strong>${pts}</strong> pts</span>
-        <span class="pstat" style="color:var(--bd)">·</span>
-        <span class="pstat"><strong>${tc}</strong> feitos</span>
-        <span class="pstat" style="color:var(--bd)">·</span>
-        <span class="pstat">Nível <strong>${li+1}</strong> — ${lv.name}</span>
+  const block=document.createElement('div');
+  block.className='person-block';
+  block.innerHTML=`
+    <div class="person-hdr">
+      <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
+      <span class="person-name">${person.name}</span>
+      <div class="person-stats">
+        <span class="pst"><strong>${pts}</strong> pts</span>
+        <span class="pst" style="color:var(--bd)">·</span>
+        <span class="pst"><strong>${tc}</strong> feitos</span>
+        <span class="pst" style="color:var(--bd)">·</span>
+        <span class="pst">Nível <strong>${li+1}</strong> — ${lv.name}</span>
       </div>
-      <div class="page-btns">
+      <div class="person-btns">
         <button class="bsm" onclick="openManageMod('${person.id}')">⚙ Gerenciar</button>
         <button class="bsm bsmg" onclick="openHabitMod('${person.id}')">+ Hábito</button>
       </div>
@@ -318,46 +323,86 @@ function buildCard(person){
     <div class="pprog">
       <div class="ptrack"><div class="pfill" style="width:${pct}%"></div></div>
       <div class="plabel">${nx?`${pi} / ${pn} pts para o próximo nível`:'Nível máximo!'}</div>
-    </div>
-    <div class="hscroll">
-      ${!person.habs.length?'<div class="nohab">Nenhum hábito. Clique em "+ Hábito" para adicionar.</div>':''}
-      <table class="ht" style="${!person.habs.length?'display:none':''}">
-        <thead id="th-${person.id}"></thead>
-        <tbody id="tb-${person.id}"></tbody>
-      </table>
     </div>`;
 
-  const th=card.querySelector(`#th-${person.id}`);
-  let h='<tr><th>Hábito</th>';
-  for(let d=1;d<=days;d++){
-    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-    h+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
-  }
-  th.innerHTML=h+'</tr>';
+  // Agrupa hábitos por categoria
+  const cats=person.cats||[];
+  const habsByCat={};
+  habsByCat['__sem__']=[];
+  cats.forEach(c=>{habsByCat[c.id]=[];});
+  person.habs.forEach(h=>{
+    if(h.category_id && habsByCat[h.category_id]!==undefined) habsByCat[h.category_id].push(h);
+    else habsByCat['__sem__'].push(h);
+  });
 
-  const tb=card.querySelector(`#tb-${person.id}`);
-  tb.innerHTML=person.habs.map(hab=>{
-    let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
+  const allGroups=[...cats.map(c=>({id:c.id,name:c.name,color:c.color})),{id:'__sem__',name:'Sem categoria',color:'#9a9a88'}];
+
+  allGroups.forEach(grp=>{
+    const habs=habsByCat[grp.id]||[];
+    if(!habs.length)return;
+
+    const section=document.createElement('div');
+    section.className='cat-section';
+
+    const catHdr=document.createElement('div');
+    catHdr.className='cat-hdr';
+    catHdr.innerHTML=`<div class="cat-name"><div class="cat-dot" style="background:${grp.color}"></div>${grp.name}</div>`;
+    section.appendChild(catHdr);
+
+    const scroll=document.createElement('div');
+    scroll.className='hscroll';
+    const table=document.createElement('table');
+    table.className='ht';
+
+    // thead
+    let h='<thead><tr><th>Hábito</th>';
     for(let d=1;d<=days;d++){
-      const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const key=`${hab.id}_${ds}`,done=!!person.chks[key];
       const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-      const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
-      const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-      r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+      h+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
     }
-    return r+'</tr>';
-  }).join('');
+    h+='</tr></thead>';
 
-  setTimeout(()=>{const c=card.querySelector(`#gc-${person.id}`);if(c)drawG(c,li);},50);
-  return card;
+    // tbody
+    let b='<tbody>';
+    habs.forEach(hab=>{
+      let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
+      for(let d=1;d<=days;d++){
+        const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const key=`${hab.id}_${ds}`,done=!!person.chks[key];
+        const it=hj.y===yr&&hj.m===mo&&hj.d===d;
+        const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
+        const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
+        r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+      }
+      b+=r+'</tr>';
+    });
+    b+='</tbody>';
+    table.innerHTML=h+b;
+    scroll.appendChild(table);
+    section.appendChild(scroll);
+    block.appendChild(section);
+  });
+
+  if(!person.habs.length){
+    const empty=document.createElement('div');
+    empty.className='nohab';
+    empty.textContent='Nenhum hábito. Clique em "+ Hábito" para adicionar.';
+    block.appendChild(empty);
+  }
+
+  setTimeout(()=>{const c=block.querySelector(`#gc-${person.id}`);if(c)drawG(c,li);},50);
+  return block;
 }
 
+// HABIT MODAL
 function openHabitMod(pid){
   actPid=pid;selHC=HCORS[0];
+  const p=people.find(x=>x.id===pid);
+  const cats=p?p.cats:[];
+  const catSel=document.getElementById('h-cat');
+  catSel.innerHTML=`<option value="">Sem categoria</option>`+cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
   document.getElementById('hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selH('${c}',this)"></div>`).join('');
-  document.getElementById('h-name').value='';
-  document.getElementById('h-pts').value='5';
+  document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
   document.getElementById('ov-habit').classList.add('open');
   setTimeout(()=>document.getElementById('h-name').focus(),100);
 }
@@ -366,72 +411,100 @@ function selH(c,el){selHC=c;document.querySelectorAll('#hb-swatches .sw').forEac
 async function saveHabit(){
   const name=document.getElementById('h-name').value.trim();
   const pts=parseInt(document.getElementById('h-pts').value)||5;
+  const catId=document.getElementById('h-cat').value||null;
   if(!name||!actPid)return;
-  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:actPid,name,pts,color:selHC}).select().single();
-  if(error){toast('Erro ao salvar hábito.');return;}
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:actPid,name,pts,color:selHC,category_id:catId}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
   const p=people.find(x=>x.id===actPid);
-  if(p){
-    p.habs.push(data);
-    // Marca esta pessoa como já inicializada para não recriar padrões
-    initializedPeople.add(actPid);
-  }
-  closeHabitMod();
-  render();
-  toast('Hábito adicionado!');
+  if(p)p.habs.push(data);
+  closeHabitMod();render();toast('Hábito adicionado!');
 }
 
+// MANAGE MODAL
 function openManageMod(pid){
   actPid=pid;
   const p=people.find(x=>x.id===pid);if(!p)return;
-  document.getElementById('manage-title').textContent=`Hábitos de ${p.name}`;
+  document.getElementById('manage-title').textContent=`Gerenciar — ${p.name}`;
   renderManageList(p);
+  renderCatList(p);
+  // swatches de cor para nova categoria
+  selCatColor=HCORS[0];
+  document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatColor?' sel':''}" style="background:${c}" onclick="selCatC('${c}',this)"></div>`).join('');
+  document.getElementById('new-cat-name').value='';
   document.getElementById('ov-manage').classList.add('open');
 }
-
 function renderManageList(p){
   const el=document.getElementById('manage-list');
-  if(!p.habs.length){
-    el.innerHTML='<div class="emptyml">Nenhum hábito cadastrado.</div>';
-    return;
-  }
-  el.innerHTML=p.habs.map(h=>`
-    <div class="mrow" id="mr-${h.id}">
+  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito cadastrado.</div>';return;}
+  el.innerHTML=p.habs.map(h=>{
+    const cat=p.cats.find(c=>c.id===h.category_id);
+    return `<div class="mrow" id="mr-${h.id}">
       <div class="mdot" style="background:${h.color}"></div>
-      <span class="mname">${h.name}</span>
+      <div style="flex:1;min-width:0;">
+        <div class="mname">${h.name}</div>
+        ${cat?`<div class="msub">${cat.name}</div>`:''}
+      </div>
       <span class="mpts">${h.pts} pts</span>
       <button class="bdel" onclick="delHabit('${p.id}','${h.id}')">Excluir</button>
+    </div>`;
+  }).join('');
+}
+function renderCatList(p){
+  const el=document.getElementById('cat-list');
+  if(!p.cats.length){el.innerHTML='<div class="emptyml" style="padding:8px 0;">Nenhuma categoria ainda.</div>';return;}
+  el.innerHTML=p.cats.map(c=>`
+    <div class="mrow" id="cr-${c.id}">
+      <div class="mdot" style="background:${c.color}"></div>
+      <span class="mname">${c.name}</span>
+      <button class="bdel" onclick="delCat('${p.id}','${c.id}')">Excluir</button>
     </div>`).join('');
 }
-
 function closeManageMod(){document.getElementById('ov-manage').classList.remove('open');}
 
 async function delHabit(pid,hid){
   if(!confirm('Excluir hábito? As marcações também serão removidas.'))return;
-
-  // 1. Apaga marcações do hábito
   await db.from('habit_checks').delete().eq('habit_id',hid);
-
-  // 2. Apaga o hábito do banco
   const {error}=await db.from('habits').delete().eq('id',hid);
-  if(error){toast('Erro ao excluir. Tente novamente.');return;}
-
-  // 3. Atualiza memória local
+  if(error){toast('Erro ao excluir.');return;}
   const p=people.find(x=>x.id===pid);
   if(p){
     p.habs=p.habs.filter(h=>h.id!==hid);
     Object.keys(p.chks).filter(k=>k.startsWith(hid+'_')).forEach(k=>delete p.chks[k]);
-    // Marca como inicializada para não recriar hábitos padrão
-    initializedPeople.add(pid);
     renderManageList(p);
   }
-  render();
-  toast('Hábito excluído!');
+  render();toast('Hábito excluído!');
+}
+
+// CATEGORIAS
+function selCatC(c,el){selCatColor=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+async function saveCat(){
+  const name=document.getElementById('new-cat-name').value.trim();
+  if(!name||!actPid)return;
+  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:actPid,name,color:selCatColor}).select().single();
+  if(error){toast('Erro ao salvar categoria.');return;}
+  const p=people.find(x=>x.id===actPid);
+  if(p){p.cats.push(data);renderCatList(p);}
+  document.getElementById('new-cat-name').value='';
+  render();toast('Categoria adicionada!');
+}
+async function delCat(pid,cid){
+  if(!confirm('Excluir categoria? Os hábitos ficam sem categoria.'))return;
+  const {error}=await db.from('categories').delete().eq('id',cid);
+  if(error){toast('Erro ao excluir categoria.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){
+    p.cats=p.cats.filter(c=>c.id!==cid);
+    p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});
+    renderCatList(p);
+  }
+  render();toast('Categoria excluída!');
 }
 
 function ovClose(e,id,fn){if(e.target===document.getElementById(id))fn();}
 
+// GARDEN
 function drawG(canvas,li){
-  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||900,H=90;
+  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||1000,H=90;
   canvas.width=W*(window.devicePixelRatio||1);canvas.height=H*(window.devicePixelRatio||1);
   ctx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);
   ctx.clearRect(0,0,W,H);
@@ -440,8 +513,7 @@ function drawG(canvas,li){
   const gY=H-20;
   ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,9);
   ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+9,W,H-gY-9);
-  sun(ctx,W-28,22,li);
-  if(li>=2)cloud(ctx,42,18);
+  sun(ctx,W-28,22,li);if(li>=2)cloud(ctx,42,18);
   if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-3,5,7,0.3,0,Math.PI*2);ctx.fill();}
   else if(li===1)sprout(ctx,W/2,gY,.75);
   else if(li===2){plant(ctx,W/2,gY,.75);flower(ctx,W*.22,gY,'#e8a020',.52);flower(ctx,W*.78,gY,'#c9607a',.52);}
