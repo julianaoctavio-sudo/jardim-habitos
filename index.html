@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Jardim de Habitos</title>
+<title>Jardim de Hábitos</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -26,58 +26,52 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .uavatar img{width:100%;height:100%;object-fit:cover;}
 .btnout{font-size:13px;color:var(--tm);background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-family:'DM Sans',sans-serif;}
 .btnout:hover{color:var(--tp);background:var(--creamdk);}
-.main{max-width:1200px;margin:0 auto;padding:28px 20px;}
-.mhdr{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.main{max-width:1000px;margin:0 auto;padding:28px 20px;}
+.mhdr{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
 .mnbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);background:white;cursor:pointer;font-size:15px;color:var(--ts);display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
 .mnbtn:hover{background:var(--g50);color:var(--g600);}
 .mtitle{font-family:'Fraunces',serif;font-size:24px;font-weight:400;flex:1;}
 .mtitle em{font-style:italic;color:var(--g600);}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:22px;}
-.pcard{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);}
-.phdr{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;}
-.pavatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:white;flex-shrink:0;}
-.pinfo{flex:1;min-width:0;}
-.pname{font-size:15px;font-weight:500;color:var(--tp);}
-.pstats{display:flex;gap:10px;margin-top:2px;flex-wrap:wrap;}
+
+.page-card{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:28px;}
+.page-hdr{padding:18px 24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.page-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:white;flex-shrink:0;}
+.page-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--tp);flex:1;}
+.page-stats{display:flex;gap:12px;align-items:center;margin-right:8px;}
 .pstat{font-size:11px;color:var(--tm);}
 .pstat strong{color:var(--g600);font-weight:500;}
-.pbtns{display:flex;gap:7px;flex-shrink:0;}
+.page-btns{display:flex;gap:7px;}
 .bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
 .bsm:hover{background:var(--creamdk);}
 .bsmg{background:var(--g600);color:white;border-color:var(--g600);}
 .bsmg:hover{background:var(--g800);color:white;}
-.pgarden{position:relative;}
-.pgarden canvas{width:100%;height:85px;display:block;}
-.gpill{position:absolute;bottom:5px;right:8px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:500;color:var(--g800);}
-.pprog{padding:7px 18px 9px;border-bottom:1px solid var(--bd);}
+.garden-wrap{position:relative;}
+.garden-wrap canvas{width:100%;height:90px;display:block;}
+.gpill{position:absolute;bottom:6px;right:10px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:500;color:var(--g800);}
+.pprog{padding:8px 24px 10px;border-bottom:1px solid var(--bd);}
 .ptrack{height:4px;background:var(--creamdk);border-radius:2px;overflow:hidden;}
 .pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
 .plabel{font-size:10px;color:var(--tm);margin-top:4px;}
 .hscroll{overflow-x:auto;}
 table.ht{width:100%;border-collapse:collapse;min-width:360px;}
-.ht thead th{padding:6px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
-.ht thead th:first-child{text-align:left;padding-left:18px;width:140px;}
+.ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
+.ht thead th:first-child{text-align:left;padding-left:20px;width:160px;}
 .ht tbody tr:hover{background:var(--cream);}
-.ht tbody td{padding:6px 3px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle;}
-.ht tbody td:first-child{text-align:left;padding-left:18px;}
-.hrow{display:flex;align-items:center;gap:6px;}
-.hdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.ht tbody td{padding:7px 3px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle;}
+.ht tbody td:first-child{text-align:left;padding-left:20px;}
+.hrow{display:flex;align-items:center;gap:7px;}
+.hdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .htext{font-size:12px;color:var(--tp);}
-.hbdg{font-size:9px;color:var(--tm);background:var(--creamdk);padding:2px 5px;border-radius:7px;white-space:nowrap;}
-.chk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bd);background:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all 0.12s;}
+.hbdg{font-size:10px;color:var(--tm);background:var(--creamdk);padding:2px 6px;border-radius:7px;white-space:nowrap;}
+.chk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--bd);background:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all 0.12s;}
 .chk:not(.done):not(.fut):hover{border-color:#5fa843;background:var(--g50);}
 .chk.done{border-color:transparent;}
 .chk.done svg{display:block;}
-.chk svg{display:none;width:10px;height:10px;}
+.chk svg{display:none;width:11px;height:11px;}
 .chk.tod{box-shadow:0 0 0 2px #4a9bb5;}
 .chk.fut{opacity:0.2;pointer-events:none;}
 .todm{font-size:9px;font-weight:500;color:#4a9bb5;}
-.nohab{padding:18px;text-align:center;font-size:13px;color:var(--tm);}
-.addcard{background:white;border:2px dashed var(--bd);border-radius:18px;display:flex;align-items:center;justify-content:center;min-height:160px;cursor:pointer;transition:all 0.15s;}
-.addcard:hover{border-color:#5fa843;background:var(--g50);}
-.addinner{text-align:center;}
-.addicon{font-size:26px;margin-bottom:6px;}
-.addtxt{font-size:13px;color:var(--ts);}
+.nohab{padding:20px;text-align:center;font-size:13px;color:var(--tm);}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .overlay.open{opacity:1;pointer-events:all;}
 .modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
@@ -105,7 +99,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .emptyml{padding:18px;text-align:center;font-size:13px;color:var(--tm);}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.pgrid{grid-template-columns:1fr;}.topbar{padding:0 14px;}.pbtns{flex-direction:column;}}
+@media(max-width:700px){.topbar{padding:0 14px;}.page-hdr{gap:8px;}.page-btns{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -140,19 +134,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <h1 class="mtitle" id="mtitle"></h1>
       <button class="mnbtn" onclick="changeMonth(1)">&#8594;</button>
     </div>
-    <div class="pgrid" id="people-grid"></div>
-  </div>
-</div>
-
-<div class="overlay" id="ov-person" onclick="ovClose(event,'ov-person',closePersonMod)">
-  <div class="modal">
-    <h2 class="mtit">Nova pessoa</h2>
-    <div class="fg"><label class="fl">Nome</label><input class="fi" id="p-name" placeholder="Ex: Juliana, Maria..."/></div>
-    <div class="fg"><label class="fl">Cor do avatar</label><div class="swrow" id="av-swatches"></div></div>
-    <div class="macts">
-      <button class="bcanc" onclick="closePersonMod()">Cancelar</button>
-      <button class="bprim" onclick="savePerson()">Adicionar</button>
-    </div>
+    <div id="cards-container"></div>
   </div>
 </div>
 
@@ -188,11 +170,23 @@ const db=createClient(SB_URL,SB_KEY);
 const MES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const HCORS=['#5fa843','#4a9bb5','#e8a020','#c9607a','#2e9475','#7b6db5','#c86040','#8b6f4e'];
 const ACORS=['#3a7a28','#1a5fa8','#a03060','#b87010','#1a6b50','#5a4a9a'];
-const DHABITS=[{name:'Acordar cedo',pts:5,color:'#e8a020'},{name:'Treino / academia',pts:10,color:'#4a9bb5'},{name:'Alimentação saudável',pts:7,color:'#5fa843'},{name:'Ler / estudar',pts:8,color:'#7b6db5'}];
-const LEVELS=[{name:'Semente',min:0},{name:'Broto',min:50},{name:'Muda',min:150},{name:'Arbusto',min:300},{name:'Jardim florido',min:500},{name:'Jardim exuberante',min:800},{name:'Paraíso verde',min:1200}];
+const DHABITS=[
+  {name:'Acordar cedo',pts:5,color:'#e8a020'},
+  {name:'Treino / academia',pts:10,color:'#4a9bb5'},
+  {name:'Alimentação saudável',pts:7,color:'#5fa843'},
+  {name:'Ler / estudar',pts:8,color:'#7b6db5'}
+];
+const LEVELS=[
+  {name:'Semente',min:0},{name:'Broto',min:50},{name:'Muda',min:150},
+  {name:'Arbusto',min:300},{name:'Jardim florido',min:500},
+  {name:'Jardim exuberante',min:800},{name:'Paraíso verde',min:1200}
+];
 
 let user=null,yr=new Date().getFullYear(),mo=new Date().getMonth();
-let people=[],selHC=HCORS[0],selAC=ACORS[0],actPid=null;
+let people=[],selHC=HCORS[0],actPid=null;
+
+// FLAG: rastreia pessoas que já tiveram hábitos padrão criados nesta sessão
+const initializedPeople=new Set();
 
 async function signIn(p){await db.auth.signInWithOAuth({provider:p,options:{redirectTo:window.location.href}});}
 async function logout(){await db.auth.signOut();location.reload();}
@@ -213,30 +207,47 @@ async function startApp(){
   const el=document.getElementById('uavatar');
   if(meta.avatar_url)el.innerHTML=`<img src="${meta.avatar_url}" alt=""/>`;
   else el.textContent=(meta.full_name||user.email||'?')[0].toUpperCase();
-  await loadAll();render();
+  await loadAll();
+  render();
 }
 
 async function loadAll(){
+  // Busca pessoas
   const {data:pd}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
   let raw=pd||[];
+
+  // Cria pessoa padrão só se não existir nenhuma
   if(!raw.length){
     await db.from('people').insert({user_id:user.id,name:'Eu',color:ACORS[0]});
     const {data:p2}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
     raw=p2||[];
   }
+
   const fd=`${yr}-${String(mo+1).padStart(2,'0')}-01`;
   const ld=`${yr}-${String(mo+1).padStart(2,'0')}-${diasMes()}`;
   people=[];
+
   for(const p of raw){
+    // Busca hábitos desta pessoa
     const {data:hd}=await db.from('habits').select('*').eq('person_id',p.id).order('created_at');
     let habs=hd||[];
-    if(!habs.length){
-      for(const h of DHABITS)await db.from('habits').insert({user_id:user.id,person_id:p.id,...h});
+
+    // Cria hábitos padrão APENAS se:
+    // 1. Não há nenhum hábito
+    // 2. Esta pessoa ainda não foi inicializada nesta sessão
+    if(!habs.length && !initializedPeople.has(p.id)){
+      initializedPeople.add(p.id);
+      for(const h of DHABITS){
+        await db.from('habits').insert({user_id:user.id,person_id:p.id,...h});
+      }
       const {data:h2}=await db.from('habits').select('*').eq('person_id',p.id).order('created_at');
       habs=h2||[];
     }
+
+    // Busca marcações do mês
     const {data:cd}=await db.from('habit_checks').select('*').eq('person_id',p.id).gte('check_date',fd).lte('check_date',ld);
-    const chks={};(cd||[]).forEach(c=>{chks[`${c.habit_id}_${c.check_date}`]=c.id;});
+    const chks={};
+    (cd||[]).forEach(c=>{chks[`${c.habit_id}_${c.check_date}`]=c.id;});
     people.push({...p,habs,chks});
   }
 }
@@ -250,22 +261,29 @@ async function toggle(pid,hid,day){
   const p=people.find(x=>x.id===pid);if(!p)return;
   const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
   const key=`${hid}_${ds}`;
-  if(p.chks[key]){await db.from('habit_checks').delete().eq('id',p.chks[key]);delete p.chks[key];}
-  else{const {data}=await db.from('habit_checks').insert({user_id:user.id,person_id:pid,habit_id:hid,check_date:ds}).select().single();if(data)p.chks[key]=data.id;}
+  if(p.chks[key]){
+    await db.from('habit_checks').delete().eq('id',p.chks[key]);
+    delete p.chks[key];
+  }else{
+    const {data}=await db.from('habit_checks').insert({user_id:user.id,person_id:pid,habit_id:hid,check_date:ds}).select().single();
+    if(data)p.chks[key]=data.id;
+  }
   render();
 }
 
-async function changeMonth(d){mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}await loadAll();render();}
+async function changeMonth(d){
+  mo+=d;
+  if(mo>11){mo=0;yr++;}
+  if(mo<0){mo=11;yr--;}
+  await loadAll();
+  render();
+}
 
 function render(){
   document.getElementById('mtitle').innerHTML=`${MES[mo]} <em>${yr}</em>`;
-  const grid=document.getElementById('people-grid');
-  grid.innerHTML='';
-  people.forEach(p=>grid.appendChild(buildCard(p)));
-  const add=document.createElement('div');
-  add.className='addcard';add.onclick=openPersonMod;
-  add.innerHTML='<div class="addinner"><div class="addicon">＋</div><div class="addtxt">Adicionar pessoa</div></div>';
-  grid.appendChild(add);
+  const container=document.getElementById('cards-container');
+  container.innerHTML='';
+  people.forEach(p=>container.appendChild(buildCard(p)));
 }
 
 function buildCard(person){
@@ -274,31 +292,35 @@ function buildCard(person){
   const pi=pts-lv.min,pn=nx?nx.min-lv.min:1;
   const pct=Math.min(100,Math.round(pi/pn*100));
   const tc=Object.keys(person.chks).length;
+
   const card=document.createElement('div');
-  card.className='pcard';
+  card.className='page-card';
   card.innerHTML=`
-    <div class="phdr">
-      <div class="pavatar" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
-      <div class="pinfo">
-        <div class="pname">${person.name}</div>
-        <div class="pstats">
-          <span class="pstat"><strong>${pts}</strong> pts</span>
-          <span class="pstat"><strong>${tc}</strong> feitos</span>
-          <span class="pstat">Nível <strong>${li+1}</strong> — ${lv.name}</span>
-        </div>
+    <div class="page-hdr">
+      <div class="page-avatar" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
+      <span class="page-name">${person.name}</span>
+      <div class="page-stats">
+        <span class="pstat"><strong>${pts}</strong> pts</span>
+        <span class="pstat" style="color:var(--bd)">·</span>
+        <span class="pstat"><strong>${tc}</strong> feitos</span>
+        <span class="pstat" style="color:var(--bd)">·</span>
+        <span class="pstat">Nível <strong>${li+1}</strong> — ${lv.name}</span>
       </div>
-      <div class="pbtns">
+      <div class="page-btns">
         <button class="bsm" onclick="openManageMod('${person.id}')">⚙ Gerenciar</button>
         <button class="bsm bsmg" onclick="openHabitMod('${person.id}')">+ Hábito</button>
       </div>
     </div>
-    <div class="pgarden"><canvas id="gc-${person.id}"></canvas><div class="gpill">🌿 ${lv.name}</div></div>
+    <div class="garden-wrap">
+      <canvas id="gc-${person.id}"></canvas>
+      <div class="gpill">🌿 ${lv.name}</div>
+    </div>
     <div class="pprog">
       <div class="ptrack"><div class="pfill" style="width:${pct}%"></div></div>
-      <div class="plabel">${nx?`${pi} / ${pn} pts para próximo nível`:'Nível máximo!'}</div>
+      <div class="plabel">${nx?`${pi} / ${pn} pts para o próximo nível`:'Nível máximo!'}</div>
     </div>
     <div class="hscroll">
-      ${!person.habs.length?'<div class="nohab">Nenhum hábito. Clique em "+ Hábito".</div>':''}
+      ${!person.habs.length?'<div class="nohab">Nenhum hábito. Clique em "+ Hábito" para adicionar.</div>':''}
       <table class="ht" style="${!person.habs.length?'display:none':''}">
         <thead id="th-${person.id}"></thead>
         <tbody id="tb-${person.id}"></tbody>
@@ -307,19 +329,22 @@ function buildCard(person){
 
   const th=card.querySelector(`#th-${person.id}`);
   let h='<tr><th>Hábito</th>';
-  for(let d=1;d<=days;d++){const it=hj.y===yr&&hj.m===mo&&hj.d===d;h+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;}
+  for(let d=1;d<=days;d++){
+    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
+    h+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
+  }
   th.innerHTML=h+'</tr>';
 
   const tb=card.querySelector(`#tb-${person.id}`);
-  tb.innerHTML=person.habs.map(h=>{
-    let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${h.color}"></div><span class="htext">${h.name}</span><span class="hbdg">${h.pts}pts</span></div></td>`;
+  tb.innerHTML=person.habs.map(hab=>{
+    let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
     for(let d=1;d<=days;d++){
       const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const key=`${h.id}_${ds}`,done=!!person.chks[key];
+      const key=`${hab.id}_${ds}`,done=!!person.chks[key];
       const it=hj.y===yr&&hj.m===mo&&hj.d===d;
       const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
       const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-      r+=`<td><button class="${cls}" style="${done?`background:${h.color};`:''}" onclick="toggle('${person.id}','${h.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+      r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
     }
     return r+'</tr>';
   }).join('');
@@ -328,26 +353,11 @@ function buildCard(person){
   return card;
 }
 
-function openPersonMod(){
-  selAC=ACORS[0];
-  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selA('${c}',this)"></div>`).join('');
-  document.getElementById('p-name').value='';
-  document.getElementById('ov-person').classList.add('open');
-  setTimeout(()=>document.getElementById('p-name').focus(),100);
-}
-function closePersonMod(){document.getElementById('ov-person').classList.remove('open');}
-function selA(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
-async function savePerson(){
-  const name=document.getElementById('p-name').value.trim();if(!name)return;
-  const {data}=await db.from('people').insert({user_id:user.id,name,color:selAC}).select().single();
-  if(data)for(const h of DHABITS)await db.from('habits').insert({user_id:user.id,person_id:data.id,...h});
-  closePersonMod();await loadAll();render();toast(`${name} adicionado(a)!`);
-}
-
 function openHabitMod(pid){
   actPid=pid;selHC=HCORS[0];
   document.getElementById('hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selH('${c}',this)"></div>`).join('');
-  document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
+  document.getElementById('h-name').value='';
+  document.getElementById('h-pts').value='5';
   document.getElementById('ov-habit').classList.add('open');
   setTimeout(()=>document.getElementById('h-name').focus(),100);
 }
@@ -357,9 +367,17 @@ async function saveHabit(){
   const name=document.getElementById('h-name').value.trim();
   const pts=parseInt(document.getElementById('h-pts').value)||5;
   if(!name||!actPid)return;
-  const {data}=await db.from('habits').insert({user_id:user.id,person_id:actPid,name,pts,color:selHC}).select().single();
-  if(data){const p=people.find(x=>x.id===actPid);if(p)p.habs.push(data);}
-  closeHabitMod();render();toast('Hábito adicionado!');
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:actPid,name,pts,color:selHC}).select().single();
+  if(error){toast('Erro ao salvar hábito.');return;}
+  const p=people.find(x=>x.id===actPid);
+  if(p){
+    p.habs.push(data);
+    // Marca esta pessoa como já inicializada para não recriar padrões
+    initializedPeople.add(actPid);
+  }
+  closeHabitMod();
+  render();
+  toast('Hábito adicionado!');
 }
 
 function openManageMod(pid){
@@ -369,9 +387,13 @@ function openManageMod(pid){
   renderManageList(p);
   document.getElementById('ov-manage').classList.add('open');
 }
+
 function renderManageList(p){
   const el=document.getElementById('manage-list');
-  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito cadastrado.</div>';return;}
+  if(!p.habs.length){
+    el.innerHTML='<div class="emptyml">Nenhum hábito cadastrado.</div>';
+    return;
+  }
   el.innerHTML=p.habs.map(h=>`
     <div class="mrow" id="mr-${h.id}">
       <div class="mdot" style="background:${h.color}"></div>
@@ -380,42 +402,61 @@ function renderManageList(p){
       <button class="bdel" onclick="delHabit('${p.id}','${h.id}')">Excluir</button>
     </div>`).join('');
 }
+
 function closeManageMod(){document.getElementById('ov-manage').classList.remove('open');}
+
 async function delHabit(pid,hid){
   if(!confirm('Excluir hábito? As marcações também serão removidas.'))return;
+
+  // 1. Apaga marcações do hábito
   await db.from('habit_checks').delete().eq('habit_id',hid);
-  await db.from('habits').delete().eq('id',hid);
+
+  // 2. Apaga o hábito do banco
+  const {error}=await db.from('habits').delete().eq('id',hid);
+  if(error){toast('Erro ao excluir. Tente novamente.');return;}
+
+  // 3. Atualiza memória local
   const p=people.find(x=>x.id===pid);
-  if(p){p.habs=p.habs.filter(h=>h.id!==hid);Object.keys(p.chks).filter(k=>k.startsWith(hid+'_')).forEach(k=>delete p.chks[k]);renderManageList(p);}
-  render();toast('Hábito excluído!');
+  if(p){
+    p.habs=p.habs.filter(h=>h.id!==hid);
+    Object.keys(p.chks).filter(k=>k.startsWith(hid+'_')).forEach(k=>delete p.chks[k]);
+    // Marca como inicializada para não recriar hábitos padrão
+    initializedPeople.add(pid);
+    renderManageList(p);
+  }
+  render();
+  toast('Hábito excluído!');
 }
 
 function ovClose(e,id,fn){if(e.target===document.getElementById(id))fn();}
 
 function drawG(canvas,li){
-  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||520,H=85;
+  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||900,H=90;
   canvas.width=W*(window.devicePixelRatio||1);canvas.height=H*(window.devicePixelRatio||1);
   ctx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);
   ctx.clearRect(0,0,W,H);
   const sk=['#d4f0c0','#c8ecf0','#c0e4f8','#b8e8f4','#a8e0f0','#90d8e8','#78c8e0'];
   ctx.fillStyle=sk[Math.min(li,6)];ctx.fillRect(0,0,W,H);
-  const gY=H-18;ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,8);ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+8,W,H-gY-8);
-  sun(ctx,W-26,18,li);if(li>=2)cloud(ctx,36,14);
+  const gY=H-20;
+  ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,9);
+  ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+9,W,H-gY-9);
+  sun(ctx,W-28,22,li);
+  if(li>=2)cloud(ctx,42,18);
   if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-3,5,7,0.3,0,Math.PI*2);ctx.fill();}
-  else if(li===1)sprout(ctx,W/2,gY,.7);
-  else if(li===2){plant(ctx,W/2,gY,.7);flower(ctx,W*.25,gY,'#e8a020',.48);flower(ctx,W*.75,gY,'#c9607a',.48);}
-  else if(li===3){bush(ctx,W/2,gY,.75);flower(ctx,W*.1,gY,'#e8a020',.6);flower(ctx,W*.3,gY,'#c9607a',.6);flower(ctx,W*.7,gY,'#7b6db5',.6);flower(ctx,W*.9,gY,'#4a9bb5',.6);}
-  else if(li===4){tree(ctx,W/2,gY,'#2e9475',.75);bush(ctx,W*.16,gY,.5);bush(ctx,W*.84,gY,.5);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475'].forEach((c,i)=>flower(ctx,W*.07+W*.86*i/5,gY,c,.65));}
-  else if(li===5){tree(ctx,W*.33,gY,'#2e9475',.85);tree(ctx,W*.67,gY,'#1a6b4a',.7);bush(ctx,W*.07,gY,.55);bush(ctx,W*.93,gY,.55);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a'].forEach((c,i)=>flower(ctx,W*.03+W*.94*i/7,gY,c,.72));}
-  else{tree(ctx,W*.18,gY,'#2e9475',.9);tree(ctx,W*.5,gY,'#1a6b4a',1.05);tree(ctx,W*.82,gY,'#2e9475',.8);bush(ctx,W*.04,gY,.65);bush(ctx,W*.96,gY,.65);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a','#7b6db5','#4a9bb5'].forEach((c,i)=>flower(ctx,W*.02+W*.96*i/9,gY,c,.8));}
+  else if(li===1)sprout(ctx,W/2,gY,.75);
+  else if(li===2){plant(ctx,W/2,gY,.75);flower(ctx,W*.22,gY,'#e8a020',.52);flower(ctx,W*.78,gY,'#c9607a',.52);}
+  else if(li===3){bush(ctx,W/2,gY,.82);flower(ctx,W*.1,gY,'#e8a020',.68);flower(ctx,W*.28,gY,'#c9607a',.68);flower(ctx,W*.72,gY,'#7b6db5',.68);flower(ctx,W*.9,gY,'#4a9bb5',.68);}
+  else if(li===4){tree(ctx,W/2,gY,'#2e9475',.88);bush(ctx,W*.15,gY,.58);bush(ctx,W*.85,gY,.58);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475'].forEach((c,i)=>flower(ctx,W*.07+W*.86*i/5,gY,c,.72));}
+  else if(li===5){tree(ctx,W*.32,gY,'#2e9475',.98);tree(ctx,W*.68,gY,'#1a6b4a',.82);bush(ctx,W*.07,gY,.62);bush(ctx,W*.93,gY,.62);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a'].forEach((c,i)=>flower(ctx,W*.03+W*.94*i/7,gY,c,.8));}
+  else{tree(ctx,W*.18,gY,'#2e9475',1.02);tree(ctx,W*.5,gY,'#1a6b4a',1.18);tree(ctx,W*.82,gY,'#2e9475',.92);bush(ctx,W*.05,gY,.72);bush(ctx,W*.95,gY,.72);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a','#7b6db5','#4a9bb5'].forEach((c,i)=>flower(ctx,W*.02+W*.96*i/9,gY,c,.88));}
 }
-function sprout(c,x,y,s){c.strokeStyle='#4caf50';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-19*s);c.stroke();c.fillStyle='#66bb6a';c.beginPath();c.ellipse(x-6*s,y-14*s,6*s,4*s,-.5,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(x+7*s,y-19*s,6*s,4*s,.5,0,Math.PI*2);c.fill();}
-function plant(c,x,y,s){c.strokeStyle='#388e3c';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-26*s);c.stroke();c.fillStyle='#4caf50';for(let i=0;i<3;i++){c.beginPath();c.ellipse(i%2===0?x-9*s:x+9*s,y-11*s-i*8*s,8*s,5*s,i%2===0?-.4:.4,0,Math.PI*2);c.fill();}}
-function bush(c,x,y,s){[['#388e3c',0,-17,12],['#4caf50',-10,-10,9],['#4caf50',10,-10,9],['#66bb6a',-5,-23,7],['#66bb6a',5,-23,7]].forEach(([col,dx,dy,r])=>{c.fillStyle=col;c.beginPath();c.arc(x+dx*s,y+dy*s,r*s,0,Math.PI*2);c.fill();});}
-function tree(c,x,y,col,s){c.fillStyle='#795548';c.fillRect(x-3.5*s,y-32*s,7*s,32*s);c.fillStyle=col;c.beginPath();c.arc(x,y-54*s,19*s,0,Math.PI*2);c.fill();c.fillStyle='#1a5c38';c.beginPath();c.arc(x,y-70*s,14*s,0,Math.PI*2);c.fill();c.fillStyle=col;c.beginPath();c.arc(x,y-81*s,9*s,0,Math.PI*2);c.fill();}
-function flower(c,x,y,col,s){const fy=y-11*s-3*s;c.strokeStyle='#4caf50';c.lineWidth=1.1*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();c.fillStyle=col;for(let i=0;i<6;i++){const a=i/6*Math.PI*2;c.beginPath();c.arc(x+Math.cos(a)*4.5*s,fy+Math.sin(a)*4.5*s,3*s,0,Math.PI*2);c.fill();}c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,2.5*s,0,Math.PI*2);c.fill();}
-function sun(c,x,y,li){c.fillStyle='#FAC775';c.beginPath();c.arc(x,y,10+li*1.4,0,Math.PI*2);c.fill();}
-function cloud(c,x,y){c.fillStyle='rgba(255,255,255,0.82)';[{dx:0,dy:0,r:8},{dx:-9,dy:3,r:6},{dx:9,dy:3,r:6},{dx:-4,dy:7,r:5},{dx:4,dy:7,r:5}].forEach(b=>{c.beginPath();c.arc(x+b.dx,y+b.dy,b.r,0,Math.PI*2);c.fill();});}
+function sprout(c,x,y,s){c.strokeStyle='#4caf50';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-20*s);c.stroke();c.fillStyle='#66bb6a';c.beginPath();c.ellipse(x-6*s,y-15*s,6*s,4*s,-.5,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(x+7*s,y-20*s,6*s,4*s,.5,0,Math.PI*2);c.fill();}
+function plant(c,x,y,s){c.strokeStyle='#388e3c';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-28*s);c.stroke();c.fillStyle='#4caf50';for(let i=0;i<3;i++){c.beginPath();c.ellipse(i%2===0?x-10*s:x+10*s,y-12*s-i*9*s,9*s,5*s,i%2===0?-.4:.4,0,Math.PI*2);c.fill();}}
+function bush(c,x,y,s){[['#388e3c',0,-18,13],['#4caf50',-11,-11,10],['#4caf50',11,-11,10],['#66bb6a',-6,-26,8],['#66bb6a',6,-26,8]].forEach(([col,dx,dy,r])=>{c.fillStyle=col;c.beginPath();c.arc(x+dx*s,y+dy*s,r*s,0,Math.PI*2);c.fill();});}
+function tree(c,x,y,col,s){c.fillStyle='#795548';c.fillRect(x-4*s,y-36*s,8*s,36*s);c.fillStyle=col;c.beginPath();c.arc(x,y-60*s,21*s,0,Math.PI*2);c.fill();c.fillStyle='#1a5c38';c.beginPath();c.arc(x,y-78*s,16*s,0,Math.PI*2);c.fill();c.fillStyle=col;c.beginPath();c.arc(x,y-90*s,11*s,0,Math.PI*2);c.fill();}
+function flower(c,x,y,col,s){const fy=y-12*s-3*s;c.strokeStyle='#4caf50';c.lineWidth=1.2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();c.fillStyle=col;for(let i=0;i<6;i++){const a=i/6*Math.PI*2;c.beginPath();c.arc(x+Math.cos(a)*5*s,fy+Math.sin(a)*5*s,3.2*s,0,Math.PI*2);c.fill();}c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,2.8*s,0,Math.PI*2);c.fill();}
+function sun(c,x,y,li){c.fillStyle='#FAC775';c.beginPath();c.arc(x,y,11+li*1.5,0,Math.PI*2);c.fill();}
+function cloud(c,x,y){c.fillStyle='rgba(255,255,255,0.82)';[{dx:0,dy:0,r:9},{dx:-10,dy:4,r:7},{dx:10,dy:4,r:7},{dx:-4,dy:8,r:6},{dx:4,dy:8,r:6}].forEach(b=>{c.beginPath();c.arc(x+b.dx,y+b.dy,b.r,0,Math.PI*2);c.fill();});}
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
