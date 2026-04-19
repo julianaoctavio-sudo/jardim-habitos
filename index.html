@@ -33,21 +33,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .mtitle{font-family:'Fraunces',serif;font-size:24px;font-weight:400;flex:1;}
 .mtitle em{font-style:italic;color:var(--g600);}
 
-/* PERSON BLOCK */
-.person-block{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
-.person-hdr{padding:16px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.person-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:white;flex-shrink:0;}
-.person-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--tp);flex:1;}
-.person-stats{display:flex;gap:10px;align-items:center;}
-.pst{font-size:11px;color:var(--tm);}
-.pst strong{color:var(--g600);font-weight:500;}
-.person-btns{display:flex;gap:7px;}
-.bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
-.bsm:hover{background:var(--creamdk);}
-.bsmg{background:var(--g600);color:white;border-color:var(--g600);}
-.bsmg:hover{background:var(--g800);color:white;}
+/* MAIN CARD — única caixa para tudo */
+.main-card{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
 
-/* GARDEN */
+/* GARDEN + PROGRESS */
 .garden-wrap{position:relative;}
 .garden-wrap canvas{width:100%;height:90px;display:block;}
 .gpill{position:absolute;bottom:6px;right:10px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:500;color:var(--g800);}
@@ -56,16 +45,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
 .plabel{font-size:10px;color:var(--tm);margin-top:4px;}
 
-/* CATEGORY */
-.cat-section{padding:0;}
-.cat-hdr{padding:10px 22px 6px;display:flex;align-items:center;justify-content:space-between;background:var(--cream);border-bottom:1px solid var(--bd);}
-.cat-name{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:6px;}
-.cat-dot{width:8px;height:8px;border-radius:50%;}
+/* TOOLBAR — linha com stats + botões */
+.toolbar{padding:12px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--g50);}
+.total-stats{display:flex;gap:12px;flex:1;}
+.tst{font-size:12px;color:var(--tm);}
+.tst strong{color:var(--g600);font-weight:500;}
+.toolbar-btns{display:flex;gap:7px;}
+.bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:white;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
+.bsm:hover{background:var(--creamdk);}
+.bsmg{background:var(--g600);color:white;border-color:var(--g600);}
+.bsmg:hover{background:var(--g800);color:white;}
+
+/* PERSON SECTION dentro da tabela */
+.person-section-hdr{padding:10px 22px 6px;display:flex;align-items:center;gap:8px;background:white;border-bottom:1px solid var(--bd);}
+.person-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:white;flex-shrink:0;}
+.person-section-name{font-size:13px;font-weight:500;color:var(--tp);}
+.person-section-stats{font-size:11px;color:var(--tm);margin-left:4px;}
+
+/* CATEGORY dentro da tabela */
+.cat-hdr-row{padding:6px 22px 4px;display:flex;align-items:center;gap:6px;background:var(--creamdk);}
+.cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.cat-label{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;}
 
 /* HABITS TABLE */
 .hscroll{overflow-x:auto;}
 table.ht{width:100%;border-collapse:collapse;min-width:360px;}
-.ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
+.ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;background:white;}
 .ht thead th:first-child{text-align:left;padding-left:22px;width:180px;}
 .ht tbody tr:hover{background:var(--g50);}
 .ht tbody td{padding:7px 3px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle;}
@@ -87,7 +92,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 /* MODALS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
+.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:90vh;overflow-y:auto;}
 .overlay.open .modal{transform:translateY(0);}
 .mtit{font-family:'Fraunces',serif;font-size:20px;font-weight:400;margin-bottom:20px;}
 .fg{margin-bottom:14px;}
@@ -102,7 +107,8 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .bprim:hover{background:var(--g800);}
 .bcanc{padding:11px 18px;border-radius:9px;background:none;color:var(--ts);border:1px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;}
 .bcanc:hover{background:var(--cream);}
-.mrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--bd);}
+.sec-title{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.06em;margin:16px 0 8px;padding-top:16px;border-top:1px solid var(--bd);}
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd);}
 .mrow:last-child{border-bottom:none;}
 .mdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .mname{flex:1;font-size:13px;color:var(--tp);}
@@ -110,10 +116,11 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .mpts{font-size:11px;color:var(--tm);background:var(--creamdk);padding:2px 7px;border-radius:9px;white-space:nowrap;}
 .bdel{padding:5px 11px;border-radius:7px;border:1px solid #fecaca;background:#fff5f5;color:#dc2626;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;}
 .bdel:hover{background:#fee2e2;}
-.emptyml{padding:18px;text-align:center;font-size:13px;color:var(--tm);}
+.emptyml{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
+.add-row{display:flex;gap:7px;align-items:center;margin-top:8px;}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.topbar{padding:0 14px;}.person-hdr{gap:8px;}.person-btns{flex-direction:column;}}
+@media(max-width:700px){.topbar{padding:0 14px;}.toolbar{flex-direction:column;align-items:flex-start;}}
 </style>
 </head>
 <body>
@@ -148,7 +155,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <h1 class="mtitle" id="mtitle"></h1>
       <button class="mnbtn" onclick="changeMonth(1)">&#8594;</button>
     </div>
-    <div id="people-container"></div>
+    <div id="main-container"></div>
   </div>
 </div>
 
@@ -156,8 +163,13 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 <div class="overlay" id="ov-habit" onclick="ovClose(event,'ov-habit',closeHabitMod)">
   <div class="modal">
     <h2 class="mtit">Novo hábito</h2>
+    <div class="fg">
+      <label class="fl">Pessoa</label>
+      <select class="fi" id="h-person"></select>
+    </div>
     <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
-    <div class="fg"><label class="fl">Categoria</label>
+    <div class="fg">
+      <label class="fl">Categoria</label>
       <select class="fi" id="h-cat"></select>
     </div>
     <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
@@ -172,16 +184,18 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 <!-- MODAL: GERENCIAR -->
 <div class="overlay" id="ov-manage" onclick="ovClose(event,'ov-manage',closeManageMod)">
   <div class="modal">
-    <h2 class="mtit" id="manage-title">Gerenciar</h2>
+    <h2 class="mtit">Gerenciar hábitos</h2>
+    <div class="fg">
+      <label class="fl">Pessoa</label>
+      <select class="fi" id="mg-person" onchange="onMgPersonChange()"></select>
+    </div>
     <div id="manage-list"></div>
-    <div style="margin-top:20px;border-top:1px solid var(--bd);padding-top:16px;">
-      <div style="font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Categorias</div>
-      <div id="cat-list"></div>
-      <div style="display:flex;gap:8px;margin-top:10px;">
-        <input class="fi" id="new-cat-name" placeholder="Nova categoria..." style="flex:1;"/>
-        <div class="swrow" id="new-cat-swatches" style="align-items:center;"></div>
-        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Adicionar</button>
-      </div>
+    <div class="sec-title">Categorias</div>
+    <div id="cat-list"></div>
+    <div class="add-row">
+      <input class="fi" id="new-cat-name" placeholder="Nova categoria..." style="flex:1;"/>
+      <div class="swrow" id="new-cat-swatches"></div>
+      <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Cat.</button>
     </div>
     <div class="macts"><button class="bprim" onclick="closeManageMod()">Fechar</button></div>
   </div>
@@ -205,7 +219,7 @@ const LEVELS=[
 ];
 
 let user=null,yr=new Date().getFullYear(),mo=new Date().getMonth();
-let people=[],selHC=HCORS[0],selCatColor=HCORS[0],actPid=null;
+let people=[],selHC=HCORS[0],selCatColor=HCORS[0];
 
 async function signIn(p){await db.auth.signInWithOAuth({provider:p,options:{redirectTo:window.location.href}});}
 async function logout(){await db.auth.signOut();location.reload();}
@@ -229,7 +243,6 @@ async function startApp(){
 }
 
 async function loadAll(){
-  // Pessoas
   const {data:pd}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
   let raw=pd||[];
   if(!raw.length){
@@ -237,33 +250,23 @@ async function loadAll(){
     const {data:p2}=await db.from('people').select('*').eq('user_id',user.id).order('created_at');
     raw=p2||[];
   }
-
   const fd=`${yr}-${String(mo+1).padStart(2,'0')}-01`;
   const ld=`${yr}-${String(mo+1).padStart(2,'0')}-${diasMes()}`;
   people=[];
-
   for(const p of raw){
-    // Categorias desta pessoa
     const {data:catd}=await db.from('categories').select('*').eq('person_id',p.id).order('created_at');
-    const cats=catd||[];
-
-    // Hábitos desta pessoa
     const {data:hd}=await db.from('habits').select('*').eq('person_id',p.id).order('created_at');
-    const habs=hd||[];
-
-    // Marcações do mês
     const {data:cd}=await db.from('habit_checks').select('*').eq('person_id',p.id).gte('check_date',fd).lte('check_date',ld);
-    const chks={};
-    (cd||[]).forEach(c=>{chks[`${c.habit_id}_${c.check_date}`]=c.id;});
-
-    people.push({...p,cats,habs,chks});
+    const chks={};(cd||[]).forEach(c=>{chks[`${c.habit_id}_${c.check_date}`]=c.id;});
+    people.push({...p,cats:catd||[],habs:hd||[],chks});
   }
 }
 
 function diasMes(){return new Date(yr,mo+1,0).getDate();}
 function hoje(){const n=new Date();return{y:n.getFullYear(),m:n.getMonth(),d:n.getDate()};}
 function getLvl(pts){let i=0;for(let j=LEVELS.length-1;j>=0;j--){if(pts>=LEVELS[j].min){i=j;break;}}return i;}
-function pPts(p){let t=0;for(const k in p.chks){const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);if(h)t+=h.pts;}return t;}
+function allPts(){let t=0;people.forEach(p=>{for(const k in p.chks){const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);if(h)t+=h.pts;}});return t;}
+function allChecks(){let t=0;people.forEach(p=>{t+=Object.keys(p.chks).length;});return t;}
 
 async function toggle(pid,hid,day){
   const p=people.find(x=>x.id===pid);if(!p)return;
@@ -286,156 +289,203 @@ async function changeMonth(d){
 
 function render(){
   document.getElementById('mtitle').innerHTML=`${MES[mo]} <em>${yr}</em>`;
-  const container=document.getElementById('people-container');
+  const container=document.getElementById('main-container');
   container.innerHTML='';
-  people.forEach(p=>container.appendChild(buildPersonBlock(p)));
-}
 
-function buildPersonBlock(person){
-  const days=diasMes(),hj=hoje(),pts=pPts(person);
-  const li=getLvl(pts),lv=LEVELS[li],nx=LEVELS[li+1];
-  const pi=pts-lv.min,pn=nx?nx.min-lv.min:1;
+  const totalPts=allPts();
+  const totalChks=allChecks();
+  const li=getLvl(totalPts),lv=LEVELS[li],nx=LEVELS[li+1];
+  const pi=totalPts-lv.min,pn=nx?nx.min-lv.min:1;
   const pct=Math.min(100,Math.round(pi/pn*100));
-  const tc=Object.keys(person.chks).length;
+  const totalHabs=people.reduce((a,p)=>a+p.habs.length,0);
 
-  const block=document.createElement('div');
-  block.className='person-block';
-  block.innerHTML=`
-    <div class="person-hdr">
-      <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
-      <span class="person-name">${person.name}</span>
-      <div class="person-stats">
-        <span class="pst"><strong>${pts}</strong> pts</span>
-        <span class="pst" style="color:var(--bd)">·</span>
-        <span class="pst"><strong>${tc}</strong> feitos</span>
-        <span class="pst" style="color:var(--bd)">·</span>
-        <span class="pst">Nível <strong>${li+1}</strong> — ${lv.name}</span>
-      </div>
-      <div class="person-btns">
-        <button class="bsm" onclick="openManageMod('${person.id}')">⚙ Gerenciar</button>
-        <button class="bsm bsmg" onclick="openHabitMod('${person.id}')">+ Hábito</button>
-      </div>
-    </div>
+  const card=document.createElement('div');
+  card.className='main-card';
+
+  // Garden
+  card.innerHTML=`
     <div class="garden-wrap">
-      <canvas id="gc-${person.id}"></canvas>
+      <canvas id="main-garden"></canvas>
       <div class="gpill">🌿 ${lv.name}</div>
     </div>
     <div class="pprog">
       <div class="ptrack"><div class="pfill" style="width:${pct}%"></div></div>
-      <div class="plabel">${nx?`${pi} / ${pn} pts para o próximo nível`:'Nível máximo!'}</div>
+      <div class="plabel">${nx?`${pi} / ${pn} pts para o próximo nível — Nível ${li+1}: ${lv.name}`:'Nível máximo!'}</div>
+    </div>
+    <div class="toolbar">
+      <div class="total-stats">
+        <span class="tst"><strong>${totalPts}</strong> pts totais</span>
+        <span class="tst">·</span>
+        <span class="tst"><strong>${totalChks}</strong> feitos</span>
+        <span class="tst">·</span>
+        <span class="tst"><strong>${totalHabs}</strong> hábitos</span>
+        <span class="tst">·</span>
+        <span class="tst">Nível <strong>${li+1}</strong> — ${lv.name}</span>
+      </div>
+      <div class="toolbar-btns">
+        <button class="bsm" onclick="openManageMod()">⚙ Gerenciar</button>
+        <button class="bsm bsmg" onclick="openHabitMod()">+ Hábito</button>
+      </div>
     </div>`;
 
-  // Agrupa hábitos por categoria
-  const cats=person.cats||[];
-  const habsByCat={};
-  habsByCat['__sem__']=[];
-  cats.forEach(c=>{habsByCat[c.id]=[];});
-  person.habs.forEach(h=>{
-    if(h.category_id && habsByCat[h.category_id]!==undefined) habsByCat[h.category_id].push(h);
-    else habsByCat['__sem__'].push(h);
-  });
+  // Tabela única com seções por pessoa
+  const days=diasMes(),hj=hoje();
+  const hasAnyHab=people.some(p=>p.habs.length>0);
 
-  const allGroups=[...cats.map(c=>({id:c.id,name:c.name,color:c.color})),{id:'__sem__',name:'Sem categoria',color:'#9a9a88'}];
-
-  allGroups.forEach(grp=>{
-    const habs=habsByCat[grp.id]||[];
-    if(!habs.length)return;
-
-    const section=document.createElement('div');
-    section.className='cat-section';
-
-    const catHdr=document.createElement('div');
-    catHdr.className='cat-hdr';
-    catHdr.innerHTML=`<div class="cat-name"><div class="cat-dot" style="background:${grp.color}"></div>${grp.name}</div>`;
-    section.appendChild(catHdr);
-
+  if(!hasAnyHab){
+    const empty=document.createElement('div');
+    empty.className='nohab';
+    empty.textContent='Nenhum hábito ainda. Clique em "+ Hábito" para começar.';
+    card.appendChild(empty);
+  }else{
     const scroll=document.createElement('div');
     scroll.className='hscroll';
     const table=document.createElement('table');
     table.className='ht';
 
-    // thead
-    let h='<thead><tr><th>Hábito</th>';
+    // THEAD
+    let thead='<thead><tr><th>Hábito</th>';
     for(let d=1;d<=days;d++){
       const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-      h+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
+      thead+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
     }
-    h+='</tr></thead>';
+    thead+='</tr></thead>';
+    table.innerHTML=thead;
 
-    // tbody
-    let b='<tbody>';
-    habs.forEach(hab=>{
-      let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
-      for(let d=1;d<=days;d++){
-        const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        const key=`${hab.id}_${ds}`,done=!!person.chks[key];
-        const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-        const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
-        const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-        r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+    const tbody=document.createElement('tbody');
+
+    people.forEach(person=>{
+      if(!person.habs.length)return;
+
+      // Linha de separação por pessoa
+      const personRow=document.createElement('tr');
+      personRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
+        <div class="person-section-hdr">
+          <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
+          <span class="person-section-name">${person.name}</span>
+          <span class="person-section-stats">— ${Object.keys(person.chks).length} feitos</span>
+        </div>
+      </td>`;
+      tbody.appendChild(personRow);
+
+      // Agrupa por categoria
+      const cats=person.cats||[];
+      const habsByCat={};
+      cats.forEach(c=>{habsByCat[c.id]=[];});
+      habsByCat['__sem__']=[];
+      person.habs.forEach(h=>{
+        if(h.category_id && habsByCat[h.category_id]!==undefined) habsByCat[h.category_id].push(h);
+        else habsByCat['__sem__'].push(h);
+      });
+
+      // Hábitos com categoria
+      cats.forEach(cat=>{
+        const habs=habsByCat[cat.id]||[];
+        if(!habs.length)return;
+        // Linha de categoria
+        const catRow=document.createElement('tr');
+        catRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
+          <div class="cat-hdr-row">
+            <div class="cat-dot" style="background:${cat.color}"></div>
+            <span class="cat-label">${cat.name}</span>
+          </div>
+        </td>`;
+        tbody.appendChild(catRow);
+        habs.forEach(hab=>tbody.appendChild(buildHabitRow(hab,person,days,hj)));
+      });
+
+      // Hábitos sem categoria
+      const semCat=habsByCat['__sem__']||[];
+      if(semCat.length){
+        if(cats.length>0){
+          const catRow=document.createElement('tr');
+          catRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
+            <div class="cat-hdr-row">
+              <div class="cat-dot" style="background:#9a9a88"></div>
+              <span class="cat-label">Sem categoria</span>
+            </div>
+          </td>`;
+          tbody.appendChild(catRow);
+        }
+        semCat.forEach(hab=>tbody.appendChild(buildHabitRow(hab,person,days,hj)));
       }
-      b+=r+'</tr>';
     });
-    b+='</tbody>';
-    table.innerHTML=h+b;
-    scroll.appendChild(table);
-    section.appendChild(scroll);
-    block.appendChild(section);
-  });
 
-  if(!person.habs.length){
-    const empty=document.createElement('div');
-    empty.className='nohab';
-    empty.textContent='Nenhum hábito. Clique em "+ Hábito" para adicionar.';
-    block.appendChild(empty);
+    table.appendChild(tbody);
+    scroll.appendChild(table);
+    card.appendChild(scroll);
   }
 
-  setTimeout(()=>{const c=block.querySelector(`#gc-${person.id}`);if(c)drawG(c,li);},50);
-  return block;
+  container.appendChild(card);
+  setTimeout(()=>{const c=document.getElementById('main-garden');if(c)drawG(c,li);},50);
+}
+
+function buildHabitRow(hab,person,days,hj){
+  const tr=document.createElement('tr');
+  let r=`<td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
+  for(let d=1;d<=days;d++){
+    const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const key=`${hab.id}_${ds}`,done=!!person.chks[key];
+    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
+    const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
+    const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
+    r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+  }
+  tr.innerHTML=r;
+  return tr;
 }
 
 // HABIT MODAL
-function openHabitMod(pid){
-  actPid=pid;selHC=HCORS[0];
-  const p=people.find(x=>x.id===pid);
-  const cats=p?p.cats:[];
-  const catSel=document.getElementById('h-cat');
-  catSel.innerHTML=`<option value="">Sem categoria</option>`+cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+function openHabitMod(){
+  selHC=HCORS[0];
+  const personSel=document.getElementById('h-person');
+  personSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  updateHabitCats();
+  personSel.onchange=updateHabitCats;
   document.getElementById('hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selH('${c}',this)"></div>`).join('');
   document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
   document.getElementById('ov-habit').classList.add('open');
   setTimeout(()=>document.getElementById('h-name').focus(),100);
+}
+function updateHabitCats(){
+  const pid=document.getElementById('h-person').value;
+  const p=people.find(x=>x.id===pid);
+  const cats=p?p.cats:[];
+  document.getElementById('h-cat').innerHTML=`<option value="">Sem categoria</option>`+cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
 }
 function closeHabitMod(){document.getElementById('ov-habit').classList.remove('open');}
 function selH(c,el){selHC=c;document.querySelectorAll('#hb-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveHabit(){
   const name=document.getElementById('h-name').value.trim();
   const pts=parseInt(document.getElementById('h-pts').value)||5;
+  const pid=document.getElementById('h-person').value;
   const catId=document.getElementById('h-cat').value||null;
-  if(!name||!actPid)return;
-  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:actPid,name,pts,color:selHC,category_id:catId}).select().single();
+  if(!name||!pid)return;
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId}).select().single();
   if(error){toast('Erro ao salvar.');return;}
-  const p=people.find(x=>x.id===actPid);
+  const p=people.find(x=>x.id===pid);
   if(p)p.habs.push(data);
   closeHabitMod();render();toast('Hábito adicionado!');
 }
 
 // MANAGE MODAL
-function openManageMod(pid){
-  actPid=pid;
-  const p=people.find(x=>x.id===pid);if(!p)return;
-  document.getElementById('manage-title').textContent=`Gerenciar — ${p.name}`;
-  renderManageList(p);
-  renderCatList(p);
-  // swatches de cor para nova categoria
+function openManageMod(){
+  const sel=document.getElementById('mg-person');
+  sel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  onMgPersonChange();
   selCatColor=HCORS[0];
   document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatColor?' sel':''}" style="background:${c}" onclick="selCatC('${c}',this)"></div>`).join('');
   document.getElementById('new-cat-name').value='';
   document.getElementById('ov-manage').classList.add('open');
 }
+function onMgPersonChange(){
+  const pid=document.getElementById('mg-person').value;
+  const p=people.find(x=>x.id===pid);if(!p)return;
+  renderManageList(p);renderCatList(p);
+}
 function renderManageList(p){
   const el=document.getElementById('manage-list');
-  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito cadastrado.</div>';return;}
+  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito ainda.</div>';return;}
   el.innerHTML=p.habs.map(h=>{
     const cat=p.cats.find(c=>c.id===h.category_id);
     return `<div class="mrow" id="mr-${h.id}">
@@ -444,14 +494,14 @@ function renderManageList(p){
         <div class="mname">${h.name}</div>
         ${cat?`<div class="msub">${cat.name}</div>`:''}
       </div>
-      <span class="mpts">${h.pts} pts</span>
+      <span class="mpts">${h.pts}pts</span>
       <button class="bdel" onclick="delHabit('${p.id}','${h.id}')">Excluir</button>
     </div>`;
   }).join('');
 }
 function renderCatList(p){
   const el=document.getElementById('cat-list');
-  if(!p.cats.length){el.innerHTML='<div class="emptyml" style="padding:8px 0;">Nenhuma categoria ainda.</div>';return;}
+  if(!p.cats.length){el.innerHTML='<div class="emptyml">Nenhuma categoria ainda.</div>';return;}
   el.innerHTML=p.cats.map(c=>`
     <div class="mrow" id="cr-${c.id}">
       <div class="mdot" style="background:${c.color}"></div>
@@ -462,7 +512,7 @@ function renderCatList(p){
 function closeManageMod(){document.getElementById('ov-manage').classList.remove('open');}
 
 async function delHabit(pid,hid){
-  if(!confirm('Excluir hábito? As marcações também serão removidas.'))return;
+  if(!confirm('Excluir hábito?'))return;
   await db.from('habit_checks').delete().eq('habit_id',hid);
   const {error}=await db.from('habits').delete().eq('id',hid);
   if(error){toast('Erro ao excluir.');return;}
@@ -475,20 +525,20 @@ async function delHabit(pid,hid){
   render();toast('Hábito excluído!');
 }
 
-// CATEGORIAS
 function selCatC(c,el){selCatColor=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
   const name=document.getElementById('new-cat-name').value.trim();
-  if(!name||!actPid)return;
-  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:actPid,name,color:selCatColor}).select().single();
+  const pid=document.getElementById('mg-person').value;
+  if(!name||!pid)return;
+  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCatColor}).select().single();
   if(error){toast('Erro ao salvar categoria.');return;}
-  const p=people.find(x=>x.id===actPid);
+  const p=people.find(x=>x.id===pid);
   if(p){p.cats.push(data);renderCatList(p);}
   document.getElementById('new-cat-name').value='';
   render();toast('Categoria adicionada!');
 }
 async function delCat(pid,cid){
-  if(!confirm('Excluir categoria? Os hábitos ficam sem categoria.'))return;
+  if(!confirm('Excluir categoria?'))return;
   const {error}=await db.from('categories').delete().eq('id',cid);
   if(error){toast('Erro ao excluir categoria.');return;}
   const p=people.find(x=>x.id===pid);
