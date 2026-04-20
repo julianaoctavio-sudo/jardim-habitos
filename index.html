@@ -517,24 +517,241 @@ function refreshPessoaSelects(){
   document.getElementById('sel-pessoa-cat').innerHTML=opts;
 }
 
+// FLORES DA ESTAÇÃO — Brasil, por mês (0=Jan ... 11=Dez)
+const FLORES_MES = [
+  // Jan — Verão: Hibisco, Alamanda, Bougainvillea
+  {nome:'Hibisco',cores:['#e8325a','#ff6b9d','#ff4081'],tipo:'hibisco'},
+  // Fev — Verão: Bougainvillea, Plumeria
+  {nome:'Bouganvílea',cores:['#d63a8f','#e91e8c','#c2185b'],tipo:'bouganvilea'},
+  // Mar — Verão/Outono: Ipê Amarelo, Alamanda
+  {nome:'Ipê Amarelo',cores:['#fdd835','#f9a825','#ffee58'],tipo:'ipe'},
+  // Abr — Outono: Cássia, Girassol
+  {nome:'Cássia',cores:['#ffb300','#ffa000','#ffc107'],tipo:'cassia'},
+  // Mai — Outono/Inverno: Flor-de-maio, Camélia
+  {nome:'Flor-de-Maio',cores:['#e91e63','#f06292','#f48fb1'],tipo:'flordemais'},
+  // Jun — Inverno: Violeta, Lavanda
+  {nome:'Violeta',cores:['#7b1fa2','#9c27b0','#ba68c8'],tipo:'violeta'},
+  // Jul — Inverno: Ipê Roxo, Jacarandá
+  {nome:'Ipê Roxo',cores:['#6a1b9a','#8e24aa','#ab47bc'],tipo:'ipe'},
+  // Ago — Inverno/Primavera: Girassol, Margarida
+  {nome:'Girassol',cores:['#f9a825','#fbc02d','#ffee58'],tipo:'girassol'},
+  // Set — Primavera: Ipê Rosa, Orquídea
+  {nome:'Ipê Rosa',cores:['#e91e63','#f06292','#ff80ab'],tipo:'ipe'},
+  // Out — Primavera: Cosmos, Begônia
+  {nome:'Cosmos',cores:['#e91e63','#f48fb1','#ffffff'],tipo:'cosmos'},
+  // Nov — Primavera/Verão: Ixora, Lavanda
+  {nome:'Ixora',cores:['#e53935','#ef5350','#ff5252'],tipo:'ixora'},
+  // Dez — Verão: Bougainvillea, Hibisco
+  {nome:'Bougainvillea',cores:['#e91e63','#ad1457','#880e4f'],tipo:'bouganvilea'},
+];
+
+function getFloresMes(){return FLORES_MES[mo]||FLORES_MES[0];}
+
 // GARDEN
 function drawG(canvas,li){
   const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||1000,H=120;
   canvas.width=W*(window.devicePixelRatio||1);canvas.height=H*(window.devicePixelRatio||1);
   ctx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);
   ctx.clearRect(0,0,W,H);
+
+  const flores=getFloresMes();
+  const FC=flores.cores; // cores das flores do mês
+
+  // Céu baseado no nível
   const sk=['#d4f0c0','#c8ecf0','#c0e4f8','#b8e8f4','#a8e0f0','#90d8e8','#78c8e0'];
   ctx.fillStyle=sk[Math.min(li,6)];ctx.fillRect(0,0,W,H);
-  const gY=H-22;ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,10);ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+10,W,H-gY-10);
-  sun(ctx,W-32,26,li);if(li>=2)cloud(ctx,50,22);if(li>=4)cloud(ctx,W*.55,18);
-  if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-4,6,8,0.3,0,Math.PI*2);ctx.fill();}
-  else if(li===1)sprout(ctx,W/2,gY,.85);
-  else if(li===2){plant(ctx,W/2,gY,.85);flower(ctx,W*.22,gY,'#e8a020',.62);flower(ctx,W*.78,gY,'#c9607a',.62);}
-  else if(li===3){bush(ctx,W/2,gY,.95);flower(ctx,W*.1,gY,'#e8a020',.78);flower(ctx,W*.28,gY,'#c9607a',.78);flower(ctx,W*.72,gY,'#7b6db5',.78);flower(ctx,W*.9,gY,'#4a9bb5',.78);}
-  else if(li===4){tree(ctx,W/2,gY,'#2e9475',1.0);bush(ctx,W*.15,gY,.68);bush(ctx,W*.85,gY,.68);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475'].forEach((c,i)=>flower(ctx,W*.07+W*.86*i/5,gY,c,.82));}
-  else if(li===5){tree(ctx,W*.32,gY,'#2e9475',1.1);tree(ctx,W*.68,gY,'#1a6b4a',.95);bush(ctx,W*.07,gY,.72);bush(ctx,W*.93,gY,.72);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a'].forEach((c,i)=>flower(ctx,W*.03+W*.94*i/7,gY,c,.9));}
-  else{tree(ctx,W*.18,gY,'#2e9475',1.15);tree(ctx,W*.5,gY,'#1a6b4a',1.35);tree(ctx,W*.82,gY,'#2e9475',1.05);bush(ctx,W*.05,gY,.82);bush(ctx,W*.95,gY,.82);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a','#7b6db5','#4a9bb5'].forEach((c,i)=>flower(ctx,W*.02+W*.96*i/9,gY,c,.98));}
+
+  const gY=H-22;
+  ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,10);
+  ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+10,W,H-gY-10);
+
+  sun(ctx,W-32,26,li);
+  if(li>=2)cloud(ctx,50,22);
+  if(li>=4)cloud(ctx,W*.55,18);
+
+  if(li===0){
+    // Semente
+    ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-4,6,8,0.3,0,Math.PI*2);ctx.fill();
+  } else if(li===1){
+    // Broto
+    sprout(ctx,W/2,gY,.85);
+  } else if(li===2){
+    // Muda — 1 planta + 2 flores da estação
+    plant(ctx,W/2,gY,.85);
+    flor(ctx,W*.22,gY,FC[0],.62,flores.tipo);
+    flor(ctx,W*.78,gY,FC[1],.62,flores.tipo);
+  } else if(li===3){
+    // Arbusto — arbusto + 4 flores sazonais
+    bush(ctx,W/2,gY,.95);
+    flor(ctx,W*.08,gY,FC[0],.78,flores.tipo);
+    flor(ctx,W*.26,gY,FC[1],.75,flores.tipo);
+    flor(ctx,W*.74,gY,FC[2],.75,flores.tipo);
+    flor(ctx,W*.92,gY,FC[0],.78,flores.tipo);
+  } else if(li===4){
+    // Jardim florido — 1 árvore + arbustos + flores da estação
+    tree(ctx,W/2,gY,'#2e9475',1.0);
+    bush(ctx,W*.15,gY,.68);bush(ctx,W*.85,gY,.68);
+    [FC[0],FC[1],FC[2],FC[0],FC[1],FC[2]].forEach((c,i)=>
+      flor(ctx,W*.06+W*.88*i/5,gY,c,.82,flores.tipo));
+  } else if(li===5){
+    // Jardim exuberante — 2 árvores + flores abundantes
+    tree(ctx,W*.32,gY,'#2e9475',1.1);
+    tree(ctx,W*.68,gY,'#1a6b4a',.95);
+    bush(ctx,W*.07,gY,.72);bush(ctx,W*.93,gY,.72);
+    [FC[0],FC[1],FC[2],FC[0],FC[1],FC[2],FC[0],FC[1]].forEach((c,i)=>
+      flor(ctx,W*.03+W*.94*i/7,gY,c,.9,flores.tipo));
+    // borboletas
+    butterfly(ctx,W*.55,gY-55,FC[0]);
+  } else {
+    // Paraíso — 3 árvores + jardim completo + borboletas
+    tree(ctx,W*.18,gY,'#2e9475',1.15);
+    tree(ctx,W*.5,gY,'#1a6b4a',1.35);
+    tree(ctx,W*.82,gY,'#2e9475',1.05);
+    bush(ctx,W*.05,gY,.82);bush(ctx,W*.95,gY,.82);
+    [FC[0],FC[1],FC[2],FC[0],FC[1],FC[2],FC[0],FC[1],FC[2],FC[0]].forEach((c,i)=>
+      flor(ctx,W*.02+W*.96*i/9,gY,c,.98,flores.tipo));
+    butterfly(ctx,W*.62,gY-65,FC[1]);
+    butterfly(ctx,W*.28,gY-85,FC[0]);
+  }
+
+  // Label da flor do mês no canto
+  ctx.fillStyle='rgba(255,255,255,0.75)';
+  ctx.beginPath();ctx.roundRect(8,8,130,20,6);ctx.fill();
+  ctx.fillStyle='#3a7a28';ctx.font='500 10px DM Sans, sans-serif';
+  ctx.fillText(`🌸 ${flores.nome}`,14,21);
 }
+
+// Flor genérica com variações por tipo
+function flor(c,x,y,col,s,tipo){
+  tipo=tipo||'default';
+  if(tipo==='hibisco')fHibisco(c,x,y,col,s);
+  else if(tipo==='bouganvilea')fBouganvilea(c,x,y,col,s);
+  else if(tipo==='ipe')fIpe(c,x,y,col,s);
+  else if(tipo==='girassol')fGirassol(c,x,y,col,s);
+  else if(tipo==='violeta')fVioleta(c,x,y,col,s);
+  else if(tipo==='cosmos')fCosmos(c,x,y,col,s);
+  else if(tipo==='ixora')fIxora(c,x,y,col,s);
+  else flower(c,x,y,col,s);
+}
+
+// Hibisco — pétalas grandes arredondadas
+function fHibisco(c,x,y,col,s){
+  const fy=y-15*s-4*s;
+  c.strokeStyle='#4caf50';c.lineWidth=1.3*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+4*s);c.stroke();
+  c.fillStyle=col;
+  for(let i=0;i<5;i++){
+    const a=i/5*Math.PI*2-Math.PI/2;
+    c.beginPath();
+    c.ellipse(x+Math.cos(a)*6*s,fy+Math.sin(a)*6*s,5*s,8*s,a,0,Math.PI*2);
+    c.fill();
+  }
+  c.fillStyle='#ffff00';c.beginPath();c.arc(x,fy,3.5*s,0,Math.PI*2);c.fill();
+  // estame
+  c.strokeStyle='#ffeb3b';c.lineWidth=0.8*s;
+  c.beginPath();c.moveTo(x,fy);c.lineTo(x,fy-5*s);c.stroke();
+}
+
+// Bouganvílea — brácteas triangulares
+function fBouganvilea(c,x,y,col,s){
+  const fy=y-14*s;
+  c.strokeStyle='#4caf50';c.lineWidth=1.3*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy);c.stroke();
+  for(let i=0;i<6;i++){
+    const a=i/6*Math.PI*2;
+    c.fillStyle=col;
+    c.beginPath();
+    c.moveTo(x,fy);
+    c.lineTo(x+Math.cos(a-0.3)*8*s,fy+Math.sin(a-0.3)*8*s);
+    c.lineTo(x+Math.cos(a+0.3)*8*s,fy+Math.sin(a+0.3)*8*s);
+    c.closePath();c.fill();
+  }
+  c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,2*s,0,Math.PI*2);c.fill();
+}
+
+// Ipê — flores em cachos, sem folhas
+function fIpe(c,x,y,col,s){
+  const fy=y-14*s;
+  c.strokeStyle='#795548';c.lineWidth=1.5*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+2*s);c.stroke();
+  for(let i=0;i<5;i++){
+    const a=i/5*Math.PI*2;
+    const fx=x+Math.cos(a)*4*s,ff=fy+Math.sin(a)*4*s;
+    c.fillStyle=col;
+    c.beginPath();
+    c.ellipse(fx,ff,3.5*s,5*s,a,0,Math.PI*2);
+    c.fill();
+  }
+  c.fillStyle='rgba(255,255,150,0.7)';c.beginPath();c.arc(x,fy,2*s,0,Math.PI*2);c.fill();
+}
+
+// Girassol — pétalas longas ao redor de disco escuro
+function fGirassol(c,x,y,col,s){
+  const fy=y-15*s;
+  c.strokeStyle='#388e3c';c.lineWidth=2*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();
+  c.fillStyle=col;
+  for(let i=0;i<12;i++){
+    const a=i/12*Math.PI*2;
+    c.beginPath();
+    c.ellipse(x+Math.cos(a)*7*s,fy+Math.sin(a)*7*s,2*s,5*s,a,0,Math.PI*2);
+    c.fill();
+  }
+  c.fillStyle='#4e342e';c.beginPath();c.arc(x,fy,5*s,0,Math.PI*2);c.fill();
+  c.fillStyle='#795548';c.beginPath();c.arc(x,fy,3.5*s,0,Math.PI*2);c.fill();
+}
+
+// Violeta — pétalas assimétricas
+function fVioleta(c,x,y,col,s){
+  const fy=y-13*s;
+  c.strokeStyle='#4caf50';c.lineWidth=1.2*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();
+  const shapes=[{dx:0,dy:-6,rx:3,ry:5},{dx:5,dy:-3,rx:3,ry:4},{dx:-5,dy:-3,rx:3,ry:4},{dx:4,dy:2,rx:4,ry:3},{dx:-4,dy:2,rx:4,ry:3}];
+  shapes.forEach(p=>{
+    c.fillStyle=col;c.beginPath();
+    c.ellipse(x+p.dx*s,fy+p.dy*s,p.rx*s,p.ry*s,0,0,Math.PI*2);c.fill();
+  });
+  c.fillStyle='#fff176';c.beginPath();c.arc(x,fy,2.5*s,0,Math.PI*2);c.fill();
+}
+
+// Cosmos — pétalas finas alongadas
+function fCosmos(c,x,y,col,s){
+  const fy=y-14*s;
+  c.strokeStyle='#4caf50';c.lineWidth=1.2*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();
+  for(let i=0;i<8;i++){
+    const a=i/8*Math.PI*2;
+    c.fillStyle=col;
+    c.beginPath();
+    c.ellipse(x+Math.cos(a)*5.5*s,fy+Math.sin(a)*5.5*s,2*s,6*s,a,0,Math.PI*2);
+    c.fill();
+  }
+  c.fillStyle='#fdd835';c.beginPath();c.arc(x,fy,3*s,0,Math.PI*2);c.fill();
+}
+
+// Ixora — pequenas flores em cacho redondo
+function fIxora(c,x,y,col,s){
+  const fy=y-14*s;
+  c.strokeStyle='#4caf50';c.lineWidth=1.3*s;
+  c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+2*s);c.stroke();
+  for(let i=0;i<7;i++){
+    const a=i/7*Math.PI*2;
+    const fx=x+Math.cos(a)*4.5*s,ff=fy+Math.sin(a)*4.5*s;
+    c.fillStyle=col;c.beginPath();
+    for(let j=0;j<4;j++){const b=j/4*Math.PI*2;c.arc(fx+Math.cos(b)*1.8*s,ff+Math.sin(b)*1.8*s,1.5*s,0,Math.PI*2);}
+    c.fill();
+  }
+  c.fillStyle=col;c.beginPath();c.arc(x,fy,3*s,0,Math.PI*2);c.fill();
+}
+
+// Borboleta
+function butterfly(c,x,y,col){
+  c.fillStyle=col+'aa';
+  c.beginPath();c.ellipse(x-7,y,7,5,-0.4,0,Math.PI*2);c.fill();
+  c.beginPath();c.ellipse(x+7,y,7,5,0.4,0,Math.PI*2);c.fill();
+  c.fillStyle='#5d4037';c.beginPath();c.ellipse(x,y,2,6,0,0,Math.PI*2);c.fill();
+}
+
 function sprout(c,x,y,s){c.strokeStyle='#4caf50';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-22*s);c.stroke();c.fillStyle='#66bb6a';c.beginPath();c.ellipse(x-7*s,y-16*s,7*s,4.5*s,-.5,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(x+8*s,y-22*s,7*s,4.5*s,.5,0,Math.PI*2);c.fill();}
 function plant(c,x,y,s){c.strokeStyle='#388e3c';c.lineWidth=2.5*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-32*s);c.stroke();c.fillStyle='#4caf50';for(let i=0;i<3;i++){c.beginPath();c.ellipse(i%2===0?x-11*s:x+11*s,y-13*s-i*10*s,10*s,6*s,i%2===0?-.4:.4,0,Math.PI*2);c.fill();}}
 function bush(c,x,y,s){[['#388e3c',0,-20,14],['#4caf50',-12,-12,11],['#4caf50',12,-12,11],['#66bb6a',-6,-29,9],['#66bb6a',6,-29,9]].forEach(([col,dx,dy,r])=>{c.fillStyle=col;c.beginPath();c.arc(x+dx*s,y+dy*s,r*s,0,Math.PI*2);c.fill();});}
