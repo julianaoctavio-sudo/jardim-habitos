@@ -200,34 +200,58 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
   </div>
 </div>
 
-<!-- MODAL: GERENCIAR -->
-<div class="overlay" id="ov-manage" onclick="ovClose(event,'ov-manage',closeManageMod)">
-  <div class="modal">
-    <h2 class="mtit" id="manage-title">Gerenciar hábitos</h2>
-    <div id="manage-list"></div>
-    <div class="section-sep"></div>
-    <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Categorias</div>
-    <div id="cat-list"></div>
-    <div style="margin-bottom:10px;">
-      <input class="fi" id="new-cat-name" placeholder="Nome da nova categoria..." style="width:100%;margin-bottom:8px;"/>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="swrow" id="new-cat-swatches" style="flex:1;"></div>
-        <button class="bprim" style="flex:0;white-space:nowrap;padding:9px 16px;" onclick="saveCat()">+ Adicionar</button>
-      </div>
-    </div>
-    <div class="macts"><button class="bprim" onclick="closeManageMod()">Fechar</button></div>
-  </div>
-</div>
+<!-- MODAL: GERENCIAR UNIFICADO -->
+<div class="overlay" id="ov-manage">
+  <div class="modal" style="max-width:520px;">
+    <h2 class="mtit">⚙ Gerenciar</h2>
 
-<!-- MODAL: NOVA PESSOA -->
-<div class="overlay" id="ov-person" onclick="ovClose(event,'ov-person',closePersonMod)">
-  <div class="modal">
-    <h2 class="mtit">Nova pessoa</h2>
-    <div class="fg"><label class="fl">Nome</label><input class="fi" id="p-name" placeholder="Ex: Maria, João..."/></div>
-    <div class="fg"><label class="fl">Cor do avatar</label><div class="swrow" id="av-swatches"></div></div>
-    <div class="macts">
-      <button class="bcanc" onclick="closePersonMod()">Cancelar</button>
-      <button class="bprim" onclick="savePerson()">Adicionar</button>
+    <!-- ABAS -->
+    <div style="display:flex;gap:4px;background:var(--creamdk);padding:4px;border-radius:10px;margin-bottom:18px;">
+      <button id="tab-pessoas" onclick="switchTab('pessoas')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:white;color:var(--tp);box-shadow:var(--sh);">👤 Pessoas</button>
+      <button id="tab-hab" onclick="switchTab('hab')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--ts);">✓ Hábitos</button>
+      <button id="tab-cat" onclick="switchTab('cat')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--ts);">🏷 Categorias</button>
+    </div>
+
+    <!-- ABA: PESSOAS -->
+    <div id="pane-pessoas">
+      <div id="people-list"></div>
+      <div class="section-sep"></div>
+      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Adicionar pessoa</div>
+      <div class="fg"><label class="fl">Nome</label><input class="fi" id="p-name" placeholder="Ex: Maria, João..."/></div>
+      <div class="fg"><label class="fl">Cor do avatar</label><div class="swrow" id="av-swatches"></div></div>
+      <button class="bprim" style="width:100%;" onclick="savePerson()">+ Adicionar pessoa</button>
+    </div>
+
+    <!-- ABA: HÁBITOS -->
+    <div id="pane-hab" style="display:none;">
+      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="mg-h-person" onchange="onMgPersonChange()"></select></div>
+      <div id="manage-list"></div>
+      <div class="section-sep"></div>
+      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Adicionar hábito</div>
+      <div class="fg"><label class="fl">Nome</label><input class="fi" id="mg-h-name" placeholder="Ex: Meditar 10 minutos"/></div>
+      <div class="fg"><label class="fl">Categoria</label><select class="fi" id="mg-h-cat"></select></div>
+      <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="mg-h-pts" type="number" min="1" max="100" value="5"/></div>
+      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="mg-hb-swatches"></div></div>
+      <button class="bprim" style="width:100%;" onclick="saveMgHabit()">+ Adicionar hábito</button>
+    </div>
+
+    <!-- ABA: CATEGORIAS -->
+    <div id="pane-cat" style="display:none;">
+      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="mg-c-person" onchange="onMgCatPersonChange()"></select></div>
+      <div id="cat-list"></div>
+      <div class="section-sep"></div>
+      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Nova categoria</div>
+      <div class="fg">
+        <label class="fl">Nome da categoria</label>
+        <input class="fi" id="new-cat-name" placeholder="Ex: Saúde, Estudos, Família..." style="font-size:15px;padding:12px 14px;"/>
+      </div>
+      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="new-cat-swatches"></div></div>
+      <button class="bprim" style="width:100%;" onclick="saveCat()">+ Adicionar categoria</button>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:8px;">
+      <button class="bcanc" style="flex:1;" onclick="closeManageMod()">Fechar sem salvar</button>
+      <button class="bprim" style="flex:1;" onclick="closeManageMod()">Concluído</button>
     </div>
   </div>
 </div>
@@ -333,9 +357,7 @@ function render(){
 
   // botões de pessoa
   const btns=document.getElementById('person-btns');
-  btns.innerHTML=people.map(p=>`<button class="bsm" onclick="openManageMod('${p.id}')"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${p.color};margin-right:5px;"></span>⚙ ${p.name}</button>`).join('')
-    +`<button class="bsm" onclick="openHabitMod(null)">+ Hábito</button>`
-    +`<button class="bsm" onclick="openPersonMod()">+ Pessoa</button>`;
+  btns.innerHTML=`<button class="bsm bsmg" onclick="openGerenciar()">⚙ Gerenciar</button>`;
 
   // tabela unificada
   const body=document.getElementById('habits-body');
@@ -415,22 +437,30 @@ function render(){
   body.appendChild(tableWrap);
 }
 
-// PESSOA MODAL
-function openPersonMod(){
-  selAC=ACORS[0];
-  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selA('${c}',this)"></div>`).join('');
-  document.getElementById('p-name').value='';
-  document.getElementById('ov-person').classList.add('open');
-  setTimeout(()=>document.getElementById('p-name').focus(),100);
-}
-function closePersonMod(){document.getElementById('ov-person').classList.remove('open');}
 function selA(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function savePerson(){
   const name=document.getElementById('p-name').value.trim();if(!name)return;
   const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selAC}).select().single();
   if(error){toast('Erro ao salvar.');return;}
   people.push({...data,cats:[],habs:[],chks:{}});
-  closePersonMod();render();toast(`${name} adicionado(a)!`);
+  document.getElementById('p-name').value='';
+  renderPeopleList();
+  // atualiza selects de pessoa nas outras abas
+  const pOpts=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('mg-h-person').innerHTML=pOpts;
+  document.getElementById('mg-c-person').innerHTML=pOpts;
+  render();toast(`${name} adicionado(a)!`);
+}
+async function delPerson(pid){
+  if(!confirm('Excluir esta pessoa e todos os seus hábitos?'))return;
+  await db.from('habit_checks').delete().eq('person_id',pid);
+  await db.from('habits').delete().eq('person_id',pid);
+  await db.from('categories').delete().eq('person_id',pid);
+  const {error}=await db.from('people').delete().eq('id',pid);
+  if(error){toast('Erro ao excluir.');return;}
+  people=people.filter(p=>p.id!==pid);
+  renderPeopleList();
+  render();toast('Pessoa excluída!');
 }
 
 // HABIT MODAL
@@ -469,16 +499,80 @@ async function saveHabit(){
   closeHabitMod();render();toast('Hábito adicionado!');
 }
 
-// MANAGE MODAL
-function openManageMod(pid){
-  actPid=pid;
-  const p=people.find(x=>x.id===pid);if(!p)return;
-  document.getElementById('manage-title').textContent=`Gerenciar — ${p.name}`;
-  renderManageList(p);renderCatList(p);
+function switchTab(tab){
+  ['pessoas','hab','cat'].forEach(t=>{
+    const pane=document.getElementById('pane-'+t);
+    const btn=document.getElementById('tab-'+t);
+    if(pane)pane.style.display=t===tab?'block':'none';
+    if(btn){btn.style.background=t===tab?'white':'transparent';btn.style.color=t===tab?'var(--tp)':'var(--ts)';btn.style.boxShadow=t===tab?'var(--sh)':'none';}
+  });
+}
+
+function openGerenciar(){
+  actPid=people[0]?.id||null;
+  // aba pessoas
+  renderPeopleList();
+  selAC=ACORS[0];
+  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selA('${c}',this)"></div>`).join('');
+  document.getElementById('p-name').value='';
+  // aba hábitos
+  document.getElementById('mg-h-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  updateMgHabitForm();
+  // aba categorias
+  document.getElementById('mg-c-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  updateMgCatForm();
   selCatC=HCORS[0];
   document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatC?' sel':''}" style="background:${c}" onclick="selCC('${c}',this)"></div>`).join('');
   document.getElementById('new-cat-name').value='';
+  switchTab('pessoas');
   document.getElementById('ov-manage').classList.add('open');
+}
+
+function renderPeopleList(){
+  const el=document.getElementById('people-list');
+  if(!people.length){el.innerHTML='<div class="emptyml">Nenhuma pessoa.</div>';return;}
+  el.innerHTML=people.map(p=>`
+    <div class="mrow" id="pr-${p.id}">
+      <div class="mdot" style="background:${p.color}"></div>
+      <span class="mname">${p.name}</span>
+      <span class="mpts">${p.habs.length} hábitos</span>
+      ${people.length>1?`<button class="bdel" onclick="delPerson('${p.id}')">Excluir</button>`:''}
+    </div>`).join('');
+}
+
+function onMgPersonChange(){
+  actPid=document.getElementById('mg-h-person').value;
+  updateMgHabitForm();
+}
+function updateMgHabitForm(){
+  const p=people.find(x=>x.id===actPid);
+  renderManageList(p||people[0]);
+  const catSel=document.getElementById('mg-h-cat');
+  catSel.innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
+  document.getElementById('mg-hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===HCORS[0]?' sel':''}" style="background:${c}" onclick="selMgH('${c}',this)"></div>`).join('');
+  document.getElementById('mg-h-name').value='';
+  document.getElementById('mg-h-pts').value='5';
+}
+
+function onMgCatPersonChange(){
+  const pid=document.getElementById('mg-c-person').value;
+  actPid=pid;
+  updateMgCatForm();
+}
+function updateMgCatForm(){
+  const p=people.find(x=>x.id===actPid)||people[0];
+  renderCatList(p);
+}
+
+// MANAGE MODAL
+function openManageMod(pid){
+  actPid=pid;
+  openGerenciar();
+  document.getElementById('mg-h-person').value=pid;
+  document.getElementById('mg-c-person').value=pid;
+  onMgPersonChange();
+  onMgCatPersonChange();
+  switchTab('hab');
 }
 function renderManageList(p){
   const el=document.getElementById('manage-list');
@@ -522,11 +616,30 @@ async function delHabit(pid,hid){
   render();toast('Hábito excluído!');
 }
 
+function selMgH(c,el){document.querySelectorAll('#mg-hb-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+async function saveMgHabit(){
+  const name=document.getElementById('mg-h-name').value.trim();
+  const pts=parseInt(document.getElementById('mg-h-pts').value)||5;
+  const catId=document.getElementById('mg-h-cat').value||null;
+  const pid=document.getElementById('mg-h-person').value;
+  const selEl=document.querySelector('#mg-hb-swatches .sw.sel');
+  const color=selEl?selEl.style.background:HCORS[0];
+  if(!name||!pid)return;
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color,category_id:catId}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){p.habs.push(data);renderManageList(p);}
+  document.getElementById('mg-h-name').value='';
+  document.getElementById('mg-h-pts').value='5';
+  render();toast('Hábito adicionado!');
+}
+
 function selCC(c,el){selCatC=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
   const name=document.getElementById('new-cat-name').value.trim();
-  if(!name||!actPid)return;
-  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:actPid,name,color:selCatC}).select().single();
+  const pid=document.getElementById('mg-c-person').value||actPid;
+  if(!name||!pid)return;
+  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCatC}).select().single();
   if(error){toast('Erro ao salvar categoria.');return;}
   const p=people.find(x=>x.id===actPid);
   if(p){p.cats.push(data);renderCatList(p);}
