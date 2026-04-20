@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--g50:#f0f7ee;--g400:#5fa843;--g600:#3a7a28;--g800:#1e4a12;--cream:#faf7f2;--creamdk:#f0ebe2;--tp:#1a1a18;--ts:#5a5a50;--tm:#9a9a88;--bd:rgba(0,0,0,0.08);--sh:0 2px 16px rgba(0,0,0,0.06);}
+:root{--g50:#f0f7ee;--g600:#3a7a28;--g800:#1e4a12;--cream:#faf7f2;--creamdk:#f0ebe2;--tp:#1a1a18;--ts:#5a5a50;--tm:#9a9a88;--bd:rgba(0,0,0,0.08);--sh:0 2px 16px rgba(0,0,0,0.06);}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);min-height:100vh;}
 #auth{min-height:100vh;display:flex;align-items:center;justify-content:center;}
@@ -32,15 +32,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .mnbtn:hover{background:var(--g50);color:var(--g600);}
 .mtitle{font-family:'Fraunces',serif;font-size:24px;font-weight:400;flex:1;}
 .mtitle em{font-style:italic;color:var(--g600);}
-
-/* STATS ROW */
 .stats-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
-.stat-tile{background:white;border:1px solid var(--bd);border-radius:12px;padding:14px 18px;flex:1;min-width:120px;box-shadow:var(--sh);}
+.stat-tile{background:white;border:1px solid var(--bd);border-radius:12px;padding:14px 18px;flex:1;min-width:100px;box-shadow:var(--sh);}
 .stat-label{font-size:11px;color:var(--tm);margin-bottom:4px;}
 .stat-val{font-size:22px;font-weight:500;color:var(--tp);font-family:'Fraunces',serif;}
 .stat-sub{font-size:11px;color:var(--tm);}
-
-/* GARDEN */
 .garden-card{background:white;border:1px solid var(--bd);border-radius:16px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
 .garden-wrap{position:relative;}
 .garden-wrap canvas{width:100%;height:120px;display:block;}
@@ -50,29 +46,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .ptrack{height:5px;background:var(--creamdk);border-radius:3px;overflow:hidden;margin-bottom:5px;}
 .pfill{height:100%;border-radius:3px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
 .plabel{font-size:11px;color:var(--tm);}
-
-/* MAIN CARD */
 .main-card{background:white;border:1px solid var(--bd);border-radius:16px;overflow:hidden;box-shadow:var(--sh);}
-.main-card-hdr{padding:14px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.main-card-hdr{padding:14px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:10px;}
 .main-card-title{font-size:13px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.08em;}
-.main-card-btns{display:flex;gap:8px;flex-wrap:wrap;}
-
-/* PERSON SECTION INSIDE TABLE */
-.person-section-hdr{display:flex;align-items:center;gap:10px;padding:10px 22px 8px;background:var(--g50);border-bottom:1px solid var(--bd);}
+.btn-gerenciar{padding:8px 18px;border-radius:9px;background:var(--g600);color:white;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:background 0.15s;}
+.btn-gerenciar:hover{background:var(--g800);}
+.person-sep{display:flex;align-items:center;gap:10px;padding:10px 22px 8px;background:var(--g50);border-bottom:1px solid var(--bd);}
 .person-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;}
-.person-sec-name{font-size:13px;font-weight:500;color:var(--g800);}
-.person-sec-stats{font-size:11px;color:var(--tm);margin-left:auto;}
-
-/* CAT HEADER */
-.cat-hdr-row{padding:7px 22px 5px;background:var(--cream);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;}
+.person-sep-name{font-size:13px;font-weight:500;color:var(--g800);}
+.person-sep-stats{font-size:11px;color:var(--tm);margin-left:auto;}
+.cat-row{padding:7px 22px 5px;background:var(--cream);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;}
 .cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.cat-hdr-name{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;}
-
-/* TABLE */
-.bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
-.bsm:hover{background:var(--creamdk);}
-.bsmg{background:var(--g600);color:white;border-color:var(--g600);}
-.bsmg:hover{background:var(--g800);color:white;}
+.cat-name{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;}
 .hscroll{overflow-x:auto;}
 table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
@@ -93,26 +78,28 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .chk.fut{opacity:0.2;pointer-events:none;}
 .todm{font-size:9px;font-weight:500;color:#4a9bb5;}
 .nohab{padding:20px;text-align:center;font-size:13px;color:var(--tm);}
-
-/* MODALS */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
+.modal{background:white;border-radius:18px;padding:28px;width:92%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(14px);transition:transform 0.2s;max-height:90vh;overflow-y:auto;}
 .overlay.open .modal{transform:translateY(0);}
-.mtit{font-family:'Fraunces',serif;font-size:20px;font-weight:400;margin-bottom:20px;}
+.modal-title{font-family:'Fraunces',serif;font-size:22px;font-weight:400;margin-bottom:18px;}
+/* TABS */
+.tabs{display:flex;gap:4px;background:var(--creamdk);padding:4px;border-radius:10px;margin-bottom:20px;}
+.tab-btn{flex:1;padding:9px 4px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--ts);transition:all 0.15s;}
+.tab-btn.active{background:white;color:var(--tp);box-shadow:var(--sh);}
+.pane{display:none;}
+.pane.active{display:block;}
+/* FORM */
 .fg{margin-bottom:14px;}
 .fl{font-size:11px;font-weight:500;color:var(--ts);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:0.06em;}
-.fi{width:100%;padding:9px 12px;border:1px solid var(--bd);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--tp);background:white;}
+.fi{width:100%;padding:10px 13px;border:1px solid var(--bd);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--tp);background:white;}
 .fi:focus{outline:none;border-color:#5fa843;}
-.swrow{display:flex;gap:7px;flex-wrap:wrap;}
+.swrow{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px;}
 .sw{width:26px;height:26px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all 0.15s;}
 .sw.sel{border-color:var(--tp);transform:scale(1.15);}
-.macts{display:flex;gap:9px;margin-top:20px;}
-.bprim{flex:1;padding:11px;border-radius:9px;background:var(--g600);color:white;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:background 0.15s;}
-.bprim:hover{background:var(--g800);}
-.bcanc{padding:11px 18px;border-radius:9px;background:none;color:var(--ts);border:1px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;}
-.bcanc:hover{background:var(--cream);}
-.mrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--bd);}
+/* LIST ITEMS */
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd);}
 .mrow:last-child{border-bottom:none;}
 .mdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .mname{flex:1;font-size:13px;color:var(--tp);}
@@ -120,11 +107,18 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .mpts{font-size:11px;color:var(--tm);background:var(--creamdk);padding:2px 7px;border-radius:9px;white-space:nowrap;}
 .bdel{padding:5px 11px;border-radius:7px;border:1px solid #fecaca;background:#fff5f5;color:#dc2626;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;}
 .bdel:hover{background:#fee2e2;}
-.emptyml{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
-.section-sep{height:1px;background:var(--bd);margin:16px 0;}
+.empty-msg{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
+.sep{height:1px;background:var(--bd);margin:16px 0;}
+.sec-title{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;}
+/* MODAL FOOTER */
+.modal-footer{display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd);}
+.bprim{flex:1;padding:11px;border-radius:9px;background:var(--g600);color:white;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:background 0.15s;}
+.bprim:hover{background:var(--g800);}
+.bcanc{flex:1;padding:11px;border-radius:9px;background:none;color:var(--ts);border:1px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;}
+.bcanc:hover{background:var(--cream);}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.topbar{padding:0 14px;}.stats-row{gap:8px;}.main-card-btns{flex-direction:column;}}
+@media(max-width:700px){.topbar{padding:0 14px;}.stats-row{gap:8px;}}
 </style>
 </head>
 <body>
@@ -159,99 +153,75 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <h1 class="mtitle" id="mtitle"></h1>
       <button class="mnbtn" onclick="changeMonth(1)">&#8594;</button>
     </div>
-
     <div class="stats-row" id="stats-row"></div>
-
     <div class="garden-card">
-      <div class="garden-wrap">
-        <canvas id="garden-canvas"></canvas>
-        <div class="gpill" id="garden-pill">🌿 Semente</div>
-      </div>
+      <div class="garden-wrap"><canvas id="garden-canvas"></canvas><div class="gpill" id="gpill">🌿 Semente</div></div>
       <div class="garden-info">
-        <div class="garden-level" id="garden-level">Nível 1 — Semente</div>
+        <div class="garden-level" id="glevel">Nível 1 — Semente</div>
         <div class="ptrack"><div class="pfill" id="pfill" style="width:0%"></div></div>
         <div class="plabel" id="plabel">0 / 50 pts para o próximo nível</div>
       </div>
     </div>
-
     <div class="main-card">
       <div class="main-card-hdr">
         <span class="main-card-title">Hábitos do mês</span>
-        <div class="main-card-btns" id="person-btns"></div>
+        <button class="btn-gerenciar" onclick="openGerenciar()">⚙ Gerenciar</button>
       </div>
       <div id="habits-body"></div>
     </div>
   </div>
 </div>
 
-<!-- MODAL: NOVO HÁBITO -->
-<div class="overlay" id="ov-habit" onclick="ovClose(event,'ov-habit',closeHabitMod)">
+<!-- MODAL GERENCIAR -->
+<div class="overlay" id="ov-gerenciar">
   <div class="modal">
-    <h2 class="mtit">Novo hábito</h2>
-    <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="h-person"></select></div>
-    <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
-    <div class="fg"><label class="fl">Categoria</label><select class="fi" id="h-cat"></select></div>
-    <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
-    <div class="fg"><label class="fl">Cor</label><div class="swrow" id="hb-swatches"></div></div>
-    <div class="macts">
-      <button class="bcanc" onclick="closeHabitMod()">Cancelar</button>
-      <button class="bprim" onclick="saveHabit()">Salvar</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: GERENCIAR UNIFICADO -->
-<div class="overlay" id="ov-manage">
-  <div class="modal" style="max-width:520px;">
-    <h2 class="mtit">⚙ Gerenciar</h2>
-
-    <!-- ABAS -->
-    <div style="display:flex;gap:4px;background:var(--creamdk);padding:4px;border-radius:10px;margin-bottom:18px;">
-      <button id="tab-pessoas" onclick="switchTab('pessoas')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:white;color:var(--tp);box-shadow:var(--sh);">👤 Pessoas</button>
-      <button id="tab-hab" onclick="switchTab('hab')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--ts);">✓ Hábitos</button>
-      <button id="tab-cat" onclick="switchTab('cat')" style="flex:1;padding:8px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;background:transparent;color:var(--ts);">🏷 Categorias</button>
+    <div class="modal-title">⚙ Gerenciar</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('pessoas')">👤 Pessoas</button>
+      <button class="tab-btn" onclick="switchTab('habitos')">✓ Hábitos</button>
+      <button class="tab-btn" onclick="switchTab('categorias')">🏷 Categorias</button>
     </div>
 
-    <!-- ABA: PESSOAS -->
-    <div id="pane-pessoas">
-      <div id="people-list"></div>
-      <div class="section-sep"></div>
-      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Adicionar pessoa</div>
+    <!-- PESSOAS -->
+    <div class="pane active" id="pane-pessoas">
+      <div id="list-pessoas"></div>
+      <div class="sep"></div>
+      <div class="sec-title">Adicionar pessoa</div>
       <div class="fg"><label class="fl">Nome</label><input class="fi" id="p-name" placeholder="Ex: Maria, João..."/></div>
       <div class="fg"><label class="fl">Cor do avatar</label><div class="swrow" id="av-swatches"></div></div>
       <button class="bprim" style="width:100%;" onclick="savePerson()">+ Adicionar pessoa</button>
     </div>
 
-    <!-- ABA: HÁBITOS -->
-    <div id="pane-hab" style="display:none;">
-      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="mg-h-person" onchange="onMgPersonChange()"></select></div>
-      <div id="manage-list"></div>
-      <div class="section-sep"></div>
-      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Adicionar hábito</div>
-      <div class="fg"><label class="fl">Nome</label><input class="fi" id="mg-h-name" placeholder="Ex: Meditar 10 minutos"/></div>
-      <div class="fg"><label class="fl">Categoria</label><select class="fi" id="mg-h-cat"></select></div>
-      <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="mg-h-pts" type="number" min="1" max="100" value="5"/></div>
-      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="mg-hb-swatches"></div></div>
-      <button class="bprim" style="width:100%;" onclick="saveMgHabit()">+ Adicionar hábito</button>
+    <!-- HÁBITOS -->
+    <div class="pane" id="pane-habitos">
+      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="sel-pessoa-hab" onchange="onChangePessoa()"></select></div>
+      <div id="list-habitos"></div>
+      <div class="sep"></div>
+      <div class="sec-title">Adicionar hábito</div>
+      <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
+      <div class="fg"><label class="fl">Categoria</label><select class="fi" id="h-cat"></select></div>
+      <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
+      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="h-swatches"></div></div>
+      <button class="bprim" style="width:100%;" onclick="saveHabit()">+ Adicionar hábito</button>
     </div>
 
-    <!-- ABA: CATEGORIAS -->
-    <div id="pane-cat" style="display:none;">
-      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="mg-c-person" onchange="onMgCatPersonChange()"></select></div>
-      <div id="cat-list"></div>
-      <div class="section-sep"></div>
-      <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Nova categoria</div>
+    <!-- CATEGORIAS -->
+    <div class="pane" id="pane-categorias">
+      <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="sel-pessoa-cat" onchange="onChangePessoaCat()"></select></div>
+      <div id="list-categorias"></div>
+      <div class="sep"></div>
+      <div class="sec-title">Adicionar categoria</div>
       <div class="fg">
-        <label class="fl">Nome da categoria</label>
-        <input class="fi" id="new-cat-name" placeholder="Ex: Saúde, Estudos, Família..." style="font-size:15px;padding:12px 14px;"/>
+        <label class="fl">Nome</label>
+        <input class="fi" id="cat-name" placeholder="Ex: Saúde, Estudos, Família..." style="font-size:15px;padding:12px 14px;"/>
       </div>
-      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="new-cat-swatches"></div></div>
+      <div class="fg"><label class="fl">Cor</label><div class="swrow" id="cat-swatches"></div></div>
       <button class="bprim" style="width:100%;" onclick="saveCat()">+ Adicionar categoria</button>
     </div>
 
-    <div style="margin-top:16px;display:flex;gap:8px;">
-      <button class="bcanc" style="flex:1;" onclick="closeManageMod()">Fechar sem salvar</button>
-      <button class="bprim" style="flex:1;" onclick="closeManageMod()">Concluído</button>
+    <div class="modal-footer">
+      <button class="bcanc" onclick="closeGerenciar()">Fechar sem salvar</button>
+      <button class="bprim" onclick="closeGerenciar()">Concluído</button>
     </div>
   </div>
 </div>
@@ -267,29 +237,22 @@ const db=createClient(SB_URL,SB_KEY);
 const MES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const HCORS=['#5fa843','#4a9bb5','#e8a020','#c9607a','#2e9475','#7b6db5','#c86040','#8b6f4e'];
 const ACORS=['#3a7a28','#1a5fa8','#a03060','#b87010','#1a6b50','#5a4a9a'];
-const LEVELS=[
-  {name:'Semente',min:0},{name:'Broto',min:50},{name:'Muda',min:150},
-  {name:'Arbusto',min:300},{name:'Jardim florido',min:500},
-  {name:'Jardim exuberante',min:800},{name:'Paraíso verde',min:1200}
-];
+const LEVELS=[{name:'Semente',min:0},{name:'Broto',min:50},{name:'Muda',min:150},{name:'Arbusto',min:300},{name:'Jardim florido',min:500},{name:'Jardim exuberante',min:800},{name:'Paraíso verde',min:1200}];
 
 let user=null,yr=new Date().getFullYear(),mo=new Date().getMonth();
-let people=[],selHC=HCORS[0],selAC=ACORS[0],selCatC=HCORS[0],actPid=null;
+let people=[],selHC=HCORS[0],selAC=ACORS[0],selCC=HCORS[0],actPid=null;
 
 async function signIn(p){await db.auth.signInWithOAuth({provider:p,options:{redirectTo:window.location.href}});}
 async function logout(){await db.auth.signOut();location.reload();}
 
 async function init(){
   const {data:{session}}=await db.auth.getSession();
-  if(session){user=session.user;await startApp();}
-  else showAuth();
+  if(session){user=session.user;await startApp();}else showAuth();
   db.auth.onAuthStateChange(async(_,s)=>{if(s){user=s.user;await startApp();}else showAuth();});
 }
 function showAuth(){document.getElementById('auth').style.display='flex';document.getElementById('app').style.display='none';}
-
 async function startApp(){
-  document.getElementById('auth').style.display='none';
-  document.getElementById('app').style.display='block';
+  document.getElementById('auth').style.display='none';document.getElementById('app').style.display='block';
   const meta=user.user_metadata;
   const el=document.getElementById('uavatar');
   if(meta.avatar_url)el.innerHTML=`<img src="${meta.avatar_url}" alt=""/>`;
@@ -321,7 +284,7 @@ function diasMes(){return new Date(yr,mo+1,0).getDate();}
 function hoje(){const n=new Date();return{y:n.getFullYear(),m:n.getMonth(),d:n.getDate()};}
 function getLvl(pts){let i=0;for(let j=LEVELS.length-1;j>=0;j--){if(pts>=LEVELS[j].min){i=j;break;}}return i;}
 function totalPts(){return people.reduce((t,p)=>{for(const k in p.chks){const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);if(h)t+=h.pts;}return t;},0);}
-function totalChecks(){return people.reduce((t,p)=>t+Object.keys(p.chks).length,0);}
+function totalChks(){return people.reduce((t,p)=>t+Object.keys(p.chks).length,0);}
 
 async function toggle(pid,hid,day){
   const p=people.find(x=>x.id===pid);if(!p)return;
@@ -331,268 +294,195 @@ async function toggle(pid,hid,day){
   else{const {data}=await db.from('habit_checks').insert({user_id:user.id,person_id:pid,habit_id:hid,check_date:ds}).select().single();if(data)p.chks[key]=data.id;}
   render();
 }
-
 async function changeMonth(d){mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}await loadAll();render();}
 
 function render(){
   document.getElementById('mtitle').innerHTML=`${MES[mo]} <em>${yr}</em>`;
-  const pts=totalPts(),chks=totalChecks();
+  const pts=totalPts(),chks=totalChks();
   const li=getLvl(pts),lv=LEVELS[li],nx=LEVELS[li+1];
-  const pi=pts-lv.min,pn=nx?nx.min-lv.min:1;
-  const pct=Math.min(100,Math.round(pi/pn*100));
-
-  // stats
+  const pi=pts-lv.min,pn=nx?nx.min-lv.min:1,pct=Math.min(100,Math.round(pi/pn*100));
   document.getElementById('stats-row').innerHTML=`
-    <div class="stat-tile"><div class="stat-label">Pontos totais</div><div class="stat-val">${pts}</div><div class="stat-sub">este mês</div></div>
+    <div class="stat-tile"><div class="stat-label">Pontos</div><div class="stat-val">${pts}</div><div class="stat-sub">este mês</div></div>
     <div class="stat-tile"><div class="stat-label">Concluídos</div><div class="stat-val">${chks}</div><div class="stat-sub">hábitos feitos</div></div>
     <div class="stat-tile"><div class="stat-label">Nível</div><div class="stat-val">${li+1}</div><div class="stat-sub">${lv.name}</div></div>
     <div class="stat-tile"><div class="stat-label">Pessoas</div><div class="stat-val">${people.length}</div><div class="stat-sub">no jardim</div></div>`;
-
-  // garden
-  document.getElementById('garden-pill').textContent=`🌿 ${lv.name}`;
-  document.getElementById('garden-level').textContent=`Nível ${li+1} — ${lv.name}`;
+  document.getElementById('gpill').textContent=`🌿 ${lv.name}`;
+  document.getElementById('glevel').textContent=`Nível ${li+1} — ${lv.name}`;
   document.getElementById('pfill').style.width=pct+'%';
   document.getElementById('plabel').textContent=nx?`${pi} / ${pn} pts para o próximo nível`:'Nível máximo!';
   drawG(document.getElementById('garden-canvas'),li);
+  renderTable();
+}
 
-  // botões de pessoa
-  const btns=document.getElementById('person-btns');
-  btns.innerHTML=`<button class="bsm bsmg" onclick="openGerenciar()">⚙ Gerenciar</button>`;
-
-  // tabela unificada
+function renderTable(){
   const body=document.getElementById('habits-body');
-  body.innerHTML='';
   const days=diasMes(),hj=hoje();
-  const totalHabs=people.reduce((t,p)=>t+p.habs.length,0);
-  if(!totalHabs){
-    body.innerHTML='<div class="nohab">Nenhum hábito ainda. Clique em "+ Hábito" para começar.</div>';
-    return;
-  }
-
-  // thead uma vez só
-  const tableWrap=document.createElement('div');
-  tableWrap.className='hscroll';
-  const table=document.createElement('table');
-  table.className='ht';
-  let thead='<thead><tr><th>Hábito</th>';
-  for(let d=1;d<=days;d++){
-    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-    thead+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
-  }
-  thead+='</tr></thead>';
-  let tbody='<tbody>';
-
-  people.forEach(person=>{
-    // linha separadora de pessoa
-    tbody+=`<tr><td colspan="${days+1}" style="padding:0;">
-      <div class="person-section-hdr">
-        <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
-        <span class="person-sec-name">${person.name}</span>
-        <span class="person-sec-stats">${Object.keys(person.chks).length} feitos · ${person.habs.reduce((t,h)=>{let s=0;for(const k in person.chks){if(k.startsWith(h.id+'_'))s+=h.pts;}return t+s;},0)} pts</span>
-      </div>
-    </td></tr>`;
-
-    if(!person.habs.length){
-      tbody+=`<tr><td colspan="${days+1}" class="nohab" style="text-align:left;padding-left:22px;">Nenhum hábito. Clique em "+ Hábito" e escolha ${person.name}.</td></tr>`;
-      return;
-    }
-
-    // Agrupa por categoria
-    const cats=person.cats||[];
-    const byCat={};
-    byCat['__sem__']=[];
-    cats.forEach(c=>{byCat[c.id]=[];});
-    person.habs.forEach(h=>{
-      if(h.category_id && byCat[h.category_id]!==undefined)byCat[h.category_id].push(h);
-      else byCat['__sem__'].push(h);
-    });
-
+  const total=people.reduce((t,p)=>t+p.habs.length,0);
+  if(!total){body.innerHTML='<div class="nohab">Nenhum hábito. Clique em "⚙ Gerenciar" para começar.</div>';return;}
+  const wrap=document.createElement('div');wrap.className='hscroll';
+  const tbl=document.createElement('table');tbl.className='ht';
+  let th='<thead><tr><th>Hábito</th>';
+  for(let d=1;d<=days;d++){const it=hj.y===yr&&hj.m===mo&&hj.d===d;th+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;}
+  let tb='<tbody>';
+  people.forEach(p=>{
+    const pPts=Object.keys(p.chks).reduce((t,k)=>{const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);return h?t+h.pts:t;},0);
+    tb+=`<tr><td colspan="${days+1}" style="padding:0;"><div class="person-sep"><div class="person-av" style="background:${p.color}">${p.name[0].toUpperCase()}</div><span class="person-sep-name">${p.name}</span><span class="person-sep-stats">${Object.keys(p.chks).length} feitos · ${pPts} pts</span></div></td></tr>`;
+    if(!p.habs.length){tb+=`<tr><td colspan="${days+1}" class="nohab" style="text-align:left;padding-left:22px;font-size:12px;">Sem hábitos — abra ⚙ Gerenciar para adicionar.</td></tr>`;return;}
+    const cats=p.cats||[];
+    const byCat={__sem__:[]};cats.forEach(c=>{byCat[c.id]=[];});
+    p.habs.forEach(h=>{if(h.category_id&&byCat[h.category_id]!==undefined)byCat[h.category_id].push(h);else byCat.__sem__.push(h);});
     const groups=[...cats.map(c=>({id:c.id,name:c.name,color:c.color}))];
-    if(byCat['__sem__'].length)groups.push({id:'__sem__',name:'Geral',color:'#9a9a88'});
-
-    groups.forEach(grp=>{
-      const habs=byCat[grp.id]||[];
-      if(!habs.length)return;
-      tbody+=`<tr><td colspan="${days+1}" style="padding:0;">
-        <div class="cat-hdr-row"><div class="cat-dot" style="background:${grp.color}"></div><span class="cat-hdr-name">${grp.name}</span></div>
-      </td></tr>`;
-      habs.forEach(hab=>{
-        let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
+    if(byCat.__sem__.length)groups.push({id:'__sem__',name:'Geral',color:'#9a9a88'});
+    groups.forEach(g=>{
+      const habs=byCat[g.id]||[];if(!habs.length)return;
+      tb+=`<tr><td colspan="${days+1}" style="padding:0;"><div class="cat-row"><div class="cat-dot" style="background:${g.color}"></div><span class="cat-name">${g.name}</span></div></td></tr>`;
+      habs.forEach(h=>{
+        let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${h.color}"></div><span class="htext">${h.name}</span><span class="hbdg">${h.pts}pts</span></div></td>`;
         for(let d=1;d<=days;d++){
           const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-          const key=`${hab.id}_${ds}`,done=!!person.chks[key];
+          const key=`${h.id}_${ds}`,done=!!p.chks[key];
           const it=hj.y===yr&&hj.m===mo&&hj.d===d;
           const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
           const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-          r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+          r+=`<td><button class="${cls}" style="${done?`background:${h.color};`:''}" onclick="toggle('${p.id}','${h.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
         }
-        tbody+=r+'</tr>';
+        tb+=r+'</tr>';
       });
     });
   });
-
-  tbody+='</tbody>';
-  table.innerHTML=thead+tbody;
-  tableWrap.appendChild(table);
-  body.appendChild(tableWrap);
+  tbl.innerHTML=`<thead><tr>${th.replace('<thead><tr>','')}</thead>${tb}</tbody>`;
+  wrap.appendChild(tbl);body.innerHTML='';body.appendChild(wrap);
 }
 
-function selA(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
-async function savePerson(){
-  const name=document.getElementById('p-name').value.trim();if(!name)return;
-  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selAC}).select().single();
-  if(error){toast('Erro ao salvar.');return;}
-  people.push({...data,cats:[],habs:[],chks:{}});
-  document.getElementById('p-name').value='';
-  renderPeopleList();
-  // atualiza selects de pessoa nas outras abas
-  const pOpts=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  document.getElementById('mg-h-person').innerHTML=pOpts;
-  document.getElementById('mg-c-person').innerHTML=pOpts;
-  render();toast(`${name} adicionado(a)!`);
-}
-async function delPerson(pid){
-  if(!confirm('Excluir esta pessoa e todos os seus hábitos?'))return;
-  await db.from('habit_checks').delete().eq('person_id',pid);
-  await db.from('habits').delete().eq('person_id',pid);
-  await db.from('categories').delete().eq('person_id',pid);
-  const {error}=await db.from('people').delete().eq('id',pid);
-  if(error){toast('Erro ao excluir.');return;}
-  people=people.filter(p=>p.id!==pid);
-  renderPeopleList();
-  render();toast('Pessoa excluída!');
-}
-
-// HABIT MODAL
-function openHabitMod(pid){
-  actPid=pid||people[0]?.id||null;
-  selHC=HCORS[0];
-  // pessoa select
-  const pSel=document.getElementById('h-person');
-  pSel.innerHTML=people.map(p=>`<option value="${p.id}"${p.id===actPid?' selected':''}>${p.name}</option>`).join('');
-  pSel.onchange=()=>{
-    actPid=pSel.value;
-    const p=people.find(x=>x.id===actPid);
-    const catSel=document.getElementById('h-cat');
-    catSel.innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
-  };
-  // categoria select
-  const p=people.find(x=>x.id===actPid);
-  document.getElementById('h-cat').innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
-  document.getElementById('hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selH('${c}',this)"></div>`).join('');
-  document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
-  document.getElementById('ov-habit').classList.add('open');
-  setTimeout(()=>document.getElementById('h-name').focus(),100);
-}
-function closeHabitMod(){document.getElementById('ov-habit').classList.remove('open');}
-function selH(c,el){selHC=c;document.querySelectorAll('#hb-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
-async function saveHabit(){
-  const name=document.getElementById('h-name').value.trim();
-  const pts=parseInt(document.getElementById('h-pts').value)||5;
-  const catId=document.getElementById('h-cat').value||null;
-  const pid=document.getElementById('h-person').value;
-  if(!name||!pid)return;
-  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId}).select().single();
-  if(error){toast('Erro ao salvar.');return;}
-  const p=people.find(x=>x.id===pid);
-  if(p)p.habs.push(data);
-  closeHabitMod();render();toast('Hábito adicionado!');
-}
-
-function switchTab(tab){
-  ['pessoas','hab','cat'].forEach(t=>{
-    const pane=document.getElementById('pane-'+t);
-    const btn=document.getElementById('tab-'+t);
-    if(pane)pane.style.display=t===tab?'block':'none';
-    if(btn){btn.style.background=t===tab?'white':'transparent';btn.style.color=t===tab?'var(--tp)':'var(--ts)';btn.style.boxShadow=t===tab?'var(--sh)':'none';}
-  });
-}
-
+// MODAL GERENCIAR
 function openGerenciar(){
   actPid=people[0]?.id||null;
-  // aba pessoas
-  renderPeopleList();
-  selAC=ACORS[0];
-  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selA('${c}',this)"></div>`).join('');
-  document.getElementById('p-name').value='';
-  // aba hábitos
-  document.getElementById('mg-h-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  updateMgHabitForm();
-  // aba categorias
-  document.getElementById('mg-c-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  updateMgCatForm();
-  selCatC=HCORS[0];
-  document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatC?' sel':''}" style="background:${c}" onclick="selCC('${c}',this)"></div>`).join('');
-  document.getElementById('new-cat-name').value='';
+  setupPessoasPane();
+  setupHabitosPane();
+  setupCategoriasPane();
   switchTab('pessoas');
-  document.getElementById('ov-manage').classList.add('open');
+  document.getElementById('ov-gerenciar').classList.add('open');
+}
+function closeGerenciar(){document.getElementById('ov-gerenciar').classList.remove('open');}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const tabs=['pessoas','habitos','categorias'];
+    b.classList.toggle('active',tabs[i]===tab);
+  });
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pane-'+tab).classList.add('active');
 }
 
-function renderPeopleList(){
-  const el=document.getElementById('people-list');
-  if(!people.length){el.innerHTML='<div class="emptyml">Nenhuma pessoa.</div>';return;}
+// PESSOAS
+function setupPessoasPane(){
+  selAC=ACORS[0];
+  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selAvatar('${c}',this)"></div>`).join('');
+  document.getElementById('p-name').value='';
+  renderListPessoas();
+}
+function renderListPessoas(){
+  const el=document.getElementById('list-pessoas');
+  if(!people.length){el.innerHTML='<div class="empty-msg">Nenhuma pessoa.</div>';return;}
   el.innerHTML=people.map(p=>`
-    <div class="mrow" id="pr-${p.id}">
+    <div class="mrow">
       <div class="mdot" style="background:${p.color}"></div>
       <span class="mname">${p.name}</span>
       <span class="mpts">${p.habs.length} hábitos</span>
       ${people.length>1?`<button class="bdel" onclick="delPerson('${p.id}')">Excluir</button>`:''}
     </div>`).join('');
 }
+function selAvatar(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+async function savePerson(){
+  const name=document.getElementById('p-name').value.trim();if(!name)return;
+  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selAC}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
+  people.push({...data,cats:[],habs:[],chks:{}});
+  document.getElementById('p-name').value='';
+  renderListPessoas();
+  refreshPessoaSelects();
+  render();toast(`${name} adicionado(a)!`);
+}
+async function delPerson(pid){
+  if(!confirm('Excluir esta pessoa e todos os dados?'))return;
+  await db.from('habit_checks').delete().eq('person_id',pid);
+  await db.from('habits').delete().eq('person_id',pid);
+  await db.from('categories').delete().eq('person_id',pid);
+  const {error}=await db.from('people').delete().eq('id',pid);
+  if(error){toast('Erro ao excluir.');return;}
+  people=people.filter(p=>p.id!==pid);
+  if(actPid===pid)actPid=people[0]?.id||null;
+  renderListPessoas();refreshPessoaSelects();render();toast('Pessoa excluída!');
+}
 
-function onMgPersonChange(){
-  actPid=document.getElementById('mg-h-person').value;
-  updateMgHabitForm();
+// HÁBITOS
+function setupHabitosPane(){
+  const sel=document.getElementById('sel-pessoa-hab');
+  sel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  if(actPid)sel.value=actPid;
+  selHC=HCORS[0];
+  document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
+  document.getElementById('h-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selHab('${c}',this)"></div>`).join('');
+  refreshHabitosList();refreshCatSelect();
 }
-function updateMgHabitForm(){
-  const p=people.find(x=>x.id===actPid);
-  renderManageList(p||people[0]);
-  const catSel=document.getElementById('mg-h-cat');
-  catSel.innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
-  document.getElementById('mg-hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===HCORS[0]?' sel':''}" style="background:${c}" onclick="selMgH('${c}',this)"></div>`).join('');
-  document.getElementById('mg-h-name').value='';
-  document.getElementById('mg-h-pts').value='5';
-}
-
-function onMgCatPersonChange(){
-  const pid=document.getElementById('mg-c-person').value;
-  actPid=pid;
-  updateMgCatForm();
-}
-function updateMgCatForm(){
+function onChangePessoa(){actPid=document.getElementById('sel-pessoa-hab').value;refreshHabitosList();refreshCatSelect();}
+function refreshHabitosList(){
   const p=people.find(x=>x.id===actPid)||people[0];
-  renderCatList(p);
-}
-
-// MANAGE MODAL
-function openManageMod(pid){
-  actPid=pid;
-  openGerenciar();
-  document.getElementById('mg-h-person').value=pid;
-  document.getElementById('mg-c-person').value=pid;
-  onMgPersonChange();
-  onMgCatPersonChange();
-  switchTab('hab');
-}
-function renderManageList(p){
-  const el=document.getElementById('manage-list');
-  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito.</div>';return;}
+  const el=document.getElementById('list-habitos');
+  if(!p||!p.habs.length){el.innerHTML='<div class="empty-msg">Nenhum hábito.</div>';return;}
   el.innerHTML=p.habs.map(h=>{
     const cat=p.cats.find(c=>c.id===h.category_id);
     return `<div class="mrow" id="mr-${h.id}">
       <div class="mdot" style="background:${h.color}"></div>
-      <div style="flex:1;min-width:0;">
-        <div class="mname">${h.name}</div>
-        ${cat?`<div class="msub">${cat.name}</div>`:''}
-      </div>
+      <div style="flex:1;min-width:0;"><div class="mname">${h.name}</div>${cat?`<div class="msub">${cat.name}</div>`:''}</div>
       <span class="mpts">${h.pts}pts</span>
       <button class="bdel" onclick="delHabit('${p.id}','${h.id}')">Excluir</button>
     </div>`;
   }).join('');
 }
-function renderCatList(p){
-  const el=document.getElementById('cat-list');
-  if(!p.cats.length){el.innerHTML='<div class="emptyml">Nenhuma categoria ainda.</div>';return;}
+function refreshCatSelect(){
+  const p=people.find(x=>x.id===actPid)||people[0];
+  document.getElementById('h-cat').innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
+}
+function selHab(c,el){selHC=c;document.querySelectorAll('#h-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+async function saveHabit(){
+  const pid=document.getElementById('sel-pessoa-hab').value;
+  const name=document.getElementById('h-name').value.trim();
+  const pts=parseInt(document.getElementById('h-pts').value)||5;
+  const catId=document.getElementById('h-cat').value||null;
+  if(!name||!pid)return;
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p)p.habs.push(data);
+  document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
+  refreshHabitosList();render();toast('Hábito adicionado!');
+}
+async function delHabit(pid,hid){
+  if(!confirm('Excluir hábito?'))return;
+  await db.from('habit_checks').delete().eq('habit_id',hid);
+  const {error}=await db.from('habits').delete().eq('id',hid);
+  if(error){toast('Erro ao excluir.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){p.habs=p.habs.filter(h=>h.id!==hid);Object.keys(p.chks).filter(k=>k.startsWith(hid+'_')).forEach(k=>delete p.chks[k]);}
+  refreshHabitosList();render();toast('Hábito excluído!');
+}
+
+// CATEGORIAS
+function setupCategoriasPane(){
+  const sel=document.getElementById('sel-pessoa-cat');
+  sel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  if(actPid)sel.value=actPid;
+  selCC=HCORS[0];
+  document.getElementById('cat-name').value='';
+  document.getElementById('cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCC?' sel':''}" style="background:${c}" onclick="selCat('${c}',this)"></div>`).join('');
+  refreshCatList();
+}
+function onChangePessoaCat(){actPid=document.getElementById('sel-pessoa-cat').value;refreshCatList();}
+function refreshCatList(){
+  const p=people.find(x=>x.id===actPid)||people[0];
+  const el=document.getElementById('list-categorias');
+  if(!p||!p.cats.length){el.innerHTML='<div class="empty-msg">Nenhuma categoria ainda.</div>';return;}
   el.innerHTML=p.cats.map(c=>`
     <div class="mrow" id="cr-${c.id}">
       <div class="mdot" style="background:${c.color}"></div>
@@ -600,62 +490,32 @@ function renderCatList(p){
       <button class="bdel" onclick="delCat('${p.id}','${c.id}')">Excluir</button>
     </div>`).join('');
 }
-function closeManageMod(){document.getElementById('ov-manage').classList.remove('open');}
-
-async function delHabit(pid,hid){
-  if(!confirm('Excluir hábito?'))return;
-  await db.from('habit_checks').delete().eq('habit_id',hid);
-  const {error}=await db.from('habits').delete().eq('id',hid);
-  if(error){toast('Erro ao excluir.');return;}
-  const p=people.find(x=>x.id===pid);
-  if(p){
-    p.habs=p.habs.filter(h=>h.id!==hid);
-    Object.keys(p.chks).filter(k=>k.startsWith(hid+'_')).forEach(k=>delete p.chks[k]);
-    renderManageList(p);
-  }
-  render();toast('Hábito excluído!');
-}
-
-function selMgH(c,el){document.querySelectorAll('#mg-hb-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
-async function saveMgHabit(){
-  const name=document.getElementById('mg-h-name').value.trim();
-  const pts=parseInt(document.getElementById('mg-h-pts').value)||5;
-  const catId=document.getElementById('mg-h-cat').value||null;
-  const pid=document.getElementById('mg-h-person').value;
-  const selEl=document.querySelector('#mg-hb-swatches .sw.sel');
-  const color=selEl?selEl.style.background:HCORS[0];
-  if(!name||!pid)return;
-  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color,category_id:catId}).select().single();
-  if(error){toast('Erro ao salvar.');return;}
-  const p=people.find(x=>x.id===pid);
-  if(p){p.habs.push(data);renderManageList(p);}
-  document.getElementById('mg-h-name').value='';
-  document.getElementById('mg-h-pts').value='5';
-  render();toast('Hábito adicionado!');
-}
-
-function selCC(c,el){selCatC=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+function selCat(c,el){selCC=c;document.querySelectorAll('#cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
-  const name=document.getElementById('new-cat-name').value.trim();
-  const pid=document.getElementById('mg-c-person').value||actPid;
+  const pid=document.getElementById('sel-pessoa-cat').value||actPid;
+  const name=document.getElementById('cat-name').value.trim();
   if(!name||!pid)return;
-  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCatC}).select().single();
+  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCC}).select().single();
   if(error){toast('Erro ao salvar categoria.');return;}
-  const p=people.find(x=>x.id===actPid);
-  if(p){p.cats.push(data);renderCatList(p);}
-  document.getElementById('new-cat-name').value='';
-  render();toast('Categoria adicionada!');
+  const p=people.find(x=>x.id===pid);
+  if(p){p.cats.push(data);}
+  document.getElementById('cat-name').value='';
+  refreshCatList();refreshCatSelect();render();toast('Categoria adicionada!');
 }
 async function delCat(pid,cid){
   if(!confirm('Excluir categoria?'))return;
   const {error}=await db.from('categories').delete().eq('id',cid);
   if(error){toast('Erro.');return;}
   const p=people.find(x=>x.id===pid);
-  if(p){p.cats=p.cats.filter(c=>c.id!==cid);p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});renderCatList(p);}
-  render();toast('Categoria excluída!');
+  if(p){p.cats=p.cats.filter(c=>c.id!==cid);p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});}
+  refreshCatList();render();toast('Categoria excluída!');
 }
 
-function ovClose(e,id,fn){if(e.target===document.getElementById(id))fn();}
+function refreshPessoaSelects(){
+  const opts=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('sel-pessoa-hab').innerHTML=opts;
+  document.getElementById('sel-pessoa-cat').innerHTML=opts;
+}
 
 // GARDEN
 function drawG(canvas,li){
@@ -665,9 +525,7 @@ function drawG(canvas,li){
   ctx.clearRect(0,0,W,H);
   const sk=['#d4f0c0','#c8ecf0','#c0e4f8','#b8e8f4','#a8e0f0','#90d8e8','#78c8e0'];
   ctx.fillStyle=sk[Math.min(li,6)];ctx.fillRect(0,0,W,H);
-  const gY=H-22;
-  ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,10);
-  ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+10,W,H-gY-10);
+  const gY=H-22;ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,10);ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+10,W,H-gY-10);
   sun(ctx,W-32,26,li);if(li>=2)cloud(ctx,50,22);if(li>=4)cloud(ctx,W*.55,18);
   if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-4,6,8,0.3,0,Math.PI*2);ctx.fill();}
   else if(li===1)sprout(ctx,W/2,gY,.85);
