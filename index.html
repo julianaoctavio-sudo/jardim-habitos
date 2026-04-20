@@ -118,6 +118,9 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .bdel:hover{background:#fee2e2;}
 .emptyml{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
 .add-row{display:flex;gap:7px;align-items:center;margin-top:8px;}
+.tab-btn{padding:8px 16px;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--tm);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.15s;}
+.tab-btn.active{color:var(--g600);border-bottom-color:var(--g600);}
+.tab-btn:hover{color:var(--tp);}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
 @media(max-width:700px){.topbar{padding:0 14px;}.toolbar{flex-direction:column;align-items:flex-start;}}
@@ -184,19 +187,48 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 <!-- MODAL: GERENCIAR -->
 <div class="overlay" id="ov-manage" onclick="ovClose(event,'ov-manage',closeManageMod)">
   <div class="modal">
-    <h2 class="mtit">Gerenciar hábitos</h2>
-    <div class="fg">
-      <label class="fl">Pessoa</label>
-      <select class="fi" id="mg-person" onchange="onMgPersonChange()"></select>
+    <h2 class="mtit">Gerenciar</h2>
+
+    <!-- ABAS -->
+    <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--bd);">
+      <button class="tab-btn active" id="tab-pessoas" onclick="switchTab('pessoas')">Pessoas</button>
+      <button class="tab-btn" id="tab-habitos" onclick="switchTab('habitos')">Hábitos</button>
+      <button class="tab-btn" id="tab-categorias" onclick="switchTab('categorias')">Categorias</button>
     </div>
-    <div id="manage-list"></div>
-    <div class="sec-title">Categorias</div>
-    <div id="cat-list"></div>
-    <div class="add-row">
-      <input class="fi" id="new-cat-name" placeholder="Nova categoria..." style="flex:1;"/>
-      <div class="swrow" id="new-cat-swatches"></div>
-      <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Cat.</button>
+
+    <!-- ABA PESSOAS -->
+    <div id="tab-content-pessoas">
+      <div id="people-list"></div>
+      <div class="add-row" style="margin-top:12px;">
+        <input class="fi" id="new-person-name" placeholder="Nome da pessoa..." style="flex:1;"/>
+        <div class="swrow" id="new-person-swatches"></div>
+        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="savePerson()">+ Adicionar</button>
+      </div>
     </div>
+
+    <!-- ABA HÁBITOS -->
+    <div id="tab-content-habitos" style="display:none;">
+      <div class="fg">
+        <label class="fl">Pessoa</label>
+        <select class="fi" id="mg-person" onchange="onMgPersonChange()"></select>
+      </div>
+      <div id="manage-list"></div>
+    </div>
+
+    <!-- ABA CATEGORIAS -->
+    <div id="tab-content-categorias" style="display:none;">
+      <div class="fg">
+        <label class="fl">Pessoa</label>
+        <select class="fi" id="mg-person-cat" onchange="onMgPersonCatChange()"></select>
+      </div>
+      <div id="cat-list"></div>
+      <div class="add-row" style="margin-top:12px;">
+        <input class="fi" id="new-cat-name" placeholder="Nome da categoria..." style="flex:1;"/>
+        <div class="swrow" id="new-cat-swatches"></div>
+        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Adicionar</button>
+      </div>
+    </div>
+
     <div class="macts"><button class="bprim" onclick="closeManageMod()">Fechar</button></div>
   </div>
 </div>
@@ -468,15 +500,78 @@ async function saveHabit(){
   closeHabitMod();render();toast('Hábito adicionado!');
 }
 
+// TABS
+function switchTab(tab){
+  ['pessoas','habitos','categorias'].forEach(t=>{
+    document.getElementById(`tab-content-${t}`).style.display=t===tab?'block':'none';
+    document.getElementById(`tab-${t}`).classList.toggle('active',t===tab);
+  });
+}
+
 // MANAGE MODAL
 function openManageMod(){
-  const sel=document.getElementById('mg-person');
-  sel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  onMgPersonChange();
+  // Pessoas
+  renderPeopleList();
+  let selPColor=ACORS[0];
+  document.getElementById('new-person-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selPColor?' sel':''}" style="background:${c}" onclick="selPersonColor('${c}',this)"></div>`).join('');
+  document.getElementById('new-person-name').value='';
+
+  // Hábitos
+  const mgSel=document.getElementById('mg-person');
+  mgSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  if(people.length)onMgPersonChange();
+
+  // Categorias
+  const mgCatSel=document.getElementById('mg-person-cat');
+  mgCatSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  if(people.length)onMgPersonCatChange();
+
   selCatColor=HCORS[0];
   document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatColor?' sel':''}" style="background:${c}" onclick="selCatC('${c}',this)"></div>`).join('');
   document.getElementById('new-cat-name').value='';
+
+  switchTab('pessoas');
   document.getElementById('ov-manage').classList.add('open');
+}
+
+// PESSOAS
+let selPersonColor=ACORS[0];
+function selPersonColor(c,el){selPersonColor=c;document.querySelectorAll('#new-person-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+function renderPeopleList(){
+  const el=document.getElementById('people-list');
+  if(!people.length){el.innerHTML='<div class="emptyml">Nenhuma pessoa cadastrada.</div>';return;}
+  el.innerHTML=people.map(p=>`
+    <div class="mrow" id="pr-${p.id}">
+      <div class="mdot" style="background:${p.color}"></div>
+      <span class="mname">${p.name}</span>
+      <span class="mpts">${p.habs.length} hábitos</span>
+      <button class="bdel" onclick="delPerson('${p.id}')">Excluir</button>
+    </div>`).join('');
+}
+async function savePerson(){
+  const name=document.getElementById('new-person-name').value.trim();
+  if(!name)return;
+  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selPersonColor}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
+  people.push({...data,cats:[],habs:[],chks:{}});
+  document.getElementById('new-person-name').value='';
+  renderPeopleList();
+  // Atualiza selects
+  document.getElementById('mg-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('mg-person-cat').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('h-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  render();toast(`${name} adicionado(a)!`);
+}
+async function delPerson(pid){
+  if(!confirm('Excluir pessoa? Todos os hábitos e marcações serão removidos.'))return;
+  await db.from('habit_checks').delete().eq('person_id',pid);
+  await db.from('habits').delete().eq('person_id',pid);
+  await db.from('categories').delete().eq('person_id',pid);
+  const {error}=await db.from('people').delete().eq('id',pid);
+  if(error){toast('Erro ao excluir.');return;}
+  people=people.filter(p=>p.id!==pid);
+  renderPeopleList();
+  render();toast('Pessoa excluída!');
 }
 function onMgPersonChange(){
   const pid=document.getElementById('mg-person').value;
@@ -525,10 +620,16 @@ async function delHabit(pid,hid){
   render();toast('Hábito excluído!');
 }
 
+function onMgPersonCatChange(){
+  const pid=document.getElementById('mg-person-cat').value;
+  const p=people.find(x=>x.id===pid);if(!p)return;
+  renderCatList(p);
+}
+
 function selCatC(c,el){selCatColor=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
   const name=document.getElementById('new-cat-name').value.trim();
-  const pid=document.getElementById('mg-person').value;
+  const pid=document.getElementById('mg-person-cat').value;
   if(!name||!pid)return;
   const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCatColor}).select().single();
   if(error){toast('Erro ao salvar categoria.');return;}
@@ -546,6 +647,7 @@ async function delCat(pid,cid){
     p.cats=p.cats.filter(c=>c.id!==cid);
     p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});
     renderCatList(p);
+    onMgPersonCatChange();
   }
   render();toast('Categoria excluída!');
 }
