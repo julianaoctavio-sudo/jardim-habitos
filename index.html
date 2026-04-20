@@ -33,44 +33,49 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tp);mi
 .mtitle{font-family:'Fraunces',serif;font-size:24px;font-weight:400;flex:1;}
 .mtitle em{font-style:italic;color:var(--g600);}
 
-/* MAIN CARD — única caixa para tudo */
-.main-card{background:white;border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
+/* STATS ROW */
+.stats-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+.stat-tile{background:white;border:1px solid var(--bd);border-radius:12px;padding:14px 18px;flex:1;min-width:120px;box-shadow:var(--sh);}
+.stat-label{font-size:11px;color:var(--tm);margin-bottom:4px;}
+.stat-val{font-size:22px;font-weight:500;color:var(--tp);font-family:'Fraunces',serif;}
+.stat-sub{font-size:11px;color:var(--tm);}
 
-/* GARDEN + PROGRESS */
+/* GARDEN */
+.garden-card{background:white;border:1px solid var(--bd);border-radius:16px;overflow:hidden;box-shadow:var(--sh);margin-bottom:24px;}
 .garden-wrap{position:relative;}
-.garden-wrap canvas{width:100%;height:90px;display:block;}
-.gpill{position:absolute;bottom:6px;right:10px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:500;color:var(--g800);}
-.pprog{padding:8px 22px 10px;border-bottom:1px solid var(--bd);}
-.ptrack{height:4px;background:var(--creamdk);border-radius:2px;overflow:hidden;}
-.pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
-.plabel{font-size:10px;color:var(--tm);margin-top:4px;}
+.garden-wrap canvas{width:100%;height:120px;display:block;}
+.gpill{position:absolute;bottom:8px;right:12px;background:rgba(255,255,255,0.92);border:1px solid var(--bd);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:500;color:var(--g800);}
+.garden-info{padding:12px 20px 14px;}
+.garden-level{font-family:'Fraunces',serif;font-size:17px;font-weight:400;color:var(--tp);margin-bottom:8px;}
+.ptrack{height:5px;background:var(--creamdk);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.pfill{height:100%;border-radius:3px;background:linear-gradient(90deg,#5fa843,#2e9475);transition:width 0.5s;}
+.plabel{font-size:11px;color:var(--tm);}
 
-/* TOOLBAR — linha com stats + botões */
-.toolbar{padding:12px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--g50);}
-.total-stats{display:flex;gap:12px;flex:1;}
-.tst{font-size:12px;color:var(--tm);}
-.tst strong{color:var(--g600);font-weight:500;}
-.toolbar-btns{display:flex;gap:7px;}
-.bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:white;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
+/* MAIN CARD */
+.main-card{background:white;border:1px solid var(--bd);border-radius:16px;overflow:hidden;box-shadow:var(--sh);}
+.main-card-hdr{padding:14px 22px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.main-card-title{font-size:13px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.08em;}
+.main-card-btns{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* PERSON SECTION INSIDE TABLE */
+.person-section-hdr{display:flex;align-items:center;gap:10px;padding:10px 22px 8px;background:var(--g50);border-bottom:1px solid var(--bd);}
+.person-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;}
+.person-sec-name{font-size:13px;font-weight:500;color:var(--g800);}
+.person-sec-stats{font-size:11px;color:var(--tm);margin-left:auto;}
+
+/* CAT HEADER */
+.cat-hdr-row{padding:7px 22px 5px;background:var(--cream);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;}
+.cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.cat-hdr-name{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;}
+
+/* TABLE */
+.bsm{padding:5px 10px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ts);transition:all 0.15s;white-space:nowrap;}
 .bsm:hover{background:var(--creamdk);}
 .bsmg{background:var(--g600);color:white;border-color:var(--g600);}
 .bsmg:hover{background:var(--g800);color:white;}
-
-/* PERSON SECTION dentro da tabela */
-.person-section-hdr{padding:10px 22px 6px;display:flex;align-items:center;gap:8px;background:white;border-bottom:1px solid var(--bd);}
-.person-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:white;flex-shrink:0;}
-.person-section-name{font-size:13px;font-weight:500;color:var(--tp);}
-.person-section-stats{font-size:11px;color:var(--tm);margin-left:4px;}
-
-/* CATEGORY dentro da tabela */
-.cat-hdr-row{padding:6px 22px 4px;display:flex;align-items:center;gap:6px;background:var(--creamdk);}
-.cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.cat-label{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;}
-
-/* HABITS TABLE */
 .hscroll{overflow-x:auto;}
 table.ht{width:100%;border-collapse:collapse;min-width:360px;}
-.ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;background:white;}
+.ht thead th{padding:7px 3px;text-align:center;font-size:10px;font-weight:400;color:var(--tm);border-bottom:1px solid var(--bd);white-space:nowrap;}
 .ht thead th:first-child{text-align:left;padding-left:22px;width:180px;}
 .ht tbody tr:hover{background:var(--g50);}
 .ht tbody td{padding:7px 3px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle;}
@@ -92,7 +97,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 /* MODALS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:90vh;overflow-y:auto;}
+.modal{background:white;border-radius:18px;padding:28px;width:90%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,0.15);transform:translateY(14px);transition:transform 0.2s;max-height:88vh;overflow-y:auto;}
 .overlay.open .modal{transform:translateY(0);}
 .mtit{font-family:'Fraunces',serif;font-size:20px;font-weight:400;margin-bottom:20px;}
 .fg{margin-bottom:14px;}
@@ -107,8 +112,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .bprim:hover{background:var(--g800);}
 .bcanc{padding:11px 18px;border-radius:9px;background:none;color:var(--ts);border:1px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;}
 .bcanc:hover{background:var(--cream);}
-.sec-title{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.06em;margin:16px 0 8px;padding-top:16px;border-top:1px solid var(--bd);}
-.mrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd);}
+.mrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--bd);}
 .mrow:last-child{border-bottom:none;}
 .mdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .mname{flex:1;font-size:13px;color:var(--tp);}
@@ -117,13 +121,10 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .bdel{padding:5px 11px;border-radius:7px;border:1px solid #fecaca;background:#fff5f5;color:#dc2626;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;}
 .bdel:hover{background:#fee2e2;}
 .emptyml{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
-.add-row{display:flex;gap:7px;align-items:center;margin-top:8px;}
-.tab-btn{padding:8px 16px;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--tm);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.15s;}
-.tab-btn.active{color:var(--g600);border-bottom-color:var(--g600);}
-.tab-btn:hover{color:var(--tp);}
+.section-sep{height:1px;background:var(--bd);margin:16px 0;}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--tp);color:white;padding:11px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(18px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.topbar{padding:0 14px;}.toolbar{flex-direction:column;align-items:flex-start;}}
+@media(max-width:700px){.topbar{padding:0 14px;}.stats-row{gap:8px;}.main-card-btns{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -158,7 +159,28 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <h1 class="mtitle" id="mtitle"></h1>
       <button class="mnbtn" onclick="changeMonth(1)">&#8594;</button>
     </div>
-    <div id="main-container"></div>
+
+    <div class="stats-row" id="stats-row"></div>
+
+    <div class="garden-card">
+      <div class="garden-wrap">
+        <canvas id="garden-canvas"></canvas>
+        <div class="gpill" id="garden-pill">🌿 Semente</div>
+      </div>
+      <div class="garden-info">
+        <div class="garden-level" id="garden-level">Nível 1 — Semente</div>
+        <div class="ptrack"><div class="pfill" id="pfill" style="width:0%"></div></div>
+        <div class="plabel" id="plabel">0 / 50 pts para o próximo nível</div>
+      </div>
+    </div>
+
+    <div class="main-card">
+      <div class="main-card-hdr">
+        <span class="main-card-title">Hábitos do mês</span>
+        <div class="main-card-btns" id="person-btns"></div>
+      </div>
+      <div id="habits-body"></div>
+    </div>
   </div>
 </div>
 
@@ -166,15 +188,9 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 <div class="overlay" id="ov-habit" onclick="ovClose(event,'ov-habit',closeHabitMod)">
   <div class="modal">
     <h2 class="mtit">Novo hábito</h2>
-    <div class="fg">
-      <label class="fl">Pessoa</label>
-      <select class="fi" id="h-person"></select>
-    </div>
+    <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="h-person"></select></div>
     <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
-    <div class="fg">
-      <label class="fl">Categoria</label>
-      <select class="fi" id="h-cat"></select>
-    </div>
+    <div class="fg"><label class="fl">Categoria</label><select class="fi" id="h-cat"></select></div>
     <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
     <div class="fg"><label class="fl">Cor</label><div class="swrow" id="hb-swatches"></div></div>
     <div class="macts">
@@ -187,49 +203,32 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 <!-- MODAL: GERENCIAR -->
 <div class="overlay" id="ov-manage" onclick="ovClose(event,'ov-manage',closeManageMod)">
   <div class="modal">
-    <h2 class="mtit">Gerenciar</h2>
-
-    <!-- ABAS -->
-    <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--bd);">
-      <button class="tab-btn active" id="tab-pessoas" onclick="switchTab('pessoas')">Pessoas</button>
-      <button class="tab-btn" id="tab-habitos" onclick="switchTab('habitos')">Hábitos</button>
-      <button class="tab-btn" id="tab-categorias" onclick="switchTab('categorias')">Categorias</button>
-    </div>
-
-    <!-- ABA PESSOAS -->
-    <div id="tab-content-pessoas">
-      <div id="people-list"></div>
-      <div class="add-row" style="margin-top:12px;">
-        <input class="fi" id="new-person-name" placeholder="Nome da pessoa..." style="flex:1;"/>
-        <div class="swrow" id="new-person-swatches"></div>
-        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="savePerson()">+ Adicionar</button>
+    <h2 class="mtit" id="manage-title">Gerenciar hábitos</h2>
+    <div id="manage-list"></div>
+    <div class="section-sep"></div>
+    <div style="font-size:12px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Categorias</div>
+    <div id="cat-list"></div>
+    <div style="margin-bottom:10px;">
+      <input class="fi" id="new-cat-name" placeholder="Nome da nova categoria..." style="width:100%;margin-bottom:8px;"/>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="swrow" id="new-cat-swatches" style="flex:1;"></div>
+        <button class="bprim" style="flex:0;white-space:nowrap;padding:9px 16px;" onclick="saveCat()">+ Adicionar</button>
       </div>
     </div>
-
-    <!-- ABA HÁBITOS -->
-    <div id="tab-content-habitos" style="display:none;">
-      <div class="fg">
-        <label class="fl">Pessoa</label>
-        <select class="fi" id="mg-person" onchange="onMgPersonChange()"></select>
-      </div>
-      <div id="manage-list"></div>
-    </div>
-
-    <!-- ABA CATEGORIAS -->
-    <div id="tab-content-categorias" style="display:none;">
-      <div class="fg">
-        <label class="fl">Pessoa</label>
-        <select class="fi" id="mg-person-cat" onchange="onMgPersonCatChange()"></select>
-      </div>
-      <div id="cat-list"></div>
-      <div class="add-row" style="margin-top:12px;">
-        <input class="fi" id="new-cat-name" placeholder="Nome da categoria..." style="flex:1;"/>
-        <div class="swrow" id="new-cat-swatches"></div>
-        <button class="bprim" style="flex:0;white-space:nowrap;padding:8px 14px;" onclick="saveCat()">+ Adicionar</button>
-      </div>
-    </div>
-
     <div class="macts"><button class="bprim" onclick="closeManageMod()">Fechar</button></div>
+  </div>
+</div>
+
+<!-- MODAL: NOVA PESSOA -->
+<div class="overlay" id="ov-person" onclick="ovClose(event,'ov-person',closePersonMod)">
+  <div class="modal">
+    <h2 class="mtit">Nova pessoa</h2>
+    <div class="fg"><label class="fl">Nome</label><input class="fi" id="p-name" placeholder="Ex: Maria, João..."/></div>
+    <div class="fg"><label class="fl">Cor do avatar</label><div class="swrow" id="av-swatches"></div></div>
+    <div class="macts">
+      <button class="bcanc" onclick="closePersonMod()">Cancelar</button>
+      <button class="bprim" onclick="savePerson()">Adicionar</button>
+    </div>
   </div>
 </div>
 
@@ -251,7 +250,7 @@ const LEVELS=[
 ];
 
 let user=null,yr=new Date().getFullYear(),mo=new Date().getMonth();
-let people=[],selHC=HCORS[0],selCatColor=HCORS[0];
+let people=[],selHC=HCORS[0],selAC=ACORS[0],selCatC=HCORS[0],actPid=null;
 
 async function signIn(p){await db.auth.signInWithOAuth({provider:p,options:{redirectTo:window.location.href}});}
 async function logout(){await db.auth.signOut();location.reload();}
@@ -297,201 +296,171 @@ async function loadAll(){
 function diasMes(){return new Date(yr,mo+1,0).getDate();}
 function hoje(){const n=new Date();return{y:n.getFullYear(),m:n.getMonth(),d:n.getDate()};}
 function getLvl(pts){let i=0;for(let j=LEVELS.length-1;j>=0;j--){if(pts>=LEVELS[j].min){i=j;break;}}return i;}
-function allPts(){let t=0;people.forEach(p=>{for(const k in p.chks){const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);if(h)t+=h.pts;}});return t;}
-function allChecks(){let t=0;people.forEach(p=>{t+=Object.keys(p.chks).length;});return t;}
+function totalPts(){return people.reduce((t,p)=>{for(const k in p.chks){const hid=k.split('_')[0];const h=p.habs.find(x=>x.id==hid);if(h)t+=h.pts;}return t;},0);}
+function totalChecks(){return people.reduce((t,p)=>t+Object.keys(p.chks).length,0);}
 
 async function toggle(pid,hid,day){
   const p=people.find(x=>x.id===pid);if(!p)return;
   const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
   const key=`${hid}_${ds}`;
-  if(p.chks[key]){
-    await db.from('habit_checks').delete().eq('id',p.chks[key]);
-    delete p.chks[key];
-  }else{
-    const {data}=await db.from('habit_checks').insert({user_id:user.id,person_id:pid,habit_id:hid,check_date:ds}).select().single();
-    if(data)p.chks[key]=data.id;
-  }
+  if(p.chks[key]){await db.from('habit_checks').delete().eq('id',p.chks[key]);delete p.chks[key];}
+  else{const {data}=await db.from('habit_checks').insert({user_id:user.id,person_id:pid,habit_id:hid,check_date:ds}).select().single();if(data)p.chks[key]=data.id;}
   render();
 }
 
-async function changeMonth(d){
-  mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}
-  await loadAll();render();
-}
+async function changeMonth(d){mo+=d;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}await loadAll();render();}
 
 function render(){
   document.getElementById('mtitle').innerHTML=`${MES[mo]} <em>${yr}</em>`;
-  const container=document.getElementById('main-container');
-  container.innerHTML='';
-
-  const totalPts=allPts();
-  const totalChks=allChecks();
-  const li=getLvl(totalPts),lv=LEVELS[li],nx=LEVELS[li+1];
-  const pi=totalPts-lv.min,pn=nx?nx.min-lv.min:1;
+  const pts=totalPts(),chks=totalChecks();
+  const li=getLvl(pts),lv=LEVELS[li],nx=LEVELS[li+1];
+  const pi=pts-lv.min,pn=nx?nx.min-lv.min:1;
   const pct=Math.min(100,Math.round(pi/pn*100));
-  const totalHabs=people.reduce((a,p)=>a+p.habs.length,0);
 
-  const card=document.createElement('div');
-  card.className='main-card';
+  // stats
+  document.getElementById('stats-row').innerHTML=`
+    <div class="stat-tile"><div class="stat-label">Pontos totais</div><div class="stat-val">${pts}</div><div class="stat-sub">este mês</div></div>
+    <div class="stat-tile"><div class="stat-label">Concluídos</div><div class="stat-val">${chks}</div><div class="stat-sub">hábitos feitos</div></div>
+    <div class="stat-tile"><div class="stat-label">Nível</div><div class="stat-val">${li+1}</div><div class="stat-sub">${lv.name}</div></div>
+    <div class="stat-tile"><div class="stat-label">Pessoas</div><div class="stat-val">${people.length}</div><div class="stat-sub">no jardim</div></div>`;
 
-  // Garden
-  card.innerHTML=`
-    <div class="garden-wrap">
-      <canvas id="main-garden"></canvas>
-      <div class="gpill">🌿 ${lv.name}</div>
-    </div>
-    <div class="pprog">
-      <div class="ptrack"><div class="pfill" style="width:${pct}%"></div></div>
-      <div class="plabel">${nx?`${pi} / ${pn} pts para o próximo nível — Nível ${li+1}: ${lv.name}`:'Nível máximo!'}</div>
-    </div>
-    <div class="toolbar">
-      <div class="total-stats">
-        <span class="tst"><strong>${totalPts}</strong> pts totais</span>
-        <span class="tst">·</span>
-        <span class="tst"><strong>${totalChks}</strong> feitos</span>
-        <span class="tst">·</span>
-        <span class="tst"><strong>${totalHabs}</strong> hábitos</span>
-        <span class="tst">·</span>
-        <span class="tst">Nível <strong>${li+1}</strong> — ${lv.name}</span>
-      </div>
-      <div class="toolbar-btns">
-        <button class="bsm" onclick="openManageMod()">⚙ Gerenciar</button>
-        <button class="bsm bsmg" onclick="openHabitMod()">+ Hábito</button>
-      </div>
-    </div>`;
+  // garden
+  document.getElementById('garden-pill').textContent=`🌿 ${lv.name}`;
+  document.getElementById('garden-level').textContent=`Nível ${li+1} — ${lv.name}`;
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('plabel').textContent=nx?`${pi} / ${pn} pts para o próximo nível`:'Nível máximo!';
+  drawG(document.getElementById('garden-canvas'),li);
 
-  // Tabela única com seções por pessoa
+  // botões de pessoa
+  const btns=document.getElementById('person-btns');
+  btns.innerHTML=people.map(p=>`<button class="bsm" onclick="openManageMod('${p.id}')"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${p.color};margin-right:5px;"></span>⚙ ${p.name}</button>`).join('')
+    +`<button class="bsm" onclick="openHabitMod(null)">+ Hábito</button>`
+    +`<button class="bsm" onclick="openPersonMod()">+ Pessoa</button>`;
+
+  // tabela unificada
+  const body=document.getElementById('habits-body');
+  body.innerHTML='';
   const days=diasMes(),hj=hoje();
-  const hasAnyHab=people.some(p=>p.habs.length>0);
+  const totalHabs=people.reduce((t,p)=>t+p.habs.length,0);
+  if(!totalHabs){
+    body.innerHTML='<div class="nohab">Nenhum hábito ainda. Clique em "+ Hábito" para começar.</div>';
+    return;
+  }
 
-  if(!hasAnyHab){
-    const empty=document.createElement('div');
-    empty.className='nohab';
-    empty.textContent='Nenhum hábito ainda. Clique em "+ Hábito" para começar.';
-    card.appendChild(empty);
-  }else{
-    const scroll=document.createElement('div');
-    scroll.className='hscroll';
-    const table=document.createElement('table');
-    table.className='ht';
+  // thead uma vez só
+  const tableWrap=document.createElement('div');
+  tableWrap.className='hscroll';
+  const table=document.createElement('table');
+  table.className='ht';
+  let thead='<thead><tr><th>Hábito</th>';
+  for(let d=1;d<=days;d++){
+    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
+    thead+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
+  }
+  thead+='</tr></thead>';
+  let tbody='<tbody>';
 
-    // THEAD
-    let thead='<thead><tr><th>Hábito</th>';
-    for(let d=1;d<=days;d++){
-      const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-      thead+=`<th>${it?'<div class="todm">hoje</div>':''}${d}</th>`;
+  people.forEach(person=>{
+    // linha separadora de pessoa
+    tbody+=`<tr><td colspan="${days+1}" style="padding:0;">
+      <div class="person-section-hdr">
+        <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
+        <span class="person-sec-name">${person.name}</span>
+        <span class="person-sec-stats">${Object.keys(person.chks).length} feitos · ${person.habs.reduce((t,h)=>{let s=0;for(const k in person.chks){if(k.startsWith(h.id+'_'))s+=h.pts;}return t+s;},0)} pts</span>
+      </div>
+    </td></tr>`;
+
+    if(!person.habs.length){
+      tbody+=`<tr><td colspan="${days+1}" class="nohab" style="text-align:left;padding-left:22px;">Nenhum hábito. Clique em "+ Hábito" e escolha ${person.name}.</td></tr>`;
+      return;
     }
-    thead+='</tr></thead>';
-    table.innerHTML=thead;
 
-    const tbody=document.createElement('tbody');
-
-    people.forEach(person=>{
-      if(!person.habs.length)return;
-
-      // Linha de separação por pessoa
-      const personRow=document.createElement('tr');
-      personRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
-        <div class="person-section-hdr">
-          <div class="person-av" style="background:${person.color}">${person.name[0].toUpperCase()}</div>
-          <span class="person-section-name">${person.name}</span>
-          <span class="person-section-stats">— ${Object.keys(person.chks).length} feitos</span>
-        </div>
-      </td>`;
-      tbody.appendChild(personRow);
-
-      // Agrupa por categoria
-      const cats=person.cats||[];
-      const habsByCat={};
-      cats.forEach(c=>{habsByCat[c.id]=[];});
-      habsByCat['__sem__']=[];
-      person.habs.forEach(h=>{
-        if(h.category_id && habsByCat[h.category_id]!==undefined) habsByCat[h.category_id].push(h);
-        else habsByCat['__sem__'].push(h);
-      });
-
-      // Hábitos com categoria
-      cats.forEach(cat=>{
-        const habs=habsByCat[cat.id]||[];
-        if(!habs.length)return;
-        // Linha de categoria
-        const catRow=document.createElement('tr');
-        catRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
-          <div class="cat-hdr-row">
-            <div class="cat-dot" style="background:${cat.color}"></div>
-            <span class="cat-label">${cat.name}</span>
-          </div>
-        </td>`;
-        tbody.appendChild(catRow);
-        habs.forEach(hab=>tbody.appendChild(buildHabitRow(hab,person,days,hj)));
-      });
-
-      // Hábitos sem categoria
-      const semCat=habsByCat['__sem__']||[];
-      if(semCat.length){
-        if(cats.length>0){
-          const catRow=document.createElement('tr');
-          catRow.innerHTML=`<td colspan="${days+1}" style="padding:0;">
-            <div class="cat-hdr-row">
-              <div class="cat-dot" style="background:#9a9a88"></div>
-              <span class="cat-label">Sem categoria</span>
-            </div>
-          </td>`;
-          tbody.appendChild(catRow);
-        }
-        semCat.forEach(hab=>tbody.appendChild(buildHabitRow(hab,person,days,hj)));
-      }
+    // Agrupa por categoria
+    const cats=person.cats||[];
+    const byCat={};
+    byCat['__sem__']=[];
+    cats.forEach(c=>{byCat[c.id]=[];});
+    person.habs.forEach(h=>{
+      if(h.category_id && byCat[h.category_id]!==undefined)byCat[h.category_id].push(h);
+      else byCat['__sem__'].push(h);
     });
 
-    table.appendChild(tbody);
-    scroll.appendChild(table);
-    card.appendChild(scroll);
-  }
+    const groups=[...cats.map(c=>({id:c.id,name:c.name,color:c.color}))];
+    if(byCat['__sem__'].length)groups.push({id:'__sem__',name:'Geral',color:'#9a9a88'});
 
-  container.appendChild(card);
-  setTimeout(()=>{const c=document.getElementById('main-garden');if(c)drawG(c,li);},50);
+    groups.forEach(grp=>{
+      const habs=byCat[grp.id]||[];
+      if(!habs.length)return;
+      tbody+=`<tr><td colspan="${days+1}" style="padding:0;">
+        <div class="cat-hdr-row"><div class="cat-dot" style="background:${grp.color}"></div><span class="cat-hdr-name">${grp.name}</span></div>
+      </td></tr>`;
+      habs.forEach(hab=>{
+        let r=`<tr><td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
+        for(let d=1;d<=days;d++){
+          const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          const key=`${hab.id}_${ds}`,done=!!person.chks[key];
+          const it=hj.y===yr&&hj.m===mo&&hj.d===d;
+          const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
+          const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
+          r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+        }
+        tbody+=r+'</tr>';
+      });
+    });
+  });
+
+  tbody+='</tbody>';
+  table.innerHTML=thead+tbody;
+  tableWrap.appendChild(table);
+  body.appendChild(tableWrap);
 }
 
-function buildHabitRow(hab,person,days,hj){
-  const tr=document.createElement('tr');
-  let r=`<td><div class="hrow"><div class="hdot" style="background:${hab.color}"></div><span class="htext">${hab.name}</span><span class="hbdg">${hab.pts}pts</span></div></td>`;
-  for(let d=1;d<=days;d++){
-    const ds=`${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const key=`${hab.id}_${ds}`,done=!!person.chks[key];
-    const it=hj.y===yr&&hj.m===mo&&hj.d===d;
-    const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
-    const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-    r+=`<td><button class="${cls}" style="${done?`background:${hab.color};`:''}" onclick="toggle('${person.id}','${hab.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
-  }
-  tr.innerHTML=r;
-  return tr;
+// PESSOA MODAL
+function openPersonMod(){
+  selAC=ACORS[0];
+  document.getElementById('av-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selAC?' sel':''}" style="background:${c}" onclick="selA('${c}',this)"></div>`).join('');
+  document.getElementById('p-name').value='';
+  document.getElementById('ov-person').classList.add('open');
+  setTimeout(()=>document.getElementById('p-name').focus(),100);
+}
+function closePersonMod(){document.getElementById('ov-person').classList.remove('open');}
+function selA(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+async function savePerson(){
+  const name=document.getElementById('p-name').value.trim();if(!name)return;
+  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selAC}).select().single();
+  if(error){toast('Erro ao salvar.');return;}
+  people.push({...data,cats:[],habs:[],chks:{}});
+  closePersonMod();render();toast(`${name} adicionado(a)!`);
 }
 
 // HABIT MODAL
-function openHabitMod(){
+function openHabitMod(pid){
+  actPid=pid||people[0]?.id||null;
   selHC=HCORS[0];
-  const personSel=document.getElementById('h-person');
-  personSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  updateHabitCats();
-  personSel.onchange=updateHabitCats;
+  // pessoa select
+  const pSel=document.getElementById('h-person');
+  pSel.innerHTML=people.map(p=>`<option value="${p.id}"${p.id===actPid?' selected':''}>${p.name}</option>`).join('');
+  pSel.onchange=()=>{
+    actPid=pSel.value;
+    const p=people.find(x=>x.id===actPid);
+    const catSel=document.getElementById('h-cat');
+    catSel.innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
+  };
+  // categoria select
+  const p=people.find(x=>x.id===actPid);
+  document.getElementById('h-cat').innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
   document.getElementById('hb-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selHC?' sel':''}" style="background:${c}" onclick="selH('${c}',this)"></div>`).join('');
   document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
   document.getElementById('ov-habit').classList.add('open');
   setTimeout(()=>document.getElementById('h-name').focus(),100);
-}
-function updateHabitCats(){
-  const pid=document.getElementById('h-person').value;
-  const p=people.find(x=>x.id===pid);
-  const cats=p?p.cats:[];
-  document.getElementById('h-cat').innerHTML=`<option value="">Sem categoria</option>`+cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
 }
 function closeHabitMod(){document.getElementById('ov-habit').classList.remove('open');}
 function selH(c,el){selHC=c;document.querySelectorAll('#hb-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveHabit(){
   const name=document.getElementById('h-name').value.trim();
   const pts=parseInt(document.getElementById('h-pts').value)||5;
-  const pid=document.getElementById('h-person').value;
   const catId=document.getElementById('h-cat').value||null;
+  const pid=document.getElementById('h-person').value;
   if(!name||!pid)return;
   const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId}).select().single();
   if(error){toast('Erro ao salvar.');return;}
@@ -500,87 +469,20 @@ async function saveHabit(){
   closeHabitMod();render();toast('Hábito adicionado!');
 }
 
-// TABS
-function switchTab(tab){
-  ['pessoas','habitos','categorias'].forEach(t=>{
-    document.getElementById(`tab-content-${t}`).style.display=t===tab?'block':'none';
-    document.getElementById(`tab-${t}`).classList.toggle('active',t===tab);
-  });
-}
-
 // MANAGE MODAL
-function openManageMod(){
-  // Pessoas
-  renderPeopleList();
-  let selPColor=ACORS[0];
-  document.getElementById('new-person-swatches').innerHTML=ACORS.map(c=>`<div class="sw${c===selPColor?' sel':''}" style="background:${c}" onclick="selPersonColor('${c}',this)"></div>`).join('');
-  document.getElementById('new-person-name').value='';
-
-  // Hábitos
-  const mgSel=document.getElementById('mg-person');
-  mgSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  if(people.length)onMgPersonChange();
-
-  // Categorias
-  const mgCatSel=document.getElementById('mg-person-cat');
-  mgCatSel.innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  if(people.length)onMgPersonCatChange();
-
-  selCatColor=HCORS[0];
-  document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatColor?' sel':''}" style="background:${c}" onclick="selCatC('${c}',this)"></div>`).join('');
-  document.getElementById('new-cat-name').value='';
-
-  switchTab('pessoas');
-  document.getElementById('ov-manage').classList.add('open');
-}
-
-// PESSOAS
-let personColor=ACORS[0];
-function selPersonColor(c,el){personColor=c;document.querySelectorAll('#new-person-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
-function renderPeopleList(){
-  const el=document.getElementById('people-list');
-  if(!people.length){el.innerHTML='<div class="emptyml">Nenhuma pessoa cadastrada.</div>';return;}
-  el.innerHTML=people.map(p=>`
-    <div class="mrow" id="pr-${p.id}">
-      <div class="mdot" style="background:${p.color}"></div>
-      <span class="mname">${p.name}</span>
-      <span class="mpts">${p.habs.length} hábitos</span>
-      <button class="bdel" onclick="delPerson('${p.id}')">Excluir</button>
-    </div>`).join('');
-}
-async function savePerson(){
-  const name=document.getElementById('new-person-name').value.trim();
-  if(!name)return;
-  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:personColor}).select().single();
-  if(error){toast('Erro ao salvar.');return;}
-  people.push({...data,cats:[],habs:[],chks:{}});
-  document.getElementById('new-person-name').value='';
-  renderPeopleList();
-  // Atualiza selects
-  document.getElementById('mg-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  document.getElementById('mg-person-cat').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  document.getElementById('h-person').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
-  render();toast(`${name} adicionado(a)!`);
-}
-async function delPerson(pid){
-  if(!confirm('Excluir pessoa? Todos os hábitos e marcações serão removidos.'))return;
-  await db.from('habit_checks').delete().eq('person_id',pid);
-  await db.from('habits').delete().eq('person_id',pid);
-  await db.from('categories').delete().eq('person_id',pid);
-  const {error}=await db.from('people').delete().eq('id',pid);
-  if(error){toast('Erro ao excluir.');return;}
-  people=people.filter(p=>p.id!==pid);
-  renderPeopleList();
-  render();toast('Pessoa excluída!');
-}
-function onMgPersonChange(){
-  const pid=document.getElementById('mg-person').value;
+function openManageMod(pid){
+  actPid=pid;
   const p=people.find(x=>x.id===pid);if(!p)return;
+  document.getElementById('manage-title').textContent=`Gerenciar — ${p.name}`;
   renderManageList(p);renderCatList(p);
+  selCatC=HCORS[0];
+  document.getElementById('new-cat-swatches').innerHTML=HCORS.map(c=>`<div class="sw${c===selCatC?' sel':''}" style="background:${c}" onclick="selCC('${c}',this)"></div>`).join('');
+  document.getElementById('new-cat-name').value='';
+  document.getElementById('ov-manage').classList.add('open');
 }
 function renderManageList(p){
   const el=document.getElementById('manage-list');
-  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito ainda.</div>';return;}
+  if(!p.habs.length){el.innerHTML='<div class="emptyml">Nenhum hábito.</div>';return;}
   el.innerHTML=p.habs.map(h=>{
     const cat=p.cats.find(c=>c.id===h.category_id);
     return `<div class="mrow" id="mr-${h.id}">
@@ -620,20 +522,13 @@ async function delHabit(pid,hid){
   render();toast('Hábito excluído!');
 }
 
-function onMgPersonCatChange(){
-  const pid=document.getElementById('mg-person-cat').value;
-  const p=people.find(x=>x.id===pid);if(!p)return;
-  renderCatList(p);
-}
-
-function selCatC(c,el){selCatColor=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+function selCC(c,el){selCatC=c;document.querySelectorAll('#new-cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
   const name=document.getElementById('new-cat-name').value.trim();
-  const pid=document.getElementById('mg-person-cat').value;
-  if(!name||!pid)return;
-  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:pid,name,color:selCatColor}).select().single();
+  if(!name||!actPid)return;
+  const {data,error}=await db.from('categories').insert({user_id:user.id,person_id:actPid,name,color:selCatC}).select().single();
   if(error){toast('Erro ao salvar categoria.');return;}
-  const p=people.find(x=>x.id===pid);
+  const p=people.find(x=>x.id===actPid);
   if(p){p.cats.push(data);renderCatList(p);}
   document.getElementById('new-cat-name').value='';
   render();toast('Categoria adicionada!');
@@ -641,14 +536,9 @@ async function saveCat(){
 async function delCat(pid,cid){
   if(!confirm('Excluir categoria?'))return;
   const {error}=await db.from('categories').delete().eq('id',cid);
-  if(error){toast('Erro ao excluir categoria.');return;}
+  if(error){toast('Erro.');return;}
   const p=people.find(x=>x.id===pid);
-  if(p){
-    p.cats=p.cats.filter(c=>c.id!==cid);
-    p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});
-    renderCatList(p);
-    onMgPersonCatChange();
-  }
+  if(p){p.cats=p.cats.filter(c=>c.id!==cid);p.habs.forEach(h=>{if(h.category_id===cid)h.category_id=null;});renderCatList(p);}
   render();toast('Categoria excluída!');
 }
 
@@ -656,31 +546,31 @@ function ovClose(e,id,fn){if(e.target===document.getElementById(id))fn();}
 
 // GARDEN
 function drawG(canvas,li){
-  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||1000,H=90;
+  const ctx=canvas.getContext('2d'),W=canvas.offsetWidth||1000,H=120;
   canvas.width=W*(window.devicePixelRatio||1);canvas.height=H*(window.devicePixelRatio||1);
   ctx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);
   ctx.clearRect(0,0,W,H);
   const sk=['#d4f0c0','#c8ecf0','#c0e4f8','#b8e8f4','#a8e0f0','#90d8e8','#78c8e0'];
   ctx.fillStyle=sk[Math.min(li,6)];ctx.fillRect(0,0,W,H);
-  const gY=H-20;
-  ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,9);
-  ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+9,W,H-gY-9);
-  sun(ctx,W-28,22,li);if(li>=2)cloud(ctx,42,18);
-  if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-3,5,7,0.3,0,Math.PI*2);ctx.fill();}
-  else if(li===1)sprout(ctx,W/2,gY,.75);
-  else if(li===2){plant(ctx,W/2,gY,.75);flower(ctx,W*.22,gY,'#e8a020',.52);flower(ctx,W*.78,gY,'#c9607a',.52);}
-  else if(li===3){bush(ctx,W/2,gY,.82);flower(ctx,W*.1,gY,'#e8a020',.68);flower(ctx,W*.28,gY,'#c9607a',.68);flower(ctx,W*.72,gY,'#7b6db5',.68);flower(ctx,W*.9,gY,'#4a9bb5',.68);}
-  else if(li===4){tree(ctx,W/2,gY,'#2e9475',.88);bush(ctx,W*.15,gY,.58);bush(ctx,W*.85,gY,.58);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475'].forEach((c,i)=>flower(ctx,W*.07+W*.86*i/5,gY,c,.72));}
-  else if(li===5){tree(ctx,W*.32,gY,'#2e9475',.98);tree(ctx,W*.68,gY,'#1a6b4a',.82);bush(ctx,W*.07,gY,.62);bush(ctx,W*.93,gY,.62);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a'].forEach((c,i)=>flower(ctx,W*.03+W*.94*i/7,gY,c,.8));}
-  else{tree(ctx,W*.18,gY,'#2e9475',1.02);tree(ctx,W*.5,gY,'#1a6b4a',1.18);tree(ctx,W*.82,gY,'#2e9475',.92);bush(ctx,W*.05,gY,.72);bush(ctx,W*.95,gY,.72);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a','#7b6db5','#4a9bb5'].forEach((c,i)=>flower(ctx,W*.02+W*.96*i/9,gY,c,.88));}
+  const gY=H-22;
+  ctx.fillStyle='#8bc34a';ctx.fillRect(0,gY,W,10);
+  ctx.fillStyle='#6d4c41';ctx.fillRect(0,gY+10,W,H-gY-10);
+  sun(ctx,W-32,26,li);if(li>=2)cloud(ctx,50,22);if(li>=4)cloud(ctx,W*.55,18);
+  if(li===0){ctx.fillStyle='#795548';ctx.beginPath();ctx.ellipse(W/2,gY-4,6,8,0.3,0,Math.PI*2);ctx.fill();}
+  else if(li===1)sprout(ctx,W/2,gY,.85);
+  else if(li===2){plant(ctx,W/2,gY,.85);flower(ctx,W*.22,gY,'#e8a020',.62);flower(ctx,W*.78,gY,'#c9607a',.62);}
+  else if(li===3){bush(ctx,W/2,gY,.95);flower(ctx,W*.1,gY,'#e8a020',.78);flower(ctx,W*.28,gY,'#c9607a',.78);flower(ctx,W*.72,gY,'#7b6db5',.78);flower(ctx,W*.9,gY,'#4a9bb5',.78);}
+  else if(li===4){tree(ctx,W/2,gY,'#2e9475',1.0);bush(ctx,W*.15,gY,.68);bush(ctx,W*.85,gY,.68);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475'].forEach((c,i)=>flower(ctx,W*.07+W*.86*i/5,gY,c,.82));}
+  else if(li===5){tree(ctx,W*.32,gY,'#2e9475',1.1);tree(ctx,W*.68,gY,'#1a6b4a',.95);bush(ctx,W*.07,gY,.72);bush(ctx,W*.93,gY,.72);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a'].forEach((c,i)=>flower(ctx,W*.03+W*.94*i/7,gY,c,.9));}
+  else{tree(ctx,W*.18,gY,'#2e9475',1.15);tree(ctx,W*.5,gY,'#1a6b4a',1.35);tree(ctx,W*.82,gY,'#2e9475',1.05);bush(ctx,W*.05,gY,.82);bush(ctx,W*.95,gY,.82);['#e8a020','#c9607a','#7b6db5','#4a9bb5','#c86040','#2e9475','#e8a020','#c9607a','#7b6db5','#4a9bb5'].forEach((c,i)=>flower(ctx,W*.02+W*.96*i/9,gY,c,.98));}
 }
-function sprout(c,x,y,s){c.strokeStyle='#4caf50';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-20*s);c.stroke();c.fillStyle='#66bb6a';c.beginPath();c.ellipse(x-6*s,y-15*s,6*s,4*s,-.5,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(x+7*s,y-20*s,6*s,4*s,.5,0,Math.PI*2);c.fill();}
-function plant(c,x,y,s){c.strokeStyle='#388e3c';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-28*s);c.stroke();c.fillStyle='#4caf50';for(let i=0;i<3;i++){c.beginPath();c.ellipse(i%2===0?x-10*s:x+10*s,y-12*s-i*9*s,9*s,5*s,i%2===0?-.4:.4,0,Math.PI*2);c.fill();}}
-function bush(c,x,y,s){[['#388e3c',0,-18,13],['#4caf50',-11,-11,10],['#4caf50',11,-11,10],['#66bb6a',-6,-26,8],['#66bb6a',6,-26,8]].forEach(([col,dx,dy,r])=>{c.fillStyle=col;c.beginPath();c.arc(x+dx*s,y+dy*s,r*s,0,Math.PI*2);c.fill();});}
-function tree(c,x,y,col,s){c.fillStyle='#795548';c.fillRect(x-4*s,y-36*s,8*s,36*s);c.fillStyle=col;c.beginPath();c.arc(x,y-60*s,21*s,0,Math.PI*2);c.fill();c.fillStyle='#1a5c38';c.beginPath();c.arc(x,y-78*s,16*s,0,Math.PI*2);c.fill();c.fillStyle=col;c.beginPath();c.arc(x,y-90*s,11*s,0,Math.PI*2);c.fill();}
-function flower(c,x,y,col,s){const fy=y-12*s-3*s;c.strokeStyle='#4caf50';c.lineWidth=1.2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+3*s);c.stroke();c.fillStyle=col;for(let i=0;i<6;i++){const a=i/6*Math.PI*2;c.beginPath();c.arc(x+Math.cos(a)*5*s,fy+Math.sin(a)*5*s,3.2*s,0,Math.PI*2);c.fill();}c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,2.8*s,0,Math.PI*2);c.fill();}
-function sun(c,x,y,li){c.fillStyle='#FAC775';c.beginPath();c.arc(x,y,11+li*1.5,0,Math.PI*2);c.fill();}
-function cloud(c,x,y){c.fillStyle='rgba(255,255,255,0.82)';[{dx:0,dy:0,r:9},{dx:-10,dy:4,r:7},{dx:10,dy:4,r:7},{dx:-4,dy:8,r:6},{dx:4,dy:8,r:6}].forEach(b=>{c.beginPath();c.arc(x+b.dx,y+b.dy,b.r,0,Math.PI*2);c.fill();});}
+function sprout(c,x,y,s){c.strokeStyle='#4caf50';c.lineWidth=2*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-22*s);c.stroke();c.fillStyle='#66bb6a';c.beginPath();c.ellipse(x-7*s,y-16*s,7*s,4.5*s,-.5,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(x+8*s,y-22*s,7*s,4.5*s,.5,0,Math.PI*2);c.fill();}
+function plant(c,x,y,s){c.strokeStyle='#388e3c';c.lineWidth=2.5*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-32*s);c.stroke();c.fillStyle='#4caf50';for(let i=0;i<3;i++){c.beginPath();c.ellipse(i%2===0?x-11*s:x+11*s,y-13*s-i*10*s,10*s,6*s,i%2===0?-.4:.4,0,Math.PI*2);c.fill();}}
+function bush(c,x,y,s){[['#388e3c',0,-20,14],['#4caf50',-12,-12,11],['#4caf50',12,-12,11],['#66bb6a',-6,-29,9],['#66bb6a',6,-29,9]].forEach(([col,dx,dy,r])=>{c.fillStyle=col;c.beginPath();c.arc(x+dx*s,y+dy*s,r*s,0,Math.PI*2);c.fill();});}
+function tree(c,x,y,col,s){c.fillStyle='#795548';c.fillRect(x-4.5*s,y-40*s,9*s,40*s);c.fillStyle=col;c.beginPath();c.arc(x,y-68*s,24*s,0,Math.PI*2);c.fill();c.fillStyle='#1a5c38';c.beginPath();c.arc(x,y-88*s,18*s,0,Math.PI*2);c.fill();c.fillStyle=col;c.beginPath();c.arc(x,y-102*s,13*s,0,Math.PI*2);c.fill();}
+function flower(c,x,y,col,s){const fy=y-13*s-4*s;c.strokeStyle='#4caf50';c.lineWidth=1.3*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+4*s);c.stroke();c.fillStyle=col;for(let i=0;i<6;i++){const a=i/6*Math.PI*2;c.beginPath();c.arc(x+Math.cos(a)*5.5*s,fy+Math.sin(a)*5.5*s,3.5*s,0,Math.PI*2);c.fill();}c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,3*s,0,Math.PI*2);c.fill();}
+function sun(c,x,y,li){c.fillStyle='#FAC775';c.beginPath();c.arc(x,y,12+li*1.8,0,Math.PI*2);c.fill();}
+function cloud(c,x,y){c.fillStyle='rgba(255,255,255,0.82)';[{dx:0,dy:0,r:10},{dx:-12,dy:4,r:8},{dx:12,dy:4,r:8},{dx:-5,dy:9,r:7},{dx:5,dy:9,r:7}].forEach(b=>{c.beginPath();c.arc(x+b.dx,y+b.dy,b.r,0,Math.PI*2);c.fill();});}
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
