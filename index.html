@@ -535,8 +535,8 @@ function openManageMod(){
 }
 
 // PESSOAS
-let selPersonColor=ACORS[0];
-function selPersonColor(c,el){selPersonColor=c;document.querySelectorAll('#new-person-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+let personColor=ACORS[0];
+function selPersonColor(c,el){personColor=c;document.querySelectorAll('#new-person-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 function renderPeopleList(){
   const el=document.getElementById('people-list');
   if(!people.length){el.innerHTML='<div class="emptyml">Nenhuma pessoa cadastrada.</div>';return;}
@@ -551,7 +551,7 @@ function renderPeopleList(){
 async function savePerson(){
   const name=document.getElementById('new-person-name').value.trim();
   if(!name)return;
-  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:selPersonColor}).select().single();
+  const {data,error}=await db.from('people').insert({user_id:user.id,name,color:personColor}).select().single();
   if(error){toast('Erro ao salvar.');return;}
   people.push({...data,cats:[],habs:[],chks:{}});
   document.getElementById('new-person-name').value='';
