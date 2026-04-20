@@ -107,6 +107,8 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .mpts{font-size:11px;color:var(--tm);background:var(--creamdk);padding:2px 7px;border-radius:9px;white-space:nowrap;}
 .bdel{padding:5px 11px;border-radius:7px;border:1px solid #fecaca;background:#fff5f5;color:#dc2626;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;white-space:nowrap;}
 .bdel:hover{background:#fee2e2;}
+.bedit{padding:5px 8px;border-radius:7px;border:1px solid var(--bd);background:none;cursor:pointer;font-size:12px;transition:background 0.15s;}
+.bedit:hover{background:var(--creamdk);}
 .empty-msg{padding:12px 0;text-align:center;font-size:13px;color:var(--tm);}
 .sep{height:1px;background:var(--bd);margin:16px 0;}
 .sec-title{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;}
@@ -385,12 +387,31 @@ function renderListPessoas(){
   const el=document.getElementById('list-pessoas');
   if(!people.length){el.innerHTML='<div class="empty-msg">Nenhuma pessoa.</div>';return;}
   el.innerHTML=people.map(p=>`
-    <div class="mrow">
+    <div class="mrow" id="pr-${p.id}">
       <div class="mdot" style="background:${p.color}"></div>
-      <span class="mname">${p.name}</span>
+      <span class="mname" id="pname-${p.id}">${p.name}</span>
       <span class="mpts">${p.habs.length} hábitos</span>
+      <button class="bedit" onclick="editPerson('${p.id}')">✏️</button>
       ${people.length>1?`<button class="bdel" onclick="delPerson('${p.id}')">Excluir</button>`:''}
     </div>`).join('');
+}
+function editPerson(pid){
+  const p=people.find(x=>x.id===pid);if(!p)return;
+  const row=document.getElementById('pr-'+pid);
+  const nameEl=document.getElementById('pname-'+pid);
+  const oldName=p.name;
+  nameEl.innerHTML=`<input class="fi" style="padding:4px 8px;font-size:13px;width:120px;" value="${oldName}" id="edit-p-${pid}" onkeydown="if(event.key==='Enter')saveEditPerson('${pid}','${oldName}')"/>`;
+  setTimeout(()=>{const inp=document.getElementById('edit-p-'+pid);if(inp){inp.focus();inp.select();}},50);
+}
+async function saveEditPerson(pid,oldName){
+  const inp=document.getElementById('edit-p-'+pid);
+  const name=(inp?inp.value:oldName).trim();
+  if(!name)return;
+  const {error}=await db.from('people').update({name}).eq('id',pid);
+  if(error){toast('Erro ao editar.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p)p.name=name;
+  renderListPessoas();refreshPessoaSelects();render();toast('Nome atualizado!');
 }
 function selAvatar(c,el){selAC=c;document.querySelectorAll('#av-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function savePerson(){
@@ -432,13 +453,47 @@ function refreshHabitosList(){
   if(!p||!p.habs.length){el.innerHTML='<div class="empty-msg">Nenhum hábito.</div>';return;}
   el.innerHTML=p.habs.map(h=>{
     const cat=p.cats.find(c=>c.id===h.category_id);
+    const catOpts=`<option value="">Geral</option>`+p.cats.map(c=>`<option value="${c.id}"${c.id===h.category_id?' selected':''}>${c.name}</option>`).join('');
     return `<div class="mrow" id="mr-${h.id}">
       <div class="mdot" style="background:${h.color}"></div>
-      <div style="flex:1;min-width:0;"><div class="mname">${h.name}</div>${cat?`<div class="msub">${cat.name}</div>`:''}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="mname" id="hname-${h.id}">${h.name}</span>
+          <button class="bedit" onclick="editHabit('${p.id}','${h.id}')">✏️</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <span style="font-size:10px;color:var(--tm);">Categoria:</span>
+          <select class="fi" style="padding:2px 6px;font-size:11px;height:24px;" onchange="changeCat('${p.id}','${h.id}',this.value)">${catOpts}</select>
+        </div>
+      </div>
       <span class="mpts">${h.pts}pts</span>
       <button class="bdel" onclick="delHabit('${p.id}','${h.id}')">Excluir</button>
     </div>`;
   }).join('');
+}
+async function changeCat(pid,hid,catId){
+  const {error}=await db.from('habits').update({category_id:catId||null}).eq('id',hid);
+  if(error){toast('Erro ao mover hábito.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){const h=p.habs.find(x=>x.id===hid);if(h)h.category_id=catId||null;}
+  render();toast('Categoria atualizada!');
+}
+function editHabit(pid,hid){
+  const p=people.find(x=>x.id===pid);if(!p)return;
+  const h=p.habs.find(x=>x.id===hid);if(!h)return;
+  const nameEl=document.getElementById('hname-'+hid);
+  nameEl.innerHTML=`<input class="fi" style="padding:4px 8px;font-size:13px;width:130px;" value="${h.name}" id="edit-h-${hid}" onkeydown="if(event.key==='Enter')saveEditHabit('${pid}','${hid}')"/>`;
+  setTimeout(()=>{const inp=document.getElementById('edit-h-'+hid);if(inp){inp.focus();inp.select();}},50);
+}
+async function saveEditHabit(pid,hid){
+  const inp=document.getElementById('edit-h-'+hid);
+  const name=(inp?inp.value:'').trim();
+  if(!name)return;
+  const {error}=await db.from('habits').update({name}).eq('id',hid);
+  if(error){toast('Erro ao editar.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){const h=p.habs.find(x=>x.id===hid);if(h)h.name=name;}
+  refreshHabitosList();render();toast('Hábito atualizado!');
 }
 function refreshCatSelect(){
   const p=people.find(x=>x.id===actPid)||people[0];
@@ -486,9 +541,27 @@ function refreshCatList(){
   el.innerHTML=p.cats.map(c=>`
     <div class="mrow" id="cr-${c.id}">
       <div class="mdot" style="background:${c.color}"></div>
-      <span class="mname">${c.name}</span>
+      <span class="mname" id="cname-${c.id}">${c.name}</span>
+      <button class="bedit" onclick="editCat('${p.id}','${c.id}')">✏️</button>
       <button class="bdel" onclick="delCat('${p.id}','${c.id}')">Excluir</button>
     </div>`).join('');
+}
+function editCat(pid,cid){
+  const p=people.find(x=>x.id===pid);if(!p)return;
+  const cat=p.cats.find(x=>x.id===cid);if(!cat)return;
+  const nameEl=document.getElementById('cname-'+cid);
+  nameEl.innerHTML=`<input class="fi" style="padding:4px 8px;font-size:13px;width:130px;" value="${cat.name}" id="edit-c-${cid}" onkeydown="if(event.key==='Enter')saveEditCat('${pid}','${cid}')"/>`;
+  setTimeout(()=>{const inp=document.getElementById('edit-c-'+cid);if(inp){inp.focus();inp.select();}},50);
+}
+async function saveEditCat(pid,cid){
+  const inp=document.getElementById('edit-c-'+cid);
+  const name=(inp?inp.value:'').trim();
+  if(!name)return;
+  const {error}=await db.from('categories').update({name}).eq('id',cid);
+  if(error){toast('Erro ao editar.');return;}
+  const p=people.find(x=>x.id===pid);
+  if(p){const cat=p.cats.find(x=>x.id===cid);if(cat)cat.name=name;}
+  refreshCatList();render();toast('Categoria atualizada!');
 }
 function selCat(c,el){selCC=c;document.querySelectorAll('#cat-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveCat(){
