@@ -74,7 +74,7 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
 .chk.done{border-color:transparent;}
 .chk.done svg{display:block;}
 .chk svg{display:none;width:11px;height:11px;}
-.chk.tod{box-shadow:0 0 0 2px #4a9bb5;}
+.chk.inact{opacity:0.12;pointer-events:none;background:var(--creamdk)!important;}
 .chk.fut{opacity:0.2;pointer-events:none;}
 .todm{font-size:9px;font-weight:500;color:#4a9bb5;}
 .nohab{padding:20px;text-align:center;font-size:13px;color:var(--tm);}
@@ -167,7 +167,10 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
     <div class="main-card">
       <div class="main-card-hdr">
         <span class="main-card-title">Hábitos do mês</span>
-        <button class="btn-gerenciar" onclick="openGerenciar()">⚙ Gerenciar</button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-gerenciar" style="background:none;color:var(--g600);border:1px solid var(--g600);" onclick="openRelatorio()">📊 Relatório</button>
+          <button class="btn-gerenciar" onclick="openGerenciar()">⚙ Gerenciar</button>
+        </div>
       </div>
       <div id="habits-body"></div>
     </div>
@@ -203,6 +206,30 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
       <div class="fg"><label class="fl">Nome</label><input class="fi" id="h-name" placeholder="Ex: Meditar 10 minutos"/></div>
       <div class="fg"><label class="fl">Categoria</label><select class="fi" id="h-cat"></select></div>
       <div class="fg"><label class="fl">Pontos por dia</label><input class="fi" id="h-pts" type="number" min="1" max="100" value="5"/></div>
+      <div class="fg"><label class="fl">Frequência</label>
+        <select class="fi" id="h-freq-type" onchange="onFreqTypeChange()">
+          <option value="daily">Todo dia</option>
+          <option value="weekly">Dias da semana</option>
+          <option value="monthly">Dias do mês</option>
+        </select>
+      </div>
+      <div class="fg" id="h-freq-weekly" style="display:none;">
+        <label class="fl">Dias da semana</label>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="0" class="freq-day"/> Dom</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="1" class="freq-day"/> Seg</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="2" class="freq-day"/> Ter</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="3" class="freq-day"/> Qua</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="4" class="freq-day"/> Qui</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="5" class="freq-day"/> Sex</label>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="6" class="freq-day"/> Sáb</label>
+        </div>
+      </div>
+      <div class="fg" id="h-freq-monthly" style="display:none;">
+        <label class="fl">Dias do mês</label>
+        <input class="fi" id="h-freq-days-monthly" placeholder="Ex: 1,15,28" style="font-size:13px;"/>
+        <div style="font-size:11px;color:var(--tm);margin-top:4px;">Separe os dias por vírgula</div>
+      </div>
       <div class="fg"><label class="fl">Cor</label><div class="swrow" id="h-swatches"></div></div>
       <button class="bprim" style="width:100%;" onclick="saveHabit()">+ Adicionar hábito</button>
     </div>
@@ -224,6 +251,54 @@ table.ht{width:100%;border-collapse:collapse;min-width:360px;}
     <div class="modal-footer">
       <button class="bcanc" onclick="closeGerenciar()">Fechar sem salvar</button>
       <button class="bprim" onclick="closeGerenciar()">Concluído</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL RELATÓRIO -->
+<div class="overlay" id="ov-relatorio">
+  <div class="modal" style="max-width:680px;">
+    <div class="modal-title">📊 Relatório de Progresso</div>
+    <div class="fg"><label class="fl">Pessoa</label><select class="fi" id="rel-pessoa" onchange="renderRelatorio()"></select></div>
+    <div id="rel-content"></div>
+    <div class="modal-footer">
+      <button class="bprim" onclick="closeRelatorio()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR FREQUÊNCIA -->
+<div class="overlay" id="ov-edit-freq">
+  <div class="modal" style="max-width:400px;">
+    <div class="modal-title">Frequência do hábito</div>
+    <div id="edit-freq-name" style="font-size:14px;color:var(--ts);margin-bottom:16px;"></div>
+    <div class="fg"><label class="fl">Frequência</label>
+      <select class="fi" id="ef-freq-type" onchange="onEditFreqTypeChange()">
+        <option value="daily">Todo dia</option>
+        <option value="weekly">Dias da semana</option>
+        <option value="monthly">Dias do mês</option>
+      </select>
+    </div>
+    <div class="fg" id="ef-freq-weekly" style="display:none;">
+      <label class="fl">Dias da semana</label>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="0" class="efreq-day"/> Dom</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="1" class="efreq-day"/> Seg</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="2" class="efreq-day"/> Ter</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="3" class="efreq-day"/> Qua</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="4" class="efreq-day"/> Qui</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="5" class="efreq-day"/> Sex</label>
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;"><input type="checkbox" value="6" class="efreq-day"/> Sáb</label>
+      </div>
+    </div>
+    <div class="fg" id="ef-freq-monthly" style="display:none;">
+      <label class="fl">Dias do mês</label>
+      <input class="fi" id="ef-freq-days" placeholder="Ex: 1,15,28"/>
+      <div style="font-size:11px;color:var(--tm);margin-top:4px;">Separe os dias por vírgula</div>
+    </div>
+    <div class="modal-footer">
+      <button class="bcanc" onclick="closeEditFreq()">Cancelar</button>
+      <button class="bprim" onclick="saveEditFreq()">Salvar</button>
     </div>
   </div>
 </div>
@@ -345,8 +420,9 @@ function renderTable(){
           const key=`${h.id}_${ds}`,done=!!p.chks[key];
           const it=hj.y===yr&&hj.m===mo&&hj.d===d;
           const fut=yr>hj.y||(yr===hj.y&&mo>hj.m)||(yr===hj.y&&mo===hj.m&&d>hj.d);
-          const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':''].filter(Boolean).join(' ');
-          r+=`<td><button class="${cls}" style="${done?`background:${h.color};`:''}" onclick="toggle('${p.id}','${h.id}',${d})"><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
+          const active=isHabitActiveDay(h,ds);
+          const cls=['chk',done?'done':'',it?'tod':'',fut?'fut':'',(active?'':'inact')].filter(Boolean).join(' ');
+          r+=`<td><button class="${cls}" style="${done?`background:${h.color};`:''}" onclick="toggle('${p.id}','${h.id}',${d})" ${!active?'disabled title="Não é dia deste hábito"':''} ><svg viewBox="0 0 11 11" fill="none"><path d="M1 5.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>`;
         }
         tb+=r+'</tr>';
       });
@@ -454,6 +530,7 @@ function refreshHabitosList(){
   el.innerHTML=p.habs.map(h=>{
     const cat=p.cats.find(c=>c.id===h.category_id);
     const catOpts=`<option value="">Geral</option>`+p.cats.map(c=>`<option value="${c.id}"${c.id===h.category_id?' selected':''}>${c.name}</option>`).join('');
+    const fl=freqLabel(h);
     return `<div class="mrow" id="mr-${h.id}">
       <div class="mdot" style="background:${h.color}"></div>
       <div style="flex:1;min-width:0;">
@@ -461,9 +538,10 @@ function refreshHabitosList(){
           <span class="mname" id="hname-${h.id}">${h.name}</span>
           <button class="bedit" onclick="editHabit('${p.id}','${h.id}')">✏️</button>
         </div>
-        <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-          <span style="font-size:10px;color:var(--tm);">Categoria:</span>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap;">
+          <span style="font-size:10px;color:var(--tm);">Cat:</span>
           <select class="fi" style="padding:2px 6px;font-size:11px;height:24px;" onchange="changeCat('${p.id}','${h.id}',this.value)">${catOpts}</select>
+          <button class="bedit" style="font-size:10px;padding:2px 8px;" onclick="openEditFreq('${p.id}','${h.id}')" title="Editar frequência">⏱ ${fl||'Todo dia'}</button>
         </div>
       </div>
       <span class="mpts">${h.pts}pts</span>
@@ -495,9 +573,50 @@ async function saveEditHabit(pid,hid){
   if(p){const h=p.habs.find(x=>x.id===hid);if(h)h.name=name;}
   refreshHabitosList();render();toast('Hábito atualizado!');
 }
+function freqLabel(h){
+  if(!h.freq_type||h.freq_type==='daily')return null;
+  if(h.freq_type==='weekly'){
+    const dias=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+    const d=(h.freq_days||'').split(',').filter(Boolean).map(x=>dias[parseInt(x)]).join(', ');
+    return d?`${d}`:'Semanal';
+  }
+  if(h.freq_type==='monthly'){
+    return `Dias: ${h.freq_days||''}`;
+  }
+  return null;
+}
+function isHabitActiveDay(h,dateStr){
+  if(!h.freq_type||h.freq_type==='daily')return true;
+  const d=new Date(dateStr+'T12:00:00');
+  if(h.freq_type==='weekly'){
+    const days=(h.freq_days||'').split(',').map(Number);
+    return days.includes(d.getDay());
+  }
+  if(h.freq_type==='monthly'){
+    const days=(h.freq_days||'').split(',').map(Number);
+    return days.includes(d.getDate());
+  }
+  return true;
+}
 function refreshCatSelect(){
   const p=people.find(x=>x.id===actPid)||people[0];
   document.getElementById('h-cat').innerHTML=`<option value="">Geral</option>`+(p?p.cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''):'');
+}
+function onFreqTypeChange(){
+  const t=document.getElementById('h-freq-type').value;
+  document.getElementById('h-freq-weekly').style.display=t==='weekly'?'block':'none';
+  document.getElementById('h-freq-monthly').style.display=t==='monthly'?'block':'none';
+}
+function getFreqDays(){
+  const t=document.getElementById('h-freq-type').value;
+  if(t==='weekly'){
+    const days=[...document.querySelectorAll('.freq-day:checked')].map(x=>x.value).join(',');
+    return days||null;
+  }
+  if(t==='monthly'){
+    return document.getElementById('h-freq-days-monthly').value.replace(/\s/g,'')||null;
+  }
+  return null;
 }
 function selHab(c,el){selHC=c;document.querySelectorAll('#h-swatches .sw').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
 async function saveHabit(){
@@ -505,12 +624,18 @@ async function saveHabit(){
   const name=document.getElementById('h-name').value.trim();
   const pts=parseInt(document.getElementById('h-pts').value)||5;
   const catId=document.getElementById('h-cat').value||null;
+  const freqType=document.getElementById('h-freq-type').value;
+  const freqDays=getFreqDays();
   if(!name||!pid)return;
-  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId}).select().single();
+  const {data,error}=await db.from('habits').insert({user_id:user.id,person_id:pid,name,pts,color:selHC,category_id:catId,freq_type:freqType,freq_days:freqDays}).select().single();
   if(error){toast('Erro ao salvar.');return;}
   const p=people.find(x=>x.id===pid);
   if(p)p.habs.push(data);
   document.getElementById('h-name').value='';document.getElementById('h-pts').value='5';
+  document.getElementById('h-freq-type').value='daily';
+  document.querySelectorAll('.freq-day').forEach(x=>x.checked=false);
+  document.getElementById('h-freq-days-monthly').value='';
+  onFreqTypeChange();
   refreshHabitosList();render();toast('Hábito adicionado!');
 }
 async function delHabit(pid,hid){
@@ -832,6 +957,171 @@ function tree(c,x,y,col,s){c.fillStyle='#795548';c.fillRect(x-4.5*s,y-40*s,9*s,4
 function flower(c,x,y,col,s){const fy=y-13*s-4*s;c.strokeStyle='#4caf50';c.lineWidth=1.3*s;c.beginPath();c.moveTo(x,y);c.lineTo(x,fy+4*s);c.stroke();c.fillStyle=col;for(let i=0;i<6;i++){const a=i/6*Math.PI*2;c.beginPath();c.arc(x+Math.cos(a)*5.5*s,fy+Math.sin(a)*5.5*s,3.5*s,0,Math.PI*2);c.fill();}c.fillStyle='#fff9c4';c.beginPath();c.arc(x,fy,3*s,0,Math.PI*2);c.fill();}
 function sun(c,x,y,li){c.fillStyle='#FAC775';c.beginPath();c.arc(x,y,12+li*1.8,0,Math.PI*2);c.fill();}
 function cloud(c,x,y){c.fillStyle='rgba(255,255,255,0.82)';[{dx:0,dy:0,r:10},{dx:-12,dy:4,r:8},{dx:12,dy:4,r:8},{dx:-5,dy:9,r:7},{dx:5,dy:9,r:7}].forEach(b=>{c.beginPath();c.arc(x+b.dx,y+b.dy,b.r,0,Math.PI*2);c.fill();});}
+
+// EDITAR FREQUÊNCIA
+let editFreqPid=null,editFreqHid=null;
+function openEditFreq(pid,hid){
+  editFreqPid=pid;editFreqHid=hid;
+  const p=people.find(x=>x.id===pid);
+  const h=p?.habs.find(x=>x.id===hid);if(!h)return;
+  document.getElementById('edit-freq-name').textContent=`Hábito: ${h.name}`;
+  const ft=h.freq_type||'daily';
+  document.getElementById('ef-freq-type').value=ft;
+  onEditFreqTypeChange();
+  if(ft==='weekly'&&h.freq_days){
+    const days=h.freq_days.split(',').map(String);
+    document.querySelectorAll('.efreq-day').forEach(x=>{x.checked=days.includes(x.value);});
+  } else {
+    document.querySelectorAll('.efreq-day').forEach(x=>x.checked=false);
+  }
+  if(ft==='monthly')document.getElementById('ef-freq-days').value=h.freq_days||'';
+  document.getElementById('ov-edit-freq').classList.add('open');
+}
+function closeEditFreq(){document.getElementById('ov-edit-freq').classList.remove('open');}
+function onEditFreqTypeChange(){
+  const t=document.getElementById('ef-freq-type').value;
+  document.getElementById('ef-freq-weekly').style.display=t==='weekly'?'block':'none';
+  document.getElementById('ef-freq-monthly').style.display=t==='monthly'?'block':'none';
+}
+async function saveEditFreq(){
+  const ft=document.getElementById('ef-freq-type').value;
+  let fd=null;
+  if(ft==='weekly'){fd=[...document.querySelectorAll('.efreq-day:checked')].map(x=>x.value).join(',')||null;}
+  if(ft==='monthly'){fd=document.getElementById('ef-freq-days').value.replace(/\s/g,'')||null;}
+  const {error}=await db.from('habits').update({freq_type:ft,freq_days:fd}).eq('id',editFreqHid);
+  if(error){toast('Erro ao salvar.');return;}
+  const p=people.find(x=>x.id===editFreqPid);
+  if(p){const h=p.habs.find(x=>x.id===editFreqHid);if(h){h.freq_type=ft;h.freq_days=fd;}}
+  closeEditFreq();refreshHabitosList();render();toast('Frequência atualizada!');
+}
+
+// RELATÓRIO
+async function openRelatorio(){
+  document.getElementById('rel-pessoa').innerHTML=people.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('ov-relatorio').classList.add('open');
+  await renderRelatorio();
+}
+function closeRelatorio(){document.getElementById('ov-relatorio').classList.remove('open');}
+
+async function renderRelatorio(){
+  const pid=document.getElementById('rel-pessoa').value;
+  const p=people.find(x=>x.id===pid);
+  if(!p)return;
+  const el=document.getElementById('rel-content');
+  el.innerHTML='<div style="text-align:center;padding:20px;color:var(--tm);">Carregando...</div>';
+
+  // Busca últimos 3 meses de dados
+  const hoje=new Date();
+  const meses=[];
+  for(let i=2;i>=0;i--){
+    const d=new Date(hoje.getFullYear(),hoje.getMonth()-i,1);
+    meses.push({yr:d.getFullYear(),mo:d.getMonth()});
+  }
+
+  // Busca todas as marcações dos últimos 3 meses
+  const fd=`${meses[0].yr}-${String(meses[0].mo+1).padStart(2,'0')}-01`;
+  const ld=`${meses[2].yr}-${String(meses[2].mo+1).padStart(2,'0')}-${new Date(meses[2].yr,meses[2].mo+1,0).getDate()}`;
+  const {data:checks}=await db.from('habit_checks').select('*').eq('person_id',pid).gte('check_date',fd).lte('check_date',ld);
+  const allChecks=checks||[];
+
+  // Calcula semanas dos últimos 3 meses
+  const semanas=[];
+  let cur=new Date(fd+'T12:00:00');
+  const fim=new Date(ld+'T12:00:00');
+  while(cur<=fim){
+    const ini=new Date(cur);
+    const end=new Date(cur);
+    end.setDate(end.getDate()+6);
+    if(end>fim)end.setTime(fim.getTime());
+    semanas.push({ini:new Date(ini),end:new Date(end)});
+    cur.setDate(cur.getDate()+7);
+  }
+
+  // Para cada semana calcula pts e conclusões
+  const semData=semanas.map(s=>{
+    const pts=allChecks.filter(c=>{
+      const d=new Date(c.check_date+'T12:00:00');
+      if(d<s.ini||d>s.end)return false;
+      const h=p.habs.find(x=>x.id===c.habit_id);
+      return !!h;
+    }).reduce((t,c)=>{
+      const h=p.habs.find(x=>x.id===c.habit_id);
+      return t+(h?h.pts:0);
+    },0);
+    const chks=allChecks.filter(c=>{
+      const d=new Date(c.check_date+'T12:00:00');
+      return d>=s.ini&&d<=s.end;
+    }).length;
+    const label=`${String(s.ini.getDate()).padStart(2,'0')}/${String(s.ini.getMonth()+1).padStart(2,'0')}`;
+    return {label,pts,chks};
+  });
+
+  const maxPts=Math.max(...semData.map(s=>s.pts),1);
+  const totalPtsRel=semData.reduce((t,s)=>t+s.pts,0);
+  const totalChksRel=allChecks.length;
+
+  // Resumo geral
+  const resumo=`
+    <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+      <div class="stat-tile" style="flex:1;min-width:100px;"><div class="stat-label">Total de pts</div><div class="stat-val">${totalPtsRel}</div><div class="stat-sub">últimos 3 meses</div></div>
+      <div class="stat-tile" style="flex:1;min-width:100px;"><div class="stat-label">Hábitos feitos</div><div class="stat-val">${totalChksRel}</div><div class="stat-sub">marcações</div></div>
+      <div class="stat-tile" style="flex:1;min-width:100px;"><div class="stat-label">Hábitos ativos</div><div class="stat-val">${p.habs.length}</div><div class="stat-sub">cadastrados</div></div>
+    </div>`;
+
+  // Gráfico de barras SVG
+  const svgW=560,svgH=200,padL=40,padB=30,padT=10,padR=10;
+  const chartW=svgW-padL-padR,chartH=svgH-padB-padT;
+  const barW=Math.max(8,Math.min(30,(chartW/semData.length)-4));
+
+  let bars='';
+  semData.forEach((s,i)=>{
+    const x=padL+(i/(semData.length-1||1))*(chartW-barW);
+    const bh=Math.max(2,(s.pts/maxPts)*chartH);
+    const by=padT+chartH-bh;
+    const cor=s.pts>0?'#3a7a28':'#d4eacc';
+    bars+=`<rect x="${x}" y="${by}" width="${barW}" height="${bh}" fill="${cor}" rx="3"/>`;
+    if(s.pts>0)bars+=`<text x="${x+barW/2}" y="${by-4}" text-anchor="middle" font-size="9" fill="#5a5a50">${s.pts}</text>`;
+    bars+=`<text x="${x+barW/2}" y="${svgH-8}" text-anchor="middle" font-size="9" fill="#9a9a88">${s.label}</text>`;
+  });
+
+  // Linhas de grade
+  let grid='';
+  for(let i=0;i<=4;i++){
+    const y=padT+(i/4)*chartH;
+    const v=Math.round(maxPts*(1-i/4));
+    grid+=`<line x1="${padL}" y1="${y}" x2="${svgW-padR}" y2="${y}" stroke="#f0ebe2" stroke-width="1"/>`;
+    grid+=`<text x="${padL-4}" y="${y+4}" text-anchor="end" font-size="9" fill="#9a9a88">${v}</text>`;
+  }
+
+  const grafico=`
+    <div style="font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Pontos por semana</div>
+    <div style="overflow-x:auto;">
+      <svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" style="min-width:320px;">
+        ${grid}${bars}
+        <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="#d0cdc4" stroke-width="1"/>
+        <line x1="${padL}" y1="${padT+chartH}" x2="${svgW-padR}" y2="${padT+chartH}" stroke="#d0cdc4" stroke-width="1"/>
+      </svg>
+    </div>`;
+
+  // Top hábitos
+  const habPts=p.habs.map(h=>{
+    const pts=allChecks.filter(c=>c.habit_id===h.id).reduce((t,c)=>t+h.pts,0);
+    const chks=allChecks.filter(c=>c.habit_id===h.id).length;
+    return{...h,pts,chks};
+  }).sort((a,b)=>b.pts-a.pts).slice(0,5);
+
+  const topHabs=habPts.length?`
+    <div style="font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:0.07em;margin:16px 0 8px;">Top hábitos</div>
+    ${habPts.map(h=>`
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
+        <div style="width:8px;height:8px;border-radius:50%;background:${h.color};flex-shrink:0;"></div>
+        <span style="flex:1;font-size:13px;">${h.name}</span>
+        <span style="font-size:11px;color:var(--tm);">${h.chks}x</span>
+        <span style="font-size:12px;font-weight:500;color:var(--g600);">${h.pts}pts</span>
+      </div>`).join('')}`:'';
+
+  el.innerHTML=resumo+grafico+topHabs;
+}
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
